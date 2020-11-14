@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.db import transaction
 
 from .models import User, Bewerber
@@ -17,44 +17,44 @@ class BewerberSignUpForm(UserCreationForm):
         self.fields['password1'].widget = forms.PasswordInput(attrs={
             'type': 'password',
             'class': 'form-control',
-            'placeholder': 'Password'
+            'placeholder': 'Passwort'
         })
         self.fields['password2'].widget = forms.PasswordInput(attrs={
             'type': 'password',
             'class': 'form-control',
-            'placeholder': 'Password Confirmation'
+            'placeholder': 'Passwort Bestätigung'
         })
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
         'class': 'form-control',
-        'placeholder': 'First Name'
+        'placeholder': 'Vorname'
     }))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
         'class': 'form-control',
-        'placeholder': 'Last Name'
+        'placeholder': 'Nachname'
     }))
     street = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
         'class': 'form-control',
-        'placeholder': 'Street'
+        'placeholder': 'Straße'
     }))
     city = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
         'class': 'form-control',
-        'placeholder': 'City'
+        'placeholder': 'Stadt'
     }))
     post_code = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
         'class': 'form-control',
-        'placeholder': 'Post Code'
+        'placeholder': 'PLZ'
     }))
 
     phone = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
         'class': 'form-control',
-        'placeholder': 'Phone'
+        'placeholder': 'Telefon'
     }))
 
     class Meta(UserCreationForm.Meta):
@@ -82,5 +82,21 @@ class BewerberSignUpForm(UserCreationForm):
         )
         return user
 
+    pass
 
 
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(widget = forms.EmailInput(attrs={
+
+        'type': 'email',
+        'class': 'form-control',
+        'placeholder': 'Email'
+
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+
+        'type': 'password',
+        'class': 'form-control',
+        'placeholder': 'Passwort'
+
+    }))
