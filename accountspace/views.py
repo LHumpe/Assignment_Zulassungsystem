@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.contrib.auth import login
 from .models import User, Bewerber
 from .forms import BewerberSignUpForm
@@ -17,3 +17,7 @@ class BewerberSignUpView(CreateView):
         user = form.save()
         #login(self.request, user)
         return redirect('bewerber_signup')
+
+
+class index(TemplateView):
+    template_name = 'base.html'

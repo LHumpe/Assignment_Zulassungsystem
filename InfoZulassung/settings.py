@@ -123,6 +123,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Custom Configs
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
 
 # Custom User Model
 AUTH_USER_MODEL = "accountspace.User"
