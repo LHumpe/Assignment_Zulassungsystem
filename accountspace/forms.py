@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.db import transaction
 
 from .models import User, Bewerber
@@ -82,5 +82,21 @@ class BewerberSignUpForm(UserCreationForm):
         )
         return user
 
+    pass
 
 
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(widget = forms.EmailInput(attrs={
+
+        'type': 'email',
+        'class': 'form-control',
+        'placeholder': 'Email'
+
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+
+        'type': 'password',
+        'class': 'form-control',
+        'placeholder': 'Passwort'
+
+    }))
