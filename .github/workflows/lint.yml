@@ -1,4 +1,4 @@
-name: Python package
+name: Python PEP-8 check
 
 on:
   push:
