@@ -1,10 +1,10 @@
 from django.db import models
-from accountspace.models import Bewerber
+from accountspace.models import User
 
 
 # Create your models here.
 class UniversityDegree(models.Model):
-    candidate = models.ForeignKey(Bewerber, on_delete=models.CASCADE)
+    candidate = models.ForeignKey(User, on_delete=models.CASCADE)
 
     university_name = models.CharField(max_length=128)
     name_of_degree = models.CharField(max_length=128)
@@ -25,11 +25,11 @@ class UniversityDegree(models.Model):
 
 
 class WorkExperience(models.Model):
-    candidate = models.ForeignKey(Bewerber, on_delete=models.CASCADE)
+    candidate = models.ForeignKey(User, on_delete=models.CASCADE)
 
     company_name = models.CharField(max_length=128)
-    starting_year = models.DateField()
-    end_year = models.DateField()
+    starting_date = models.DateField()
+    end_date = models.DateField()
     employment_relationship = models.CharField(max_length=128)
     industry = models.CharField(max_length=128)
     supervisor = models.CharField(max_length=128)
@@ -39,21 +39,21 @@ class WorkExperience(models.Model):
     avg_weekly_working_time = models.IntegerField()
 
 
-class SchoolDegrees(models.Model):
-    candidate = models.ForeignKey(Bewerber, on_delete=models.CASCADE)
+class SchoolDegree(models.Model):
+    candidate = models.ForeignKey(User, on_delete=models.CASCADE)
 
     school_name = models.CharField(max_length=128)
     city = models.CharField(max_length=128)
     type_of_degree = models.CharField(max_length=128)
-    graduation_year = models.DateField()
-    starting_year = models.DateField()
+    graduation_date = models.DateField()
+    starting_date = models.DateField()
     avg_score = models.DecimalField(max_digits=2, decimal_places=1)
 
 
 class Bewerbung(models.Model):
-    bewerber = models.ForeignKey(Bewerber, on_delete=models.CASCADE)
+    bewerber = models.ForeignKey(User, on_delete=models.CASCADE)
     uni_degrees = models.ManyToManyField(UniversityDegree)
-    school_degrees = models.ManyToManyField(SchoolDegrees)
+    school_degrees = models.ManyToManyField(SchoolDegree)
     work_experiences = models.ManyToManyField(WorkExperience)
 
     STATUS_CHOICES = (
@@ -61,6 +61,6 @@ class Bewerbung(models.Model):
         ('A', 'Approved'),
         ('D', 'Declined'),
     )
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=1, default='P', choices=STATUS_CHOICES)
 
     date_of_entry = models.DateTimeField(auto_created=True)
