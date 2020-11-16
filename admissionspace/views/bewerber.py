@@ -1,10 +1,14 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
 from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung
+from ..decorators import bewerber_required
 import datetime
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class ApplicantIndexView(TemplateView):
     model = UniversityDegree
     template_name = 'admissionspace/applications/applicant_index.html'
@@ -18,6 +22,7 @@ class ApplicantIndexView(TemplateView):
         return context
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class UniversityDegreeCreateView(CreateView):
     model = UniversityDegree
     template_name = 'admissionspace/applications/university_degreee.html'
@@ -31,6 +36,7 @@ class UniversityDegreeCreateView(CreateView):
         return redirect('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class UniversityDegreeUpdateView(UpdateView):
     model = UniversityDegree
     template_name = 'admissionspace/applications/university_degreee.html'
@@ -39,12 +45,14 @@ class UniversityDegreeUpdateView(UpdateView):
     success_url = reverse_lazy('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class UniversityDegreeDeleteView(DeleteView):
     model = UniversityDegree
     template_name = 'admissionspace/applications/university_degreee.html'
     success_url = reverse_lazy('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class SchoolDegreeCreateView(CreateView):
     model = SchoolDegree
     template_name = 'admissionspace/applications/school_degree.html'
@@ -57,6 +65,7 @@ class SchoolDegreeCreateView(CreateView):
         return redirect('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class SchoolDegreeUpdateView(UpdateView):
     model = SchoolDegree
     template_name = 'admissionspace/applications/school_degree.html'
@@ -64,12 +73,14 @@ class SchoolDegreeUpdateView(UpdateView):
     success_url = reverse_lazy('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class SchoolDegreeDeleteView(DeleteView):
     model = SchoolDegree
     template_name = 'admissionspace/applications/school_degree.html'
     success_url = reverse_lazy('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class WorkExperienceCreateView(CreateView):
     model = WorkExperience
     template_name = 'admissionspace/applications/work_experience.html'
@@ -83,6 +94,7 @@ class WorkExperienceCreateView(CreateView):
         return redirect('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class WorkExperienceUpdateView(UpdateView):
     model = WorkExperience
     template_name = 'admissionspace/applications/work_experience.html'
@@ -91,12 +103,14 @@ class WorkExperienceUpdateView(UpdateView):
     success_url = reverse_lazy('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class WorkExperienceDeleteView(DeleteView):
     model = WorkExperience
     template_name = 'admissionspace/applications/work_experience.html'
     success_url = reverse_lazy('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerbungCreateView(CreateView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
@@ -110,6 +124,7 @@ class BewerbungCreateView(CreateView):
         return redirect('update_uni_degree')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerbungUpdateView(UpdateView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
@@ -117,6 +132,7 @@ class BewerbungUpdateView(UpdateView):
     success_url = reverse_lazy('applicant_index')
 
 
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerbungDeleteView(DeleteView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
