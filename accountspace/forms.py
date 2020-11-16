@@ -82,11 +82,9 @@ class BewerberSignUpForm(UserCreationForm):
         )
         return user
 
-    pass
-
 
 class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(widget = forms.EmailInput(attrs={
+    username = forms.CharField(widget=forms.EmailInput(attrs={
 
         'type': 'email',
         'class': 'form-control',
