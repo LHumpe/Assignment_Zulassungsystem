@@ -121,7 +121,7 @@ class BewerbungCreateView(CreateView):
         object.bewerber = self.request.user
         object.date_of_entry = datetime.datetime.now()
         object.save()
-        return redirect('update_uni_degree')
+        return redirect('applicant_index')
 
 
 @method_decorator([login_required, bewerber_required], name='dispatch')
