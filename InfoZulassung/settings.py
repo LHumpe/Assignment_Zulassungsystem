@@ -26,7 +26,7 @@ SECRET_KEY = 'cibi@(g&w_+)vj)=4*^og%d^iba$7cuw8i4%hmc2^f0=7m_=ci'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['swt-das-team.herokuapp.com']
 
 
 # Application definition
