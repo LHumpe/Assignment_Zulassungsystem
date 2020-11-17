@@ -1,5 +1,12 @@
+
 # Virtual Environment
 /venv/
 
+# virtual environment (Mo)
+/django_project_env/
+
 # PyCharm Config
 .idea/
+
+# Python Caches
+**/__pycache__/
