@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+    <h2>University Degrees</h2>
+    <a href="{% url 'create_uni_degree' %}">Uni Degree Hinzufügen</a>
+    <ul>
+        {% for uni_degree in universitydegrees %}
+            <li>
+                {{ uni_degree.university_name }}
+                <a href="{% url 'update_uni_degree' uni_degree.id %}">
+                    Updaten
+                </a>
+                |
+                <a href="{% url 'delete_uni_degree' uni_degree.id %}">
+                    Löschen
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>School Degrees</h2>
+    <a href="{% url 'create_school_degree' %}">School Degree Hinzufügen</a>
+    <ul>
+        {% for school_degree in schooldegrees %}
+            <li>
+                {{ school_degree.school_name }}
+                <a href="{% url 'update_school_degree' school_degree.id %}">
+                    Updaten
+                </a>
+                |
+                <a href="{% url 'delete_school_degree' school_degree.id %}">
+                    Löschen
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Work Experiences</h2>
+    <a href="{% url 'create_work_exp' %}">Work Experience Hinzufügen</a>
+    <ul>
+        {% for work_experience in workexperience %}
+            <li>
+                {{ work_experience.company_name }}
+                <a href="{% url 'update_work_exp' work_experience.id %}">
+                    Updaten
+                </a>
+                |
+                <a href="{% url 'delete_work_exp' work_experience.id %}">
+                    Löschen
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Bewerbungen</h2>
+    <a href="{% url 'create_bewerbung' %}">Bewerbung Hinzufügen</a>
+    <ul>
+        {% for bewerb in bewerbung %}
+            <li>
+                {{ bewerb.status }}
+                <a href="{% url 'update_bewerbung' bewerb.id %}">
+                    Updaten
+                </a>
+                |
+                <a href="{% url 'delete_bewerbung' bewerb.id %}">
+                    Löschen
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
