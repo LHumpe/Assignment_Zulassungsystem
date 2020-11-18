@@ -3,10 +3,6 @@
 {% block content_header %} Bewerberportal {% endblock content_header %}
 
 {% block main_content %}
-    <a href="{% url 'bewerber_update' user.id %}">Persönliche Daten ändern </a>
-    {% with request.build_absolute_uri|add:recommendation_link as recommendation_url %}
-        <h2> Recommendation Link: {{ recommendation_url }} </h2>
-    {% endwith %}
     {% for b in bewerbung %}
         <div class="card">
             <div class="card-header">
@@ -49,7 +45,11 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"><b>Account Informationen</b></h3>
+
             <div class="card-tools">
+                <button onclick="javascript:location.href='{% url 'bewerber_update' user.id %}'" type="button"
+                        class="btn btn-primary float-right" style="margin-right: 4px;"><i class="fas fa-pen"></i>
+                </button>
                 <!-- Buttons, labels, and many other things can be placed here! -->
                 <!-- Here is a label for example -->
             </div>
@@ -70,6 +70,10 @@
         </div>
         <!-- /.card-body -->
         <!-- /.card-footer -->
+        <div class="card-footer">
+
+
+        </div>
     </div>
     <!-- /.card -->
 
@@ -295,14 +299,13 @@
                         <thead>
                         <tr>
                             <th style="width: 10px">Firma</th>
-                            <th>Startdatum</th>
-                            <th>Enddatum</th>
-                            <th>Art der Beschäftigung</th>
-                            <th>Branche</th>
-                            <th>Ansprechpartner</th>
-                            <th>Spezialisierung</th>
-                            <th>Köln</th>
-                            <th>Workload</th>
+                            <th>Vorname</th>
+                            <th>Nachname</th>
+                            <th>Rolle</th>
+                            <th>E-Mail</th>
+                            <th>Telefon</th>
+                            <th>Erreichbar ab</th>
+                            <th>Erreichbar bis</th>
                             <th></th>
 
 
@@ -316,18 +319,16 @@
                                 <td>{{ recommendation.first_name }}</td>
                                 <td>{{ recommendation.last_name }}</td>
                                 <td>{{ recommendation.job_position }}</td>
-                                <td>{{ recommendation.company_name }}</td>
-                                <td>{{ recommendation.company_address }}</td>
                                 <td>{{ recommendation.email }}</td>
                                 <td>{{ recommendation.phone }}</td>
-
+                                <td>{{ recommendation.available_from }}</td>
+                                <td>{{ recommendation.available_until }}</td>
 
                                 <td>
                                     <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
                                             type="button"
-                                            class="btn btn-info float-none" style="margin-right: 4px;"><i
-                                            class="fas fa-head-side-cough"></i> Recommendation einsehen
-                                        löschen
+                                            class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                            class="fas fa-eye"></i>
                                     </button>
 
                                 </td>
@@ -339,6 +340,18 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
+
+
+                    {% with request.build_absolute_uri|add:recommendation_link as recommendation_url %}
+                        <p><b>Sende den folgenden Link an Personen,welche ein Empfehlungsschreiben für dich erstellen
+                            sollen. Das Empfehlungsschreiben wird deiner Bewerbung automatisch angehangen.</b></p>
+                        <a><b>Link: </b></a> <a href={{ recommendation_url }}>{{ recommendation_url }} </a>
+                    {% endwith %}
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>

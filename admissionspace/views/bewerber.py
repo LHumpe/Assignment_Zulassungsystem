@@ -7,7 +7,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, TemplateVie
 from accountspace.models import Bewerber, User
 from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung, Recommendation
 from ..decorators import bewerber_required
-from ..forms import UniversityDegreeForm, SchoolDegreeForm, WorkExperienceForm, BewerbungForm
+from ..forms import UniversityDegreeForm, SchoolDegreeForm, WorkExperienceForm, BewerbungForm, RecommendationCreateForm
 import datetime
 
 
@@ -163,9 +163,8 @@ class BewerbungDeleteView(DeleteView):
 class RecommendationCreateView(CreateView):
     model = Recommendation
     template_name = 'admissionspace/applications/recommendation_create.html'
+    form_class = RecommendationCreateForm
     success_url = reverse_lazy('applicant_index')
-    fields = ['first_name', 'last_name', 'job_position', 'company_name', 'company_address', 'email', 'phone',
-              'available_from', 'available_until', 'recommendation_letter']
 
     def form_valid(self, form):
         object = form.save(commit=False)

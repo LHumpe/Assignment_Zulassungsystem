@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.shortcuts import redirect
-from .models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung
+from .models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung, Recommendation
 
 from .models import User
 
@@ -179,3 +179,65 @@ class BewerbungForm(forms.ModelForm):
                 'placeholder': 'Abschluss'})
 
         }
+
+
+class RecommendationCreateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(RecommendationCreateForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget = forms.TextInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'Vorname'
+        })
+        self.fields['last_name'].widget = forms.TextInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'Nachname'
+        })
+        self.fields['job_position'].widget = forms.TextInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'Rolle'
+        })
+        self.fields['company_name'].widget = forms.TextInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'Firma'
+        })
+        self.fields['company_address'].widget = forms.TextInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'Firmenadresse'
+        })
+        self.fields['email'].widget = forms.EmailInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'E-Mail'
+        })
+        self.fields['phone'].widget = forms.TextInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'Telefonnummer'
+        })
+        self.fields['available_from'].widget = forms.TextInput(attrs={
+            'type': 'time',
+            'class': 'form-control',
+            'placeholder': 'Geben Sie hier bitte eine Uhrzeit an ab der Sie erreichbar sind'
+        })
+        self.fields['available_until'].widget = forms.TextInput(attrs={
+            'type': 'time',
+            'class': 'form-control',
+            'placeholder': 'Geben Sie hier bitte eine Uhrzeit an bis zu der Sie erreichbar sind'
+        })
+
+        self.fields['recommendation_letter'].widget = forms.Textarea(attrs={
+            'type': 'multi',
+            'class': 'form-control',
+            'placeholder': 'Bitte schreiben Sie in dieses Feld ihr Empfehlungsschreiben für den Bewerber'
+        })
+
+    class Meta:
+        model = Recommendation
+        fields = ["first_name", "last_name", "job_position", "company_name", "company_address",
+                  "email", "phone", "available_from", "available_until", "recommendation_letter"]
