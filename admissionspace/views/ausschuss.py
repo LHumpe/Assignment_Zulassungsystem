@@ -15,5 +15,5 @@ class ApplicationListView(ListView):
 class AdmissionApplicationUpdateView(UpdateView):
     model = Bewerbung
     template_name = 'admissionspace/admission/application_admission.html'
-    fields='__all__'
+    fields=['status']
     success_url = reverse_lazy('application_list')
