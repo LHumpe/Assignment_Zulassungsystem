@@ -18,6 +18,7 @@ from django.urls import path
 from accountspace.views import BewerberSignUpView, CustomLoginView
 from django.contrib.auth import views as auth_views
 import admissionspace.views.bewerber as bewerber_views
+import admissionspace.views.ausschuss as ausschuss_views
 
 urlpatterns = [
     path('', CustomLoginView.as_view(), name='login'),
@@ -57,4 +58,9 @@ urlpatterns = [
     path('deleteapplication/<slug:pk>/', bewerber_views.BewerbungDeleteView.as_view(),
          name='delete_bewerbung'),
 
+    # Admission views
+    path('viewapplications', ausschuss_views.ApplicationListView.as_view(),
+         name='application_list'),
+    path('approveapplication/<slug:pk>/', ausschuss_views.AdmissionApplicationUpdateView.as_view(),
+         name='approve_application'),
 ]
