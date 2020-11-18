@@ -59,6 +59,10 @@ urlpatterns = [
     path('deleteapplication/<slug:pk>/', bewerber_views.BewerbungDeleteView.as_view(),
          name='delete_bewerbung'),
 
+    path('myapplications/recommend/<slug:pk>/', bewerber_views.RecommendationCreateView.as_view(), name='recommend'),
+    path('myapplications/view_recommend/<slug:pk>/', bewerber_views.RecommendationDetailView.as_view(),
+         name='detail_recommendation'),
+
     # Admission views
     path('viewapplications', ausschuss_views.ApplicationListView.as_view(),
          name='application_list'),

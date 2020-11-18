@@ -2,10 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
-from accountspace.models import Bewerber
-from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung
+from accountspace.models import Bewerber, User
+from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung, Recommendation
 from ..decorators import bewerber_required
 from ..forms import UniversityDegreeForm, SchoolDegreeForm, WorkExperienceForm, BewerbungForm
 import datetime
@@ -23,6 +23,8 @@ class ApplicantIndexView(TemplateView):
         context['schooldegrees'] = SchoolDegree.objects.filter(candidate=self.request.user)
         context['bewerbung'] = Bewerbung.objects.filter(bewerber=self.request.user)
         context['account_information'] = Bewerber.objects.filter(user=self.request.user)
+        context['recommendations'] = Recommendation.objects.filter(bewerber=self.request.user)
+        context['recommendation_link'] = '/recommend/{}/'.format(self.request.user.id)
         return context
 
 
@@ -156,3 +158,26 @@ class BewerbungDeleteView(DeleteView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
     success_url = reverse_lazy('applicant_index')
+
+
+class RecommendationCreateView(CreateView):
+    model = Recommendation
+    template_name = 'admissionspace/applications/recommendation_create.html'
+    success_url = reverse_lazy('applicant_index')
+    fields = ['first_name', 'last_name', 'job_position', 'company_name', 'company_address', 'email', 'phone',
+              'available_from', 'available_until', 'recommendation_letter']
+
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.bewerber = User.objects.get(id=self.kwargs['pk'])
+        object.save()
+        return redirect('applicant_index')
+
+@method_decorator([login_required, bewerber_required], name='dispatch')
+class RecommendationDetailView(DetailView):
+    model = Recommendation
+    template_name = 'admissionspace/applications/recommendation_detail.html'
+
+
+
+
