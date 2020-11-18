@@ -279,10 +279,10 @@ p-3 mb-3">
                         <button type="submit" onclick="javascript: document.getElementById('id_status').value='D'"
 
 
-                      {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
-                      {% else %} class="btn btn-danger float-right"
-                                    {% endif %}
-                     >
+                                {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
+                                {% else %} class="btn btn-danger float-right"
+                                {% endif %}
+                        >
                             <i class="fas fa-times"></i>&nbsp; Bewerber ablehnen
                         </button>
 
@@ -290,11 +290,11 @@ p-3 mb-3">
                         <button
                                 type="submit" onclick="javascript: document.getElementById('id_status').value='A'; "
 
-                                 style="margin-right: 5px;"
+                                style="margin-right: 5px;"
 
-                        {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
-                      {% else %} class="btn btn-success float-right"
-                                    {% endif %}
+                                {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
+                                {% else %} class="btn btn-success float-right"
+                                {% endif %}
 
                         ><i class="fas fa-check"></i>&nbsp;
                             Bewerber annehmen
