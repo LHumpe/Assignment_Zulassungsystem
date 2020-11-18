@@ -10,7 +10,7 @@ class UniversityDegree(models.Model):
     name_of_degree = models.CharField(max_length=128)
 
     DEGREE_CHOICES = (
-        ('bsc', 'Master of Science'),
+        ('msc', 'Master of Science'),
         ('ma', 'Master of Arts'),
         ('bsc', 'Bachelor of Science'),
         ('ba', 'Bachelor of Arts'),
@@ -22,6 +22,9 @@ class UniversityDegree(models.Model):
     starting_date = models.DateField()
     no_of_semesters = models.IntegerField()
     avg_score = models.DecimalField(max_digits=2, decimal_places=1)
+
+    def __str__(self):
+        return "{} {} {}".format(self.name_of_degree, self.type_of_degree,self.university_name)
 
 
 class WorkExperience(models.Model):
@@ -39,6 +42,10 @@ class WorkExperience(models.Model):
     avg_weekly_working_time = models.IntegerField()
 
 
+    def __str__(self):
+        return "{} {}".format(self.company_name, self.employment_relationship)
+
+
 class SchoolDegree(models.Model):
     candidate = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -48,6 +55,11 @@ class SchoolDegree(models.Model):
     graduation_date = models.DateField()
     starting_date = models.DateField()
     avg_score = models.DecimalField(max_digits=2, decimal_places=1)
+
+
+
+    def __str__(self):
+        return "{} {}".format(self.school_name, self.type_of_degree)
 
 
 class Bewerbung(models.Model):
@@ -64,3 +76,5 @@ class Bewerbung(models.Model):
     status = models.CharField(max_length=1, default='P', choices=STATUS_CHOICES)
 
     date_of_entry = models.DateTimeField(auto_created=True)
+
+
