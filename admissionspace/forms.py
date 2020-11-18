@@ -161,10 +161,6 @@ class WorkExperienceForm(forms.ModelForm):
 
 
 class BewerbungForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super(BewerbungForm, self).__init__(*args, **kwargs)
-
     class Meta:
         model = Bewerbung
         fields = ["uni_degrees", "school_degrees", "work_experiences", ]
