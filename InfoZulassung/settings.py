@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,12 +21,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cibi@(g&w_+)vj)=4*^og%d^iba$7cuw8i4%hmc2^f0=7m_=ci'
+if os.environ.get('SECRET_KEY') is None:
+    SECRET_KEY = 'cibi@(g&w_+)vj)=4*^og%d^iba$7cuw8i4%hmc2^f0=7m_=ci'
+else:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['swt-das-team.herokuapp.com']
 
 # Application definition
 
@@ -117,11 +123,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Custom Configs
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Custom User Model
 AUTH_USER_MODEL = "accountspace.User"
+django_heroku.settings(locals())
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'login'

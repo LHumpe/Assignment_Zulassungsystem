@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block content_header %} Bewerbung {% endblock content_header %}
 {% block main_content %}
+
+     {% for info in account_information %}
+
+        <p>Vorname: {{ info.first_name }}</p>
+        <p>Nachname: {{ info.last_name }}</p>
+        <p>Straße: {{ info.street }}</p>
+        <p>PLZ: {{ info.post_code }}</p>
+        <p>Stadt: {{ info.city }}</p>
+        <p>Telefon: {{ info.phone }}</p>
+    {% endfor %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+
         <input type="submit" value="OK">
     </form>
 {% endblock %}
