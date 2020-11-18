@@ -283,6 +283,7 @@
 
     {% for b in bewerbung %}
 
+        {% if b.status == "P" %}
         <button onclick="javascript:location.href='{% url 'delete_bewerbung' b.id %}'" type="button"
                 class="btn btn-danger float-none" style="margin-right: 4px;"><i class="fas fa-trash-alt"></i> Bewerbung
             löschen
@@ -292,6 +293,9 @@
                 class="btn btn-primary float-none" style="margin-right: 4px;"><i class="fas fa-pen"></i> Bewerbung
             bearbeiten
         </button>
+
+        {% else %}
+        {% endif %}
 
     {% empty %}
         <button onclick="javascript:location.href='{% url 'create_bewerbung' %}'" type="button"
