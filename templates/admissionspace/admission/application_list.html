@@ -32,10 +32,10 @@
                     <tbody>
                     {% for application in object_list %}
                         <tr>
-                            <td>{{ application.bewerber.last_name }}</td>
-                            <td>{{ application.bewerber.first_name }}</td>
-                         <td>{{ application.bewerber.phone }}</td>
-                        <td>{{ application.bewerber.email }}</td>
+                            <td>{{ application.bewerber.bewerber.last_name }}</td>
+                            <td>{{ application.bewerber.bewerber.first_name }}</td>
+                         <td>{{ application.bewerber.bewerber.phone }}</td>
+                        <td>{{ application.bewerber.bewerber.email }}</td>
 
 
                             {% if application.status == 'A' %}
