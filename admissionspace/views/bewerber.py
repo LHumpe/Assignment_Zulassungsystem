@@ -2,10 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
-from accountspace.models import Bewerber
-from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung
+from accountspace.models import Bewerber, User
+from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung, Recommendation
 from ..decorators import bewerber_required
 from ..forms import UniversityDegreeForm, SchoolDegreeForm, WorkExperienceForm, BewerbungForm
 import datetime
@@ -23,6 +23,8 @@ class ApplicantIndexView(TemplateView):
         context['schooldegrees'] = SchoolDegree.objects.filter(candidate=self.request.user)
         context['bewerbung'] = Bewerbung.objects.filter(bewerber=self.request.user)
         context['account_information'] = Bewerber.objects.filter(user=self.request.user)
+        context['recommendations'] = Recommendation.objects.filter(bewerber=self.request.user)
+        context['recommendation_link'] = '/recommend/{}/'.format(self.request.user.id)
         return context
 
 
@@ -31,8 +33,6 @@ class UniversityDegreeCreateView(CreateView):
     model = UniversityDegree
     template_name = 'admissionspace/applications/university_degreee.html'
     form_class = UniversityDegreeForm
-    #fields = ['university_name', 'name_of_degree', 'type_of_degree', 'specialisation', 'graduation_date',
-     #        'starting_date', 'no_of_semesters', 'avg_score']
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -46,8 +46,6 @@ class UniversityDegreeUpdateView(UpdateView):
     model = UniversityDegree
     template_name = 'admissionspace/applications/university_degreee.html'
     form_class = UniversityDegreeForm
-    #fields = ['university_name', 'name_of_degree', 'type_of_degree', 'specialisation', 'graduation_date',
-     #         'starting_date', 'no_of_semesters', 'avg_score']
     success_url = reverse_lazy('applicant_index')
 
 
@@ -63,7 +61,6 @@ class SchoolDegreeCreateView(CreateView):
     model = SchoolDegree
     template_name = 'admissionspace/applications/school_degree.html'
     form_class = SchoolDegreeForm
-    #fields = ['school_name', 'city', 'type_of_degree', 'graduation_date', 'starting_date', 'avg_score']
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -77,7 +74,6 @@ class SchoolDegreeUpdateView(UpdateView):
     model = SchoolDegree
     template_name = 'admissionspace/applications/school_degree.html'
     form_class = SchoolDegreeForm
-    #fields = ['school_name', 'city', 'type_of_degree', 'graduation_date', 'starting_date', 'avg_score']
     success_url = reverse_lazy('applicant_index')
 
 
@@ -93,8 +89,6 @@ class WorkExperienceCreateView(CreateView):
     model = WorkExperience
     template_name = 'admissionspace/applications/work_experience.html'
     form_class = WorkExperienceForm
-    #fields = ['company_name', 'company_address', 'industry', 'starting_date', 'end_date', 'employment_relationship',
-    #          'supervisor', 'specialisation', 'task_description', 'avg_weekly_working_time']
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -108,8 +102,6 @@ class WorkExperienceUpdateView(UpdateView):
     model = WorkExperience
     template_name = 'admissionspace/applications/work_experience.html'
     form_class = WorkExperienceForm
-    #fields = ['company_name', 'company_address', 'industry', 'starting_date', 'end_date', 'employment_relationship',
-    #          'supervisor', 'specialisation', 'task_description', 'avg_weekly_working_time']
     success_url = reverse_lazy('applicant_index')
 
 
@@ -125,7 +117,13 @@ class BewerbungCreateView(CreateView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
     form_class = BewerbungForm
-    #fields = ['uni_degrees', 'school_degrees', 'work_experiences']
+
+    def get_form(self, *args, **kwargs):
+        form = super(BewerbungCreateView, self).get_form(*args, **kwargs)
+        form.fields['uni_degrees'].queryset = UniversityDegree.objects.filter(candidate__bewerber=self.request.user.id)
+        form.fields['school_degrees'].queryset = SchoolDegree.objects.filter(candidate__bewerber=self.request.user.id)
+        form.fields['work_experiences'].queryset = WorkExperience.objects.filter(candidate=self.request.user.id)
+        return form
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -145,8 +143,14 @@ class BewerbungUpdateView(UpdateView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
     form_class = BewerbungForm
-    #fields = ['uni_degrees', 'school_degrees', 'work_experiences']
     success_url = reverse_lazy('applicant_index')
+
+    def get_form(self, *args, **kwargs):
+        form = super(BewerbungUpdateView, self).get_form(*args, **kwargs)
+        form.fields['uni_degrees'].queryset = UniversityDegree.objects.filter(candidate__bewerber=self.request.user.id)
+        form.fields['school_degrees'].queryset = SchoolDegree.objects.filter(candidate__bewerber=self.request.user.id)
+        form.fields['work_experiences'].queryset = WorkExperience.objects.filter(candidate=self.request.user.id)
+        return form
 
 
 @method_decorator([login_required, bewerber_required], name='dispatch')
@@ -154,3 +158,26 @@ class BewerbungDeleteView(DeleteView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
     success_url = reverse_lazy('applicant_index')
+
+
+class RecommendationCreateView(CreateView):
+    model = Recommendation
+    template_name = 'admissionspace/applications/recommendation_create.html'
+    success_url = reverse_lazy('applicant_index')
+    fields = ['first_name', 'last_name', 'job_position', 'company_name', 'company_address', 'email', 'phone',
+              'available_from', 'available_until', 'recommendation_letter']
+
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.bewerber = User.objects.get(id=self.kwargs['pk'])
+        object.save()
+        return redirect('applicant_index')
+
+@method_decorator([login_required, bewerber_required], name='dispatch')
+class RecommendationDetailView(DetailView):
+    model = Recommendation
+    template_name = 'admissionspace/applications/recommendation_detail.html'
+
+
+
+
