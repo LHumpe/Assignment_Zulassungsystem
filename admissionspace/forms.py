@@ -11,6 +11,17 @@ class UniversityDegreeForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UniversityDegreeForm, self).__init__(*args, **kwargs)
+
+        self.fields['university_name'].label = "Universitätsname"
+        self.fields['name_of_degree'].label = "Studiengang"
+        self.fields['type_of_degree'].label = "Abschlussbezeichnung"
+        self.fields['specialisation'].label = "Spezialisierung"
+        self.fields['graduation_date'].label = "Abschlussdatum"
+        self.fields['starting_date'].label = "Startdatum"
+        self.fields['no_of_semesters'].label = "Anzahl Semester"
+        self.fields['avg_score'].label = "Notenschnitt"
+
+
         self.fields['university_name'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control',
@@ -62,6 +73,15 @@ class SchoolDegreeForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SchoolDegreeForm, self).__init__(*args, **kwargs)
+
+        self.fields['school_name'].label = "Schule"
+        self.fields['city'].label = "Stadt"
+        self.fields['type_of_degree'].label = "Abschlussbezeichnung"
+        self.fields['graduation_date'].label = "Abschlussdatum"
+        self.fields['starting_date'].label = "Startdatum"
+        self.fields['avg_score'].label = "Notenschnitt"
+
+
         self.fields['school_name'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control',
@@ -103,6 +123,19 @@ class WorkExperienceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(WorkExperienceForm, self).__init__(*args, **kwargs)
+
+        self.fields['company_name'].label = "Firmenname"
+        self.fields['end_date'].label = "Enddatum"
+        self.fields['starting_date'].label = "Startdatum"
+        self.fields['employment_relationship'].label = "Jobbezeichnung"
+        self.fields['industry'].label = "Branche"
+        self.fields['supervisor'].label = "Ansprechpartner"
+        self.fields['specialisation'].label = "Spezialisierung"
+        self.fields['task_description'].label = "Beschreibung"
+        self.fields['avg_weekly_working_time'].label = "Arbeitszeit"
+
+
+
         self.fields['company_name'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control',
@@ -185,6 +218,18 @@ class RecommendationCreateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RecommendationCreateForm, self).__init__(*args, **kwargs)
+
+        self.fields['first_name'].label = "Vorname"
+        self.fields['last_name'].label = "Nachname"
+        self.fields['job_position'].label = "Job Rolle"
+        self.fields['company_name'].label = "Firmenname"
+        self.fields['company_address'].label = "Adresse der Firma"
+        self.fields['email'].label = "E-Mail"
+        self.fields['phone'].label = "Telefon"
+        self.fields['available_from'].label = "Erreichbar ab"
+        self.fields['available_until'].label = "Erreichbar bis"
+        self.fields['recommendation_letter'].label = "Empfehlungsschreiben"
+
         self.fields['first_name'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control',
