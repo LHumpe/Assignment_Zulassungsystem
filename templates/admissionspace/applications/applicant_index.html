@@ -1,69 +1,303 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block content_header %} Bewerberportal {% endblock content_header %}
+
 {% block main_content %}
-    <h2>University Degrees</h2>
-    <a href="{% url 'create_uni_degree' %}">Uni Degree Hinzufügen</a>
-    <ul>
-        {% for uni_degree in universitydegrees %}
-            <li>
-                {{ uni_degree.university_name }}
-                <a href="{% url 'update_uni_degree' uni_degree.id %}">
-                    Updaten
-                </a>
-                |
-                <a href="{% url 'delete_uni_degree' uni_degree.id %}">
-                    Löschen
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <h2>School Degrees</h2>
-    <a href="{% url 'create_school_degree' %}">School Degree Hinzufügen</a>
-    <ul>
-        {% for school_degree in schooldegrees %}
-            <li>
-                {{ school_degree.school_name }}
-                <a href="{% url 'update_school_degree' school_degree.id %}">
-                    Updaten
-                </a>
-                |
-                <a href="{% url 'delete_school_degree' school_degree.id %}">
-                    Löschen
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <h2>Work Experiences</h2>
-    <a href="{% url 'create_work_exp' %}">Work Experience Hinzufügen</a>
-    <ul>
-        {% for work_experience in workexperience %}
-            <li>
-                {{ work_experience.company_name }}
-                <a href="{% url 'update_work_exp' work_experience.id %}">
-                    Updaten
-                </a>
-                |
-                <a href="{% url 'delete_work_exp' work_experience.id %}">
-                    Löschen
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <h2>Bewerbungen</h2>
-    <a href="{% url 'create_bewerbung' %}">Bewerbung Hinzufügen</a>
-    <ul>
-        {% for bewerb in bewerbung %}
-            <li>
-                {{ bewerb.status }}
-                <a href="{% url 'update_bewerbung' bewerb.id %}">
-                    Updaten
-                </a>
-                |
-                <a href="{% url 'delete_bewerbung' bewerb.id %}">
-                    Löschen
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+
+    {% for b in bewerbung %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"><b>Bewerbungs Status</b></h3>
+                <div class="card-tools">
+                    <!-- Buttons, labels, and many other things can be placed here! -->
+                    <!-- Here is a label for example -->
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+
+            {% if b.status == "P" %}
+                <div class="card-body" style="background-color:lightblue;">
+                    <b>In Bearbeitung</b>
+                </div>
+            {% endif %}
+            {% if b.status == "A" %}
+                <div class="card-body" style="background-color:lightgreen;">
+                    <b>Akzeptiert</b>
+                </div>
+            {% endif %}
+            {% if b.status == "D" %}
+                <div class="card-body" style="background-color:lightcoral;">
+                    <b>Abgelehnt</b>
+                </div>
+            {% endif %}
+
+        <div class="card-footer">
+            <b>Eingangsdatum:</b> {{ b.date_of_entry }}
+
+        </div>
+        <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    {% empty %}
+    {% endfor %}
+
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><b>Account Informationen</b></h3>
+            <div class="card-tools">
+                <!-- Buttons, labels, and many other things can be placed here! -->
+                <!-- Here is a label for example -->
+            </div>
+            <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+            {% for info in account_information %}
+
+                <p><b>Vorname:</b> {{ info.first_name }}</p>
+                <p><b>Nachname:</b> {{ info.last_name }}</p>
+                <p><b>Straße:</b> {{ info.street }}</p>
+                <p><b>PLZ:</b> {{ info.post_code }}</p>
+                <p><b>Stadt:</b> {{ info.city }}</p>
+                <p><b>Telefon:</b> {{ info.phone }}</p>
+            {% endfor %}
+        </div>
+        <!-- /.card-body -->
+        <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><b>Universitätsabschlüsse</b></h3>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">Universität</th>
+                            <th>Studiengang</th>
+                            <th>Abschluss</th>
+                            <th>Spezialisierung</th>
+                            <th>Datum des Abschlusses</th>
+                            <th>Startdatum</th>
+                            <th>Anzahl Semester</th>
+                            <th>NC</th>
+                            <th></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for uni_degree in universitydegrees %}
+                            <tr>
+                                <td>{{ uni_degree.university_name }}</td>
+                                <td>{{ uni_degree.name_of_degree }}</td>
+                                <td>{{ uni_degree.type_of_degree }}</td>
+                                <td>{{ uni_degree.specialisation }}</td>
+                                <td>{{ uni_degree.graduation_date }}</td>
+                                <td>{{ uni_degree.starting_date }}</td>
+                                <td>{{ uni_degree.no_of_semesters }}</td>
+                                <td>{{ uni_degree.avg_score }}</td>
+
+
+                                <td>
+
+                                    <button onclick="javascript:location.href='{% url 'update_uni_degree' uni_degree.id %}'"
+                                            type="button" class="btn btn-primary float-right"><i class="fas fa-pen"></i>
+                                    </button>
+
+
+                                    <button onclick="javascript:location.href='{% url 'delete_uni_degree' uni_degree.id %}'"
+                                            type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
+
+
+                    <button onclick="javascript:location.href='{% url 'create_uni_degree' %}'" type="button"
+                            class="btn btn-success float-right" style="margin-right: 4px;"><i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.card -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><b>Schulabschlüsse</b></h3>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">Schule</th>
+                            <th>Stadt</th>
+                            <th>Abschluss</th>
+                            <th>Datum des Abschlusses</th>
+                            <th>Startdatum</th>
+                            <th>NC</th>
+                            <th></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for school_degree in schooldegrees %}
+                            <tr>
+                                <td>{{ school_degree.school_name }}</td>
+                                <td>{{ school_degree.city }}</td>
+                                <td>{{ school_degree.type_of_degree }}</td>
+                                <td>{{ school_degree.graduation_date }}</td>
+                                <td>{{ school_degree.starting_date }}</td>
+                                <td>{{ school_degree.avg_score }}</td>
+
+
+                                <td>
+
+                                    <button onclick="javascript:location.href='{% url 'update_school_degree' school_degree.id %}'"
+                                            type="button" class="btn btn-primary float-right"><i class="fas fa-pen"></i>
+                                    </button>
+
+
+                                    <button onclick="javascript:location.href='{% url 'delete_school_degree' school_degree.id %}'"
+                                            type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                </td>
+
+
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
+                    <button onclick="javascript:location.href='{% url 'create_school_degree' %}'" type="button"
+                            class="btn btn-success float-right" style="margin-right: 4px;"><i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><b>Arbeitserfahrungen</b></h3>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">Firma</th>
+                            <th>Startdatum</th>
+                            <th>Enddatum</th>
+                            <th>Art der Beschäftigung</th>
+                            <th>Branche</th>
+                            <th>Ansprechpartner</th>
+                            <th>Spezialisierung</th>
+                            <th>Köln</th>
+                            <th>Workload</th>
+                            <th></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for work_experience in workexperience %}
+                            <tr>
+                                <td>{{ work_experience.company_name }}</td>
+                                <td>{{ work_experience.starting_date }}</td>
+                                <td>{{ work_experience.end_date }}</td>
+                                <td>{{ work_experience.employment_relationship }}</td>
+                                <td>{{ work_experience.industry }}</td>
+                                <td>{{ work_experience.supervisor }}</td>
+                                <td>{{ work_experience.specialisation }}</td>
+                                <td>{{ work_experience.company_address }}</td>
+                                <td>{{ work_experience.avg_weekly_working_time }}</td>
+
+
+                                <td>
+
+                                    <button onclick="javascript:location.href='{% url 'update_work_exp' work_experience.id %}'"
+                                            type="button" class="btn btn-primary float-right"><i class="fas fa-pen"></i>
+                                    </button>
+
+
+                                    <button onclick="javascript:location.href='{% url 'delete_work_exp' work_experience.id %}'"
+                                            type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                </td>
+
+
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
+
+
+                    <button onclick="javascript:location.href='{% url 'create_work_exp' %}'" type="button"
+                            class="btn btn-success float-right" style="margin-right: 4px;"><i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% for b in bewerbung %}
+
+        <button onclick="javascript:location.href='{% url 'delete_bewerbung' b.id %}'" type="button"
+                class="btn btn-danger float-none" style="margin-right: 4px;"><i class="fas fa-trash-alt"></i> Bewerbung
+            löschen
+        </button>
+
+        <button onclick="javascript:location.href='{% url 'update_bewerbung' b.id %}'" type="button"
+                class="btn btn-primary float-none" style="margin-right: 4px;"><i class="fas fa-pen"></i> Bewerbung
+            bearbeiten
+        </button>
+
+    {% empty %}
+        <button onclick="javascript:location.href='{% url 'create_bewerbung' %}'" type="button"
+                class="btn btn-success float-none" style="margin-right: 4px;"><i class="fas fa-plus"></i> Bewerbung
+            erstellen
+        </button>
+    {% endfor %}
 
 {% endblock %}
