@@ -3,7 +3,7 @@
 {% block content_header %} Bewerberportal {% endblock content_header %}
 
 {% block main_content %}
-
+    <a href="{% url 'bewerber_update' user.id %}">Persönliche Daten ändern </a>
     {% for b in bewerbung %}
         <div class="card">
             <div class="card-header">
