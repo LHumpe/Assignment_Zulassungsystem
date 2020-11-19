@@ -194,6 +194,13 @@ class WorkExperienceForm(forms.ModelForm):
 
 
 class BewerbungForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(BewerbungForm, self).__init__(*args, **kwargs)
+        self.fields['uni_degrees'].label = "Universitätsabschlüsse"
+        self.fields['school_degrees'].label = "Schulabschlüsse"
+        self.fields['work_experiences'].label = "Arbeitserfahrungen"
+
     class Meta:
         model = Bewerbung
         fields = ["uni_degrees", "school_degrees", "work_experiences", ]

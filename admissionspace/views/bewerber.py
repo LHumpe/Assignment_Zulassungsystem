@@ -154,6 +154,11 @@ class BewerbungUpdateView(UpdateView):
 
 
 @method_decorator([login_required, bewerber_required], name='dispatch')
+class BewerbungDetailView(DetailView):
+    model = Bewerbung
+    template_name = 'admissionspace/applications/bewerbung_detail.html'
+
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerbungDeleteView(DeleteView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'

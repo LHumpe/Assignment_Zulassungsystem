@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content_header %} Universitätsabschluss {% endblock content_header %}
+{% block content_header %} Universitätsabschluss {{object.id}} {% endblock content_header %}
 {% block main_content %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="OK">
+        <button type="submit" class="btn btn-primary">OK</button>
     </form>
 {% endblock %}

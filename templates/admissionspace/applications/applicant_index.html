@@ -6,27 +6,30 @@
     {% for b in bewerbung %}
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><b>Bewerbungs Status</b></h3>
+                <h3 class="card-title"><b>Bewerbung Status</b></h3>
                 <div class="card-tools">
-                    <!-- Buttons, labels, and many other things can be placed here! -->
-                    <!-- Here is a label for example -->
+                    <button onclick="javascript:location.href='{% url 'detail_bewerbung' b.id %}'"
+                                            type="button"
+                                            class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                            class="fas fa-eye"></i>
+                                    </button>
                 </div>
                 <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
 
             {% if b.status == "P" %}
-                <div class="card-body" style="background-color:lightblue;">
+                <div class="card-body" style="background-color:#ffc107!important">
                     <b>In Bearbeitung</b>
                 </div>
             {% endif %}
             {% if b.status == "A" %}
-                <div class="card-body" style="background-color:lightgreen;">
+                <div class="card-body" style="background-color:#28a745!important;">
                     <b>Akzeptiert</b>
                 </div>
             {% endif %}
             {% if b.status == "D" %}
-                <div class="card-body" style="background-color:lightcoral;">
+                <div class="card-body" style="background-color:#dc3545!important;;">
                     <b>Abgelehnt</b>
                 </div>
             {% endif %}
@@ -65,6 +68,7 @@
                 <p><b>Straße:</b> {{ info.street }}</p>
                 <p><b>PLZ:</b> {{ info.post_code }}</p>
                 <p><b>Stadt:</b> {{ info.city }}</p>
+                <p><b>E-Mail:</b> {{ info.email }}</p>
                 <p><b>Telefon:</b> {{ info.phone }}</p>
             {% endfor %}
         </div>
@@ -304,8 +308,7 @@
                             <th>Rolle</th>
                             <th>E-Mail</th>
                             <th>Telefon</th>
-                            <th>Erreichbar ab</th>
-                            <th>Erreichbar bis</th>
+                            <th>Erreichbarkeit</th>
                             <th></th>
 
 
@@ -321,8 +324,7 @@
                                 <td>{{ recommendation.job_position }}</td>
                                 <td>{{ recommendation.email }}</td>
                                 <td>{{ recommendation.phone }}</td>
-                                <td>{{ recommendation.available_from }}</td>
-                                <td>{{ recommendation.available_until }}</td>
+                                <td>{{ recommendation.available_from }} - {{ recommendation.available_until }} Uhr</td>
 
                                 <td>
                                     <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
