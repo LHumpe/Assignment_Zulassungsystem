@@ -1,0 +1,58 @@
+.ilias-header{
+    font-size: 36px;
+    font-weight: 300;
+    color: #58595B;
+
+
+}
+
+.ilias-header-light{
+    font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+}
+
+.custom-content-header{
+    background-color: #3E566C !important;
+    margin-bottom: 32px !important;
+    padding: 16px !important;
+}
+
+
+.custom-card{
+    border-radius: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding:48px !important;
+}
+
+.custom-card-overview{
+    border-radius: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding:16px !important;
+}
+
+.custom-navbar{
+    background-color: #32475b;
+    border-color: #32475b;
+}
+
+.custom-footer{
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+
+.custom-content{
+    padding-left: 48px !important;
+    padding-right: 48px !important;
+    padding-bottom: 32px !important;
+}
+
+.custom-invoice-info{
+    margin-top: 32px !important;
+    margin-bottom: 16px !important;
+}
+

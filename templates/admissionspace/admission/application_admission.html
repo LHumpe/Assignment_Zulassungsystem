@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block content_header %} Portal des Zulassungsausschuss {% endblock content_header %}
 {% block main_content %}
 
     <div class="col-12">
 
 
         <!-- Main content -->
-        <div class="callout
+        <div class="callout custom-card
 {% if bewerbung.status == 'A' %}
                                 callout-success
                             {% elif bewerbung.status == 'D' %}
@@ -19,21 +20,27 @@
 p-3 mb-3">
             <!-- title row -->
             <div class="row">
-                <div class="col-12">
-                    <h4>
-                         Bewerbung #{{ bewerbung.id }}
-                        <small class="float-right">{{ bewerbung.date_of_entry }}<br></small>
+                <div class="col-6">
+                    <h4 class="ilias-header">
+                         Bewerbung Nr. {{ bewerbung.id }}
                     </h4>
+
+
+
+
                 </div>
+                 <div class="col-6">
+                <h5 class="float-right" style="margin-bottom: 48px !important; color: #58595B; font-style:italic">{{ bewerbung.date_of_entry }}</h5>
+ </div>
                 <!-- /.col -->
             </div>
 
             <!-- info row -->
-            <div class="row invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
                 <div class="col-sm-4 invoice-col">
 
                     <address>
-                        Name: <br>
+                        <strong>Name: <br></strong>
                         Straße & Hausnummer: <br>
                         PLZ & Ort:<br>
                         Telefonnummer: <br>
@@ -44,7 +51,7 @@ p-3 mb-3">
                 <div class="col-sm-4 invoice-col">
 
                     <address>
-                        {{ bewerbung.bewerber.bewerber.last_name }}, {{ bewerbung.bewerber.bewerber.first_name }}<br>
+                        <strong>{{ bewerbung.bewerber.bewerber.last_name }}, {{ bewerbung.bewerber.bewerber.first_name }}</strong><br>
                         {{ bewerbung.bewerber.bewerber.street }}<br>
                         {{ bewerbung.bewerber.bewerber.post_code }}, {{ bewerbung.bewerber.bewerber.city }}<br>
                         {{ bewerbung.bewerber.bewerber.phone }}<br>
@@ -58,7 +65,7 @@ p-3 mb-3">
 
 
                     {% if bewerbung.status == 'A' %}
-                        <h5><i class="fas fa-check-circle" style="color: #28a745;"></i>&nbsp;&nbsp;Bewerber angenommen
+                        <h5><i class="fas fa-check-circle" style="color: #28a745; " ></i>&nbsp;&nbsp;Bewerber angenommen
                         </h5>
                     {% elif bewerbung.status == 'D' %}
                         <h5><i class="fas fa-times-circle" style="color: #dc3545;"></i>&nbsp;&nbsp;Bewerber abgelehnt
@@ -78,7 +85,7 @@ p-3 mb-3">
 
 
             <!-- Table row -->
-            <div class="row" style="margin-bottom: 16px;">
+            <div class="row" style="margin-bottom: 32px; margin-top: 32px">
                 <div class="col-12 ">
                     <p class="lead">Schulabschluss/-abschlüsse</p>
                     <div class="table-responsive">
@@ -118,7 +125,7 @@ p-3 mb-3">
             <!-- /.row -->
 
             <!-- Table row -->
-            <div class="row" style="margin-bottom: 16px;">
+            <div class="row" style="margin-bottom: 32px; margin-top: 16px">
                 <div class="col-12 ">
                     <p class="lead">Hochschulabschluss/-abschlüsse</p>
                     <div class="table-responsive">
