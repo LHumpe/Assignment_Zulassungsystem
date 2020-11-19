@@ -3,40 +3,42 @@
 {% block content_header %} Bewerberportal {% endblock content_header %}
 
 {% block main_content %}
-
     {% for b in bewerbung %}
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><b>Bewerbungs Status</b></h3>
+                <h3 class="card-title"><b>Bewerbung Status</b></h3>
                 <div class="card-tools">
-                    <!-- Buttons, labels, and many other things can be placed here! -->
-                    <!-- Here is a label for example -->
+                    <button onclick="javascript:location.href='{% url 'detail_bewerbung' b.id %}'"
+                                            type="button"
+                                            class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                            class="fas fa-eye"></i>
+                                    </button>
                 </div>
                 <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
 
             {% if b.status == "P" %}
-                <div class="card-body" style="background-color:lightblue;">
+                <div class="card-body" style="background-color:#ffc107!important">
                     <b>In Bearbeitung</b>
                 </div>
             {% endif %}
             {% if b.status == "A" %}
-                <div class="card-body" style="background-color:lightgreen;">
+                <div class="card-body" style="background-color:#28a745!important;">
                     <b>Akzeptiert</b>
                 </div>
             {% endif %}
             {% if b.status == "D" %}
-                <div class="card-body" style="background-color:lightcoral;">
+                <div class="card-body" style="background-color:#dc3545!important;;">
                     <b>Abgelehnt</b>
                 </div>
             {% endif %}
 
-        <div class="card-footer">
-            <b>Eingangsdatum:</b> {{ b.date_of_entry }}
+            <div class="card-footer">
+                <b>Eingangsdatum:</b> {{ b.date_of_entry }}
 
-        </div>
-        <!-- /.card-footer -->
+            </div>
+            <!-- /.card-footer -->
         </div>
         <!-- /.card -->
     {% empty %}
@@ -46,7 +48,11 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"><b>Account Informationen</b></h3>
+
             <div class="card-tools">
+                <button onclick="javascript:location.href='{% url 'bewerber_update' user.id %}'" type="button"
+                        class="btn btn-primary float-right" style="margin-right: 4px;"><i class="fas fa-pen"></i>
+                </button>
                 <!-- Buttons, labels, and many other things can be placed here! -->
                 <!-- Here is a label for example -->
             </div>
@@ -62,11 +68,16 @@
                 <p><b>Straße:</b> {{ info.street }}</p>
                 <p><b>PLZ:</b> {{ info.post_code }}</p>
                 <p><b>Stadt:</b> {{ info.city }}</p>
+                <p><b>E-Mail:</b> {{ info.email }}</p>
                 <p><b>Telefon:</b> {{ info.phone }}</p>
             {% endfor %}
         </div>
         <!-- /.card-body -->
         <!-- /.card-footer -->
+        <div class="card-footer">
+
+
+        </div>
     </div>
     <!-- /.card -->
 
@@ -280,9 +291,77 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><b>Empfehlungsschreiben</b></h3>
+
+                </div>
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">Firma</th>
+                            <th>Vorname</th>
+                            <th>Nachname</th>
+                            <th>Rolle</th>
+                            <th>E-Mail</th>
+                            <th>Telefon</th>
+                            <th>Erreichbarkeit</th>
+                            <th></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for recommendation in recommendations %}
+                            <tr>
+                                <td>{{ recommendation.company_name }}</td>
+                                <td>{{ recommendation.first_name }}</td>
+                                <td>{{ recommendation.last_name }}</td>
+                                <td>{{ recommendation.job_position }}</td>
+                                <td>{{ recommendation.email }}</td>
+                                <td>{{ recommendation.phone }}</td>
+                                <td>{{ recommendation.available_from }} - {{ recommendation.available_until }} Uhr</td>
+
+                                <td>
+                                    <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
+                                            type="button"
+                                            class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                            class="fas fa-eye"></i>
+                                    </button>
+
+                                </td>
+
+
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
+
+
+                    {% with request.build_absolute_uri|add:recommendation_link as recommendation_url %}
+                        <p><b>Sende den folgenden Link an Personen,welche ein Empfehlungsschreiben für dich erstellen
+                            sollen. Das Empfehlungsschreiben wird deiner Bewerbung automatisch angehangen.</b></p>
+                        <a><b>Link: </b></a> <a href={{ recommendation_url }}>{{ recommendation_url }} </a>
+                    {% endwith %}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     {% for b in bewerbung %}
 
+        {% if b.status == "P" %}
         <button onclick="javascript:location.href='{% url 'delete_bewerbung' b.id %}'" type="button"
                 class="btn btn-danger float-none" style="margin-right: 4px;"><i class="fas fa-trash-alt"></i> Bewerbung
             löschen
@@ -292,6 +371,9 @@
                 class="btn btn-primary float-none" style="margin-right: 4px;"><i class="fas fa-pen"></i> Bewerbung
             bearbeiten
         </button>
+
+        {% else %}
+        {% endif %}
 
     {% empty %}
         <button onclick="javascript:location.href='{% url 'create_bewerbung' %}'" type="button"

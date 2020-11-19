@@ -2,20 +2,38 @@
 {% load static %}
 {% block content_header %} Bewerbung {% endblock content_header %}
 {% block main_content %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Übersicht alle Bewerbungen</h3>
 
-     {% for info in account_information %}
 
-        <p>Vorname: {{ info.first_name }}</p>
-        <p>Nachname: {{ info.last_name }}</p>
-        <p>Straße: {{ info.street }}</p>
-        <p>PLZ: {{ info.post_code }}</p>
-        <p>Stadt: {{ info.city }}</p>
-        <p>Telefon: {{ info.phone }}</p>
-    {% endfor %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+            </div>
+            <!-- /.card-header -->
 
-        <input type="submit" value="OK">
-    </form>
+
+            <div class="card-body">
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col">
+                        <div class="form-group">
+                        {{ form.as_p }}
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <!-- /.card -->
+    </div>
+
+
+
 {% endblock %}

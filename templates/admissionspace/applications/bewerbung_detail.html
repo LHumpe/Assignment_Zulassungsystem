@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+
+    <div class="col-12">
+
+
+        <!-- Main content -->
+        <div class="callout
+{% if bewerbung.status == 'A' %}
+                                callout-success
+                            {% elif bewerbung.status == 'D' %}
+                                callout-danger
+
+                            {% else %}
+                                callout-warning
+                            {% endif %}
+
+p-3 mb-3">
+            <!-- title row -->
+            <div class="row">
+                <div class="col-12">
+                    <h4>
+                        <i class="fas fa-envelope-open-text"></i> &nbsp; Bewerbung #{{ bewerbung.id }}
+                        <small class="float-right">{{ bewerbung.date_of_entry }}<br></small>
+                    </h4>
+                </div>
+                <!-- /.col -->
+            </div>
+
+            <!-- info row -->
+            <div class="row invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                <div class="col-sm-4 invoice-col">
+
+                    <address>
+                        Name: <br>
+                        Straße & Hausnummer: <br>
+                        PLZ & Ort:<br>
+                        Telefonnummer: <br>
+                        Email-Adresse:
+                    </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+
+                    <address>
+                        {{ bewerbung.bewerber.bewerber.last_name }}, {{ bewerbung.bewerber.bewerber.first_name }}<br>
+                        {{ bewerbung.bewerber.bewerber.street }}<br>
+                        {{ bewerbung.bewerber.bewerber.post_code }}, {{ bewerbung.bewerber.bewerber.city }}<br>
+                        {{ bewerbung.bewerber.bewerber.phone }}<br>
+                        {{ bewerbung.bewerber.bewerber.email }}
+                    </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                    <br>
+                    <br>
+
+
+                    {% if bewerbung.status == 'A' %}
+                        <h5><i class="fas fa-check-circle" style="color: #28a745;"></i>&nbsp;&nbsp;Bewerber angenommen
+                        </h5>
+                    {% elif bewerbung.status == 'D' %}
+                        <h5><i class="fas fa-times-circle" style="color: #dc3545;"></i>&nbsp;&nbsp;Bewerber abgelehnt
+                        </h5>
+                    {% elif bewerbung.status == 'P' %}
+                        <h5><i class="fas fa-exclamation-circle"
+                               style="color: #ffc107;"></i>&nbsp;&nbsp;Beantwortung ausstehend
+                        </h5>
+                    {% else %}
+                        <h5>ERROR</h5>
+                    {% endif %}
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+            <!-- Table row -->
+            <div class="row" style="margin-bottom: 16px;">
+                <div class="col-12 ">
+                    <p class="lead">Schulabschluss/-abschlüsse</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Abschluss</th>
+                                <th>Schule</th>
+
+                                <th>Datum der Einschulung</th>
+                                <th>Datum der Graduierung</th>
+                                <th>Notenschnitt</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for schooldegree in bewerbung.school_degrees.all %}
+                                <tr>
+
+
+                                <td>{{ schooldegree.type_of_degree }}</td>
+                                <td>{{ schooldegree.school_name }} {{ schooldegree.city }}</td>
+
+                                <td>{{ schooldegree.starting_date }}</td>
+                                <td>{{ schooldegree.graduation_date }}</td>
+                                <td>{{ schooldegree.avg_score }}</td>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Table row -->
+            <div class="row" style="margin-bottom: 16px;">
+                <div class="col-12 ">
+                    <p class="lead">Hochschulabschluss/-abschlüsse</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Abschluss</th>
+                                <th>Hochschule</th>
+                                <th>Datum der Graduierung</th>
+                                <th>Benötigte Semester</th>
+                                <th>Spezialisierung</th>
+                                <th>Notenschnitt</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for universitydegree in bewerbung.uni_degrees.all %}
+                                <tr>
+
+
+                                <td>
+                                    {% if universitydegree.type_of_degree == 'bsc' %}B.Sc.
+                                    {% elif universitydegree.type_of_degree == 'msc' %}M.Sc.
+                                    {% elif universitydegree.type_of_degree == 'ba' %}B.A.
+                                    {% elif universitydegree.type_of_degree == 'ma' %}M.A.
+                                    {% else %}
+
+                                    {% endif %}
+
+
+
+
+                                    &nbsp;{{ universitydegree.name_of_degree }}</td>
+
+
+
+                                <td>{{ universitydegree.university_name }}</td>
+                                <td>{{ universitydegree.graduation_date }}</td>
+                                <td>{{ universitydegree.no_of_semesters }}</td>
+                                <td>{{ universitydegree.specialisation }}</td>
+                                <td>{{ universitydegree.avg_score }}</td>
+
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-3">
+                    <p class="lead" style="margin-bottom: 16px;">Praxiserfahrung :</p>
+                </div>
+            </div>
+
+
+
+
+
+            {% for workexperience in bewerbung.work_experiences.all %}
+                <div class="row"
+
+
+                     style=" margin-left: 5px;
+                             margin-right: 5px;
+
+
+                             {% if forloop.counter0 != 0 %}
+                                 border-top: 1px solid #dee2e6   ;
+                                 padding-top: 16px;
+
+                                 {% if forloop.last %}
+
+                                     padding-bottom: 16px;
+
+                                 {% endif %}
+
+                             {% else %}
+
+                             {% endif %}
+
+                             "
+
+
+                >
+
+                    <div class="col-3">
+
+                        <address>
+                            <i class="fas fa-globe"></i> &nbsp; <strong>{{ workexperience.company_name }}</strong><br>
+                            {{ workexperience.company_address }}<br>
+
+                            Branche: {{ workexperience.industry }}<br>
+                            Ansprechpartner: {{ workexperience.supervisor }}
+                        </address>
+
+                    </div>
+
+
+                    <!-- /.col -->
+
+                    <div class="col-3">
+
+                        <address>
+                            <strong>{{ workexperience.employment_relationship }}</strong><br>
+                            {{ workexperience.specialisation }}<br>
+                            {{ workexperience.starting_date }} - {{ workexperience.end_date }}<br>
+                            {{ workexperience.avg_weekly_working_time }} Std. / Woche
+
+
+                        </address>
+
+                    </div>
+                    <!-- /.col -->
+
+
+                    <!-- accepted payments column -->
+                    <div class="col-6">
+                        <strong>Beschreibung:</strong><br>
+                        <p class="text-muted well well-sm shadow-none" style="width: 100%;">
+                            {{ workexperience.task_description }}
+
+
+                        </p>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+         <div class="row">
+            <div class="col-12">
+                    <div class="card-header">
+                        <h3 class="card-title">Empfehlungsschreiben</h3>
+
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">Firma</th>
+                                <th>Vorname</th>
+                                <th>Nachname</th>
+                                <th>Rolle</th>
+                                <th>E-Mail</th>
+                                <th>Telefon</th>
+                                <th>Erreichbarkeit</th>
+                                <th></th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for recommendation in recommendations %}
+                                <tr>
+                                    <td>{{ recommendation.company_name }}</td>
+                                    <td>{{ recommendation.first_name }}</td>
+                                    <td>{{ recommendation.last_name }}</td>
+                                    <td>{{ recommendation.job_position }}</td>
+                                    <td>{{ recommendation.email }}</td>
+                                    <td>{{ recommendation.phone }}</td>
+                                    <td>{{ recommendation.available_from }} - {{ recommendation.available_until }} Uhr
+                                    </td>
+
+                                    <td>
+                                        <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
+                                                type="button"
+                                                class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                                class="fas fa-eye"></i>
+                                        </button>
+
+                                    </td>
+
+
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+        </div>
+
+            <!-- /.row -->
+
+            <!-- this row will not appear when printing -->
+        </div>
+
+
+
+        <!-- /.invoice -->
+    </div>
+
+
+
+{% endblock %}

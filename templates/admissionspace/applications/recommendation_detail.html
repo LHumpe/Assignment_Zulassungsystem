@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+
+    <div class="col-12">
+
+
+        <!-- Main content -->
+        <div class="callout callout-success p-3 mb-3">
+            <!-- title row -->
+            <div class="row">
+                <div class="col-12">
+                    <h4>
+                        <i class="fas fa-envelope-open-text"></i> &nbsp; Empfehlungsschreiben #{{ object.id }}
+                        <small class="float-right">{{ bewerbung.date_of_entry }}<br></small>
+                    </h4>
+                </div>
+                <!-- /.col -->
+            </div>
+
+            <!-- info row -->
+            <div class="row invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                <div class="col-sm-4 invoice-col">
+
+                    <address>
+                        Firma <br>
+                        Firmenadresse<br>
+                        Name des Empfehlungsschreiber <br>
+                        Job Position <br>
+                        E-Mail<br>
+                        Telefonnummer <br>
+                        Erreichbarkeit <br>
+
+
+                    </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+
+                    <address>
+                        {{ object.company_name }}<br>
+                        {{ object.company_address }}<br>
+                        {{ object.last_name }}, {{ object.first_name }}<br>
+                        {{ object.job_position }}<br>
+                        {{ object.email }}<br>
+                        {{ object.phone }}<br>
+                        {{ object.available_from }} - {{ object.available_until }} Uhr<br>
+                    </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                        <h5>Text:</h5>
+                        <p>{{ object.recommendation_letter }}
+                        </p>
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /.invoice -->
+    </div>
+
+
+{% endblock %}
