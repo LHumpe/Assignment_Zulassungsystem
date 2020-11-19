@@ -21,7 +21,7 @@ p-3 mb-3">
             <div class="row">
                 <div class="col-12">
                     <h4>
-                        <i class="fas fa-envelope-open-text"></i> &nbsp; Bewerbung #{{ bewerbung.id }}
+                         Bewerbung #{{ bewerbung.id }}
                         <small class="float-right">{{ bewerbung.date_of_entry }}<br></small>
                     </h4>
                 </div>
@@ -254,6 +254,7 @@ p-3 mb-3">
 
 
 
+{% if bewerbung.status == 'P' %}
 
             <!-- /.row -->
 
@@ -261,11 +262,11 @@ p-3 mb-3">
             <div class="row no-print" style="margin-top: 16px;">
                 <div class="col-12">
 
-                    <h6 class="float-left " style="position: absolute;
-	bottom: 0; margin-bottom:0; color: lightgrey ">
+                    <p class="float-left " style="position: absolute;
+	                bottom: 0; margin-bottom:0; color: red ">
 
-                        Universität zu Köln <br> Zulassungsausschuss Informatik
-                    </h6>
+                        Achtung: Sobald sie eine Bewerbung beantwortet haben, kann diese Aktion <br> lediglich durch einen Systemadministrator rückgängig gemacht werden!
+                    </p>
 
 
                     <form method="post">
@@ -279,9 +280,8 @@ p-3 mb-3">
                         <button type="submit" onclick="javascript: document.getElementById('id_status').value='D'"
 
 
-                      {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
-                      {% else %} class="btn btn-danger float-right"
-                                    {% endif %}
+                      class="btn btn-danger float-right"
+
                      >
                             <i class="fas fa-times"></i>&nbsp; Bewerber ablehnen
                         </button>
@@ -292,9 +292,8 @@ p-3 mb-3">
 
                                  style="margin-right: 5px;"
 
-                        {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
-                      {% else %} class="btn btn-success float-right"
-                                    {% endif %}
+                        class="btn btn-success float-right"
+
 
                         ><i class="fas fa-check"></i>&nbsp;
                             Bewerber annehmen
@@ -306,6 +305,8 @@ p-3 mb-3">
 
                 </div>
             </div>
+         {% else %}
+                                    {% endif %}
         </div>
         <!-- /.invoice -->
     </div>
