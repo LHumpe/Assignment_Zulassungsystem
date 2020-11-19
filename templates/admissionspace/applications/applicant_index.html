@@ -3,7 +3,10 @@
 {% block content_header %} Bewerberportal {% endblock content_header %}
 
 {% block main_content %}
-
+    <a href="{% url 'bewerber_update' user.id %}">Persönliche Daten ändern </a>
+    {% with request.build_absolute_uri|add:recommendation_link as recommendation_url %}
+        <h2> Recommendation Link: {{ recommendation_url }} </h2>
+    {% endwith %}
     {% for b in bewerbung %}
         <div class="card">
             <div class="card-header">
@@ -32,11 +35,11 @@
                 </div>
             {% endif %}
 
-        <div class="card-footer">
-            <b>Eingangsdatum:</b> {{ b.date_of_entry }}
+            <div class="card-footer">
+                <b>Eingangsdatum:</b> {{ b.date_of_entry }}
 
-        </div>
-        <!-- /.card-footer -->
+            </div>
+            <!-- /.card-footer -->
         </div>
         <!-- /.card -->
     {% empty %}
@@ -280,6 +283,66 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><b>Empfehlungsschreiben</b></h3>
+
+                </div>
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">Firma</th>
+                            <th>Startdatum</th>
+                            <th>Enddatum</th>
+                            <th>Art der Beschäftigung</th>
+                            <th>Branche</th>
+                            <th>Ansprechpartner</th>
+                            <th>Spezialisierung</th>
+                            <th>Köln</th>
+                            <th>Workload</th>
+                            <th></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for recommendation in recommendations %}
+                            <tr>
+                                <td>{{ recommendation.company_name }}</td>
+                                <td>{{ recommendation.first_name }}</td>
+                                <td>{{ recommendation.last_name }}</td>
+                                <td>{{ recommendation.job_position }}</td>
+                                <td>{{ recommendation.company_name }}</td>
+                                <td>{{ recommendation.company_address }}</td>
+                                <td>{{ recommendation.email }}</td>
+                                <td>{{ recommendation.phone }}</td>
+
+
+                                <td>
+                                    <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
+                                            type="button"
+                                            class="btn btn-info float-none" style="margin-right: 4px;"><i
+                                            class="fas fa-head-side-cough"></i> Recommendation einsehen
+                                        löschen
+                                    </button>
+
+                                </td>
+
+
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     {% for b in bewerbung %}
 

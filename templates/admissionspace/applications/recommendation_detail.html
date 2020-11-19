@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content_header %} Schulabschluss {% endblock content_header %}
+{% block main_content %}
+<h1>{{ object.id }}</h1>
+<p>{{ object.company_name }}</p>
+<p>Reporter: {{ object.first_name }}</p>
+{% endblock %}

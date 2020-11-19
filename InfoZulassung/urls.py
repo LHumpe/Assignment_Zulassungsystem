@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from accountspace.views import BewerberSignUpView, CustomLoginView
+from accountspace.views import BewerberSignUpView, CustomLoginView, BewerberUpdateView
 from django.contrib.auth import views as auth_views
 import admissionspace.views.bewerber as bewerber_views
 import admissionspace.views.ausschuss as ausschuss_views
@@ -27,6 +27,7 @@ urlpatterns = [
     path('signout/', auth_views.LogoutView.as_view(next_page='login'), name='signout'),
 
     # Application Views - Bewerbersicht
+    path('changeuserdata/<slug:pk>/', BewerberUpdateView.as_view(), name='bewerber_update'),
     path('myapplications', bewerber_views.ApplicantIndexView.as_view(),
          name='applicant_index'),
 
@@ -57,6 +58,10 @@ urlpatterns = [
          name='update_bewerbung'),
     path('deleteapplication/<slug:pk>/', bewerber_views.BewerbungDeleteView.as_view(),
          name='delete_bewerbung'),
+
+    path('myapplications/recommend/<slug:pk>/', bewerber_views.RecommendationCreateView.as_view(), name='recommend'),
+    path('myapplications/view_recommend/<slug:pk>/', bewerber_views.RecommendationDetailView.as_view(),
+         name='detail_recommendation'),
 
     # Admission views
     path('viewapplications', ausschuss_views.ApplicationListView.as_view(),
