@@ -105,9 +105,7 @@ p-3 mb-3">
                                 <td>{{ schooldegree.starting_date }}</td>
                                 <td>{{ schooldegree.graduation_date }}</td>
                                 <td>{{ schooldegree.avg_score }}</td>
-
                             {% endfor %}
-
 
                             </tbody>
                         </table>
@@ -252,63 +250,71 @@ p-3 mb-3">
                 </div>
             {% endfor %}
 
+         <div class="row">
+            <div class="col-12">
+                    <div class="card-header">
+                        <h3 class="card-title">Empfehlungsschreiben</h3>
+
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">Firma</th>
+                                <th>Vorname</th>
+                                <th>Nachname</th>
+                                <th>Rolle</th>
+                                <th>E-Mail</th>
+                                <th>Telefon</th>
+                                <th>Erreichbarkeit</th>
+                                <th></th>
 
 
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for recommendation in recommendations %}
+                                <tr>
+                                    <td>{{ recommendation.company_name }}</td>
+                                    <td>{{ recommendation.first_name }}</td>
+                                    <td>{{ recommendation.last_name }}</td>
+                                    <td>{{ recommendation.job_position }}</td>
+                                    <td>{{ recommendation.email }}</td>
+                                    <td>{{ recommendation.phone }}</td>
+                                    <td>{{ recommendation.available_from }} - {{ recommendation.available_until }} Uhr
+                                    </td>
+
+                                    <td>
+                                        <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
+                                                type="button"
+                                                class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                                class="fas fa-eye"></i>
+                                        </button>
+
+                                    </td>
+
+
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+        </div>
 
             <!-- /.row -->
 
             <!-- this row will not appear when printing -->
-            <div class="row no-print" style="margin-top: 16px;">
-                <div class="col-12">
-
-                    <h6 class="float-left " style="position: absolute;
-	bottom: 0; margin-bottom:0; color: lightgrey ">
-
-                        Universität zu Köln <br> Zulassungsausschuss Informatik
-                    </h6>
-
-
-                    <form method="post">
-                        {% csrf_token %}
-                        <div style="display: none;">
-                            {{ form.status }}
-
-
-                        </div>
-
-                        <button type="submit" onclick="javascript: document.getElementById('id_status').value='D'"
-
-
-                                {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
-                                {% else %} class="btn btn-danger float-right"
-                                {% endif %}
-                        >
-                            <i class="fas fa-times"></i>&nbsp; Bewerber ablehnen
-                        </button>
-
-
-                        <button
-                                type="submit" onclick="javascript: document.getElementById('id_status').value='A'; "
-
-                                style="margin-right: 5px;"
-
-                                {% if bewerbung.status != 'P' %} class="btn disabled btn-secondary float-right" disabled
-                                {% else %} class="btn btn-success float-right"
-                                {% endif %}
-
-                        ><i class="fas fa-check"></i>&nbsp;
-                            Bewerber annehmen
-                        </button>
-
-
-                    </form>
-
-
-                </div>
-            </div>
         </div>
+
+
+
         <!-- /.invoice -->
     </div>
+
 
 
 {% endblock %}
