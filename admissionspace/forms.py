@@ -201,24 +201,23 @@ class BewerbungForm(forms.ModelForm):
         self.fields['school_degrees'].label = "Schulabschlüsse"
         self.fields['work_experiences'].label = "Arbeitserfahrungen"
 
+        self.fields['uni_degrees'].widget = forms.CheckboxSelectMultiple(attrs={
+            'type': 'checkbox',
+            'class': 'form-group',
+        })
+        self.fields['school_degrees'].widget = forms.CheckboxSelectMultiple(attrs={
+            'type': 'checkbox',
+            'class': 'form-group',
+        })
+        self.fields['work_experiences'].widget = forms.CheckboxSelectMultiple(attrs={
+            'type': 'checkbox',
+            'class': 'form-group',
+        })
+
     class Meta:
         model = Bewerbung
         fields = ["uni_degrees", "school_degrees", "work_experiences", ]
-        widgets = {
-            "uni_degrees": forms.SelectMultiple(attrs={
-                'type': 'SelectMultiple',
-                'class': 'form-control',
-                'placeholder': 'Abschluss'}),
-            "school_degrees": forms.SelectMultiple(attrs={
-                'type': 'SelectMultiple',
-                'class': 'form-control',
-                'placeholder': 'Abschluss'}),
-            "work_experiences": forms.SelectMultiple(attrs={
-                'type': 'SelectMultiple',
-                'class': 'form-control',
-                'placeholder': 'Abschluss'})
 
-        }
 
 
 class RecommendationCreateForm(forms.ModelForm):

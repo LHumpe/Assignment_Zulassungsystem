@@ -2,12 +2,38 @@
 {% load static %}
 {% block content_header %} Bewerbung {% endblock content_header %}
 {% block main_content %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Übersicht alle Bewerbungen</h3>
 
-    <p><b>Füge alle Universitätsabschlüsse, Schulabschlüsse und Arbeitserfahrungen hinzu, welche du auf deiner Bewerbung vermerkt haben möchtest.</b></p>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
 
-    <button type="submit" class="btn btn-primary">OK</button>
-    </form>
+            </div>
+            <!-- /.card-header -->
+
+
+            <div class="card-body">
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col">
+                        <div class="form-group">
+                        {{ form.as_p }}
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <!-- /.card -->
+    </div>
+
+
+
 {% endblock %}

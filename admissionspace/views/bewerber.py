@@ -158,6 +158,12 @@ class BewerbungDetailView(DetailView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['recommendations'] = Recommendation.objects.filter(bewerber=self.request.user)
+        return context
+
+
 @method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerbungDeleteView(DeleteView):
     model = Bewerbung
@@ -181,7 +187,6 @@ class RecommendationCreateView(CreateView):
 class RecommendationDetailView(DetailView):
     model = Recommendation
     template_name = 'admissionspace/applications/recommendation_detail.html'
-
 
 
 
