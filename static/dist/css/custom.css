@@ -6,6 +6,14 @@
 
 }
 
+.ilias-header-style{
+    font-size: 18px;
+    font-weight: 400;
+    color: #58595B;
+
+
+}
+
 .ilias-header-light{
     font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif !important;
     font-size: 22px !important;
@@ -55,4 +63,44 @@
     margin-top: 32px !important;
     margin-bottom: 16px !important;
 }
+
+.custom-no-dots{
+    list-style-type:none;
+}
+
+.custom-btn{
+    boder-radius:0 !important;
+    border:0px !important;
+    border-radius: 0px;
+}
+
+.custom-btn-round{
+    boder-radius:0 !important;
+    border:0px !important;
+    border-radius: 5000px;
+}
+
+.custom-btn-primary{
+    background-color: #3E566C!important;
+    border:0px !important;
+}
+
+.custom-btn-danger{
+background-color: #9c0000 !important;
+    border:0px !important;
+}
+
+.custom-btn-success{
+background-color: #1e8536 !important;
+    border:0px !important;
+}
+
+
+
+.custom-body-padding{
+
+    padding-top:24px !important;
+
+}
+
 

@@ -203,15 +203,17 @@ class BewerbungForm(forms.ModelForm):
 
         self.fields['uni_degrees'].widget = forms.CheckboxSelectMultiple(attrs={
             'type': 'checkbox',
-            'class': 'form-group',
+            'class': 'form-group custom-no-dots',
+
+
         })
         self.fields['school_degrees'].widget = forms.CheckboxSelectMultiple(attrs={
             'type': 'checkbox',
-            'class': 'form-group',
+            'class': 'form-group custom-no-dots',
         })
         self.fields['work_experiences'].widget = forms.CheckboxSelectMultiple(attrs={
             'type': 'checkbox',
-            'class': 'form-group',
+            'class': 'form-group custom-no-dots',
         })
 
     class Meta:
