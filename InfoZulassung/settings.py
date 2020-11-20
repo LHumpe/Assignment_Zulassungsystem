@@ -28,7 +28,10 @@ else:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+if os.environ.get('DEBUG_VALUE') is None:
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['swt-das-team.herokuapp.com']
 
