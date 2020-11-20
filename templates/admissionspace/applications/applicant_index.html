@@ -313,8 +313,8 @@
                             <th style="border-bottom: 0">Schule</th>
                             <th style="border-bottom: 0">Stadt</th>
                             <th style="border-bottom: 0">Abschluss</th>
-                            <th style="border-bottom: 0">Datum des Abschlusses</th>
-                            <th style="border-bottom: 0">Startdatum</th>
+                            <th style="border-bottom: 0">Zeitraum</th>
+
                             <th style="border-bottom: 0">NC</th>
                             <th style="border-bottom: 0"></th>
 
@@ -328,8 +328,11 @@
                                 <td>{{ school_degree.school_name }}</td>
                                 <td>{{ school_degree.city }}</td>
                                 <td>{{ school_degree.type_of_degree }}</td>
-                                <td>{{ school_degree.graduation_date }}</td>
-                                <td>{{ school_degree.starting_date }}</td>
+
+
+                                <td>{{ school_degree.starting_date|date:"M Y" }} - {{ school_degree.graduation_date|date:"M Y" }}</td>
+
+
                                 <td>{{ school_degree.avg_score }}</td>
 
 
@@ -365,8 +368,13 @@
                 <div class="col-12">
                         <h4 class="ilias-header">
                             Hochschulabschlüsse
-                            <button onclick="javascript:location.href='{% url 'create_uni_degree' %}" type="button"
-                        class="btn btn-sm btn-primary  custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
+
+
+
+
+                                <button onclick="javascript:location.href='{% url 'create_uni_degree' %}'" type="button"
+                        class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
+                </button>
                 </button>
 
                         </h4>
@@ -382,8 +390,8 @@
                             <th style="border-bottom: 0">Studiengang</th>
                             <th style="border-bottom: 0">Abschluss</th>
                             <th style="border-bottom: 0">Spezialisierung</th>
-                            <th style="border-bottom: 0">Datum des Abschlusses</th>
-                            <th style="border-bottom: 0">Startdatum</th>
+                            <th style="border-bottom: 0">Zeitraum</th>
+
                             <th style="border-bottom: 0">Anzahl Semester</th>
                             <th style="border-bottom: 0">NC</th>
                             <th style="border-bottom: 0"></th>
@@ -397,10 +405,25 @@
                             <tr>
                                 <td>{{ uni_degree.university_name }}</td>
                                 <td>{{ uni_degree.name_of_degree }}</td>
-                                <td>{{ uni_degree.type_of_degree }}</td>
+
+                                <td>
+
+
+                                    {%if uni_degree.type_of_degree == 'msc' %}M.Sc.
+                                    {% elif uni_degree.type_of_degree == 'ba' %}B.A.
+                                    {% elif uni_degree.type_of_degree == 'ma' %}M.A.
+                                    {% else %}
+
+                                    B.Sc.
+
+                                    {% endif %}
+                                </td>
+
+
+
                                 <td>{{ uni_degree.specialisation }}</td>
-                                <td>{{ uni_degree.graduation_date }}</td>
-                                <td>{{ uni_degree.starting_date }}</td>
+                            <td>{{ uni_degree.starting_date|date:"M Y" }} - {{ uni_degree.graduation_date|date:"M Y" }}</td>
+
                                 <td>{{ uni_degree.no_of_semesters }}</td>
                                 <td>{{ uni_degree.avg_score }}</td>
 
@@ -449,15 +472,14 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th style="border-bottom: 0">Firma</th>
-                            <th style="border-bottom: 0">Startdatum</th>
-                            <th style="border-bottom: 0">Enddatum</th>
+                            <th style="border-bottom: 0">Unternehmen</th>
+                            <th style="border-bottom: 0">Zeitraum</th>
                             <th style="border-bottom: 0">Art der Beschäftigung</th>
                             <th style="border-bottom: 0">Branche</th>
                             <th style="border-bottom: 0">Ansprechpartner</th>
-                            <th style="border-bottom: 0">Spezialisierung</th>
-                            <th style="border-bottom: 0">Köln</th>
-                            <th style="border-bottom: 0">Workload</th>
+                            <th style="border-bottom: 0">Bereich</th>
+                            <th style="border-bottom: 0">Adresse</th>
+                            <th style="border-bottom: 0">Std./Woche</th>
                             <th style="border-bottom: 0"></th>
 
 
@@ -468,8 +490,8 @@
                         {% for work_experience in workexperience %}
                             <tr>
                                 <td>{{ work_experience.company_name }}</td>
-                                <td>{{ work_experience.starting_date }}</td>
-                                <td>{{ work_experience.end_date }}</td>
+                                <td>{{ work_experience.starting_date|date:"M Y" }} - {{ work_experience.end_date|date:"M Y" }}</td>
+
                                 <td>{{ work_experience.employment_relationship }}</td>
                                 <td>{{ work_experience.industry }}</td>
                                 <td>{{ work_experience.supervisor }}</td>

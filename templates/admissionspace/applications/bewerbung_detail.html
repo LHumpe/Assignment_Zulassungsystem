@@ -6,7 +6,7 @@
 
 
         <!-- Main content -->
-        <div class="callout
+        <div class="callout custom-card
 {% if bewerbung.status == 'A' %}
                                 callout-success
                             {% elif bewerbung.status == 'D' %}
@@ -19,21 +19,27 @@
 p-3 mb-3">
             <!-- title row -->
             <div class="row">
-                <div class="col-12">
-                    <h4>
-                        <i class="fas fa-envelope-open-text"></i> &nbsp; Bewerbung #{{ bewerbung.id }}
-                        <small class="float-right">{{ bewerbung.date_of_entry }}<br></small>
+                <div class="col-6">
+                    <h4 class="ilias-header">
+                         Bewerbung Nr. {{ bewerbung.id }}
                     </h4>
+
+
+
+
                 </div>
+                 <div class="col-6">
+                <h5 class="float-right" style="margin-bottom: 48px !important; color: #58595B; font-style:italic">{{ bewerbung.date_of_entry }}</h5>
+ </div>
                 <!-- /.col -->
             </div>
 
             <!-- info row -->
-            <div class="row invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
                 <div class="col-sm-4 invoice-col">
 
                     <address>
-                        Name: <br>
+                        <strong>Name: <br></strong>
                         Straße & Hausnummer: <br>
                         PLZ & Ort:<br>
                         Telefonnummer: <br>
@@ -44,7 +50,7 @@ p-3 mb-3">
                 <div class="col-sm-4 invoice-col">
 
                     <address>
-                        {{ bewerbung.bewerber.bewerber.last_name }}, {{ bewerbung.bewerber.bewerber.first_name }}<br>
+                        <strong>{{ bewerbung.bewerber.bewerber.last_name }}, {{ bewerbung.bewerber.bewerber.first_name }}</strong><br>
                         {{ bewerbung.bewerber.bewerber.street }}<br>
                         {{ bewerbung.bewerber.bewerber.post_code }}, {{ bewerbung.bewerber.bewerber.city }}<br>
                         {{ bewerbung.bewerber.bewerber.phone }}<br>
@@ -58,7 +64,7 @@ p-3 mb-3">
 
 
                     {% if bewerbung.status == 'A' %}
-                        <h5><i class="fas fa-check-circle" style="color: #28a745;"></i>&nbsp;&nbsp;Bewerber angenommen
+                        <h5><i class="fas fa-check-circle" style="color: #28a745; " ></i>&nbsp;&nbsp;Bewerber angenommen
                         </h5>
                     {% elif bewerbung.status == 'D' %}
                         <h5><i class="fas fa-times-circle" style="color: #dc3545;"></i>&nbsp;&nbsp;Bewerber abgelehnt
@@ -78,19 +84,19 @@ p-3 mb-3">
 
 
             <!-- Table row -->
-            <div class="row" style="margin-bottom: 16px;">
+            <div class="row" style="margin-bottom: 32px; margin-top: 32px">
                 <div class="col-12 ">
                     <p class="lead">Schulabschluss/-abschlüsse</p>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table ">
                             <thead>
                             <tr>
-                                <th>Abschluss</th>
-                                <th>Schule</th>
+                                <th style="border-bottom: 0px;">Abschluss</th>
+                                <th style="border-bottom: 0px;">Schule</th>
 
-                                <th>Datum der Einschulung</th>
-                                <th>Datum der Graduierung</th>
-                                <th>Notenschnitt</th>
+                                <th style="border-bottom: 0px;">Datum der Einschulung</th>
+                                <th style="border-bottom: 0px;">Datum der Graduierung</th>
+                                <th style="border-bottom: 0px;">Notenschnitt</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -105,7 +111,9 @@ p-3 mb-3">
                                 <td>{{ schooldegree.starting_date }}</td>
                                 <td>{{ schooldegree.graduation_date }}</td>
                                 <td>{{ schooldegree.avg_score }}</td>
+
                             {% endfor %}
+
 
                             </tbody>
                         </table>
@@ -116,19 +124,19 @@ p-3 mb-3">
             <!-- /.row -->
 
             <!-- Table row -->
-            <div class="row" style="margin-bottom: 16px;">
+            <div class="row" style="margin-bottom: 32px; margin-top: 16px">
                 <div class="col-12 ">
                     <p class="lead">Hochschulabschluss/-abschlüsse</p>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table ">
                             <thead>
                             <tr>
-                                <th>Abschluss</th>
-                                <th>Hochschule</th>
-                                <th>Datum der Graduierung</th>
-                                <th>Benötigte Semester</th>
-                                <th>Spezialisierung</th>
-                                <th>Notenschnitt</th>
+                                <th style="border-bottom: 0px;">Abschluss</th>
+                                <th style="border-bottom: 0px;" >Hochschule</th>
+                                <th style="border-bottom: 0px;" >Datum der Graduierung</th>
+                                <th style="border-bottom: 0px;">Benötigte Semester</th>
+                                <th style="border-bottom: 0px;">Spezialisierung</th>
+                                <th style="border-bottom: 0px;">Notenschnitt</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -172,7 +180,7 @@ p-3 mb-3">
 
             <div class="row">
                 <div class="col-3">
-                    <p class="lead" style="margin-bottom: 16px;">Praxiserfahrung :</p>
+                    <p class="lead" style="margin-bottom: 16px;">Praxiserfahrung/-erfahrungen :</p>
                 </div>
             </div>
 
@@ -237,7 +245,7 @@ p-3 mb-3">
                     <!-- /.col -->
 
 
-                    <!-- accepted payments column -->
+
                     <div class="col-6">
                         <strong>Beschreibung:</strong><br>
                         <p class="text-muted well well-sm shadow-none" style="width: 100%;">
@@ -250,24 +258,25 @@ p-3 mb-3">
                 </div>
             {% endfor %}
 
-         <div class="row">
-            <div class="col-12">
-                    <div class="card-header">
-                        <h3 class="card-title">Empfehlungsschreiben</h3>
 
-                    </div>
-                    <div class="card-body p-0">
+
+
+        <!-- Table row -->
+            <div class="row" style="margin-bottom: 0px; margin-top: 32px">
+                <div class="col-12 ">
+                    <p class="lead">Empfehlungsschreiben</p>
+                    <div class="table-responsive">
                         <table class="table">
                             <thead>
                             <tr>
-                                <th style="width: 10px">Firma</th>
-                                <th>Vorname</th>
-                                <th>Nachname</th>
-                                <th>Rolle</th>
-                                <th>E-Mail</th>
-                                <th>Telefon</th>
-                                <th>Erreichbarkeit</th>
-                                <th></th>
+                                <th style="border-bottom: 0px;">Firma</th>
+                                <th style="border-bottom: 0px;">Vorname</th>
+                                <th style="border-bottom: 0px;">Nachname</th>
+                                <th style="border-bottom: 0px;">Rolle</th>
+                                <th style="border-bottom: 0px;">E-Mail</th>
+                                <th style="border-bottom: 0px;">Telefon</th>
+                                <th style="border-bottom: 0px;">Erreichbarkeit</th>
+                                <th style="border-bottom: 0px;"></th>
 
 
                             </tr>
@@ -288,7 +297,7 @@ p-3 mb-3">
                                     <td>
                                         <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
                                                 type="button"
-                                                class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                                class="btn btn-sm btn-primary custom-btn-primary float-right" style="margin-right: 4px;"><i
                                                 class="fas fa-eye"></i>
                                         </button>
 
@@ -301,17 +310,15 @@ p-3 mb-3">
                             </tbody>
                         </table>
                     </div>
-
                 </div>
-        </div>
-
+                <!-- /.col -->
+            </div>
             <!-- /.row -->
 
-            <!-- this row will not appear when printing -->
+
+
+
         </div>
-
-
-
         <!-- /.invoice -->
     </div>
 

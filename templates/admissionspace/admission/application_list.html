@@ -7,33 +7,43 @@
 
 
 
-    <div class="col-12">
-        <div class="card custom-card-overview">
-            <div class="card-header">
-                <h3 class="card-title">Übersicht aller Bewerbungen</h3>
 
 
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="max-height:70vh;">
-                <table class="table table-head-fixed">
-                    <thead>
 
 
-                    <tr>
-                        <th class="sorting">Name</th>
-                        <th>Vorname</th>
-                        <th>Telefonnummer</th>
-                        <th>E-Mail Addresse</th>
-                        <th>Bewerbungsstatus</th>
-                        <th></th>
+    <div class="row">
+        <div class="col-12">
+            <div class="card custom-card">
+                <div class="col-12">
+                        <h4 class="ilias-header">
+                            Übersicht aller Bewerbungen
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for application in object_list %}
+                        </h4>
+
+
+                    </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0 custom-body-padding">
+                    <table class="table">
+                        <thead >
                         <tr>
-                            <td>{{ application.bewerber.bewerber.last_name }}</td>
+
+
+                            <th style="border-bottom: 0">Name</th>
+                        <th style="border-bottom: 0">Vorname</th>
+                        <th style="border-bottom: 0">Telefonnummer</th>
+                        <th style="border-bottom: 0">E-Mail Addresse</th>
+                        <th style="border-bottom: 0">Bewerbungsstatus</th>
+                        <th style="border-bottom: 0"></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for application in object_list %}
+                            <tr>
+                                <td>{{ application.bewerber.bewerber.last_name }}</td>
                             <td>{{ application.bewerber.bewerber.first_name }}</td>
                          <td>{{ application.bewerber.bewerber.phone }}</td>
                         <td>{{ application.bewerber.bewerber.email }}</td>
@@ -54,24 +64,20 @@
                             <td>
 
                                 <button onclick="javascript:location.href='{% url 'approve_application' application.id %}'"
-                                        type="button" class="btn btn-primary btn-xs float-right"><i class="fas fa-eye"></i>
+                                        type="button" class="btn btn-primary custom-btn-primary btn-xs float-right"><i class="fas fa-eye"></i>
                                 </button>
 
                             </td>
-                        </tr>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
 
-                    {% empty %}
-                        <li>Keine Bewerbungen vorhanden .</li>
-                    {% endfor %}
-
-
-                    </tbody>
-                </table>
             </div>
-            <!-- /.card-body -->
         </div>
-        <!-- /.card -->
     </div>
 
 
