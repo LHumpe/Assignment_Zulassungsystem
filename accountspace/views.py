@@ -28,7 +28,7 @@ class BewerberSignUpView(CreateView):
 
         send_mail(
               'Hey ' + form.cleaned_data['first_name'] + 'Willkommen auf der Bewerbungsplattform!',
-              'Schreib deine erste Bewerbung.',
+              'Schreibe deine erste Bewerbung.',
               'swt.das.team@gmail.com',
               [form.cleaned_data['username']],
               fail_silently=False,
