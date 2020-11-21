@@ -66,6 +66,7 @@
 
 .custom-no-dots{
     list-style-type:none;
+    font-weight: 300 !important;
 }
 
 .custom-btn{
@@ -95,20 +96,13 @@ background-color: #1e8536 !important;
     border:0px !important;
 }
 
-
-
 .custom-body-padding{
-
     padding-top:24px !important;
-
 }
 
 
 .custom-form-control{
-
     border-radius: 0px !important;
-
-
 }
 
 

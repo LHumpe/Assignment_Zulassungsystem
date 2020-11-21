@@ -205,7 +205,6 @@ class BewerbungForm(forms.ModelForm):
             'type': 'checkbox',
             'class': 'form-group custom-no-dots',
 
-
         })
         self.fields['school_degrees'].widget = forms.CheckboxSelectMultiple(attrs={
             'type': 'checkbox',

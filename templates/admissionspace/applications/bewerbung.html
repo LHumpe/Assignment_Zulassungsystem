@@ -2,37 +2,87 @@
 {% load static %}
 {% block content_header %} Bewerbung {% endblock content_header %}
 {% block main_content %}
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Übersicht alle Bewerbungen</h3>
 
 
-            </div>
-            <!-- /.card-header -->
+    <div class="row">
+        <div class="col-12">
+
+            <form method="post">
+                {% csrf_token %}
 
 
-            <div class="card-body">
+                <div class="card custom-card">
+                    <div class="col-12">
+                        <h4 class="ilias-header">
+                            Bewerbung
+                        </h4>
+                    </div>
+                    <!-- /.card-header -->
 
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="col">
-                        <div class="form-group">
-                        {{ form.as_p }}
+
+                    <div class="card-body p-0 custom-body-padding">
+
+                        <!-- info row -->
+                        <div class="row invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+
+
+                            <div class="col-sm-4 invoice-col">
+                                <div style="margin-bottom: 16px;"><strong>Hochschulabschlüsse: </strong></div>
+                                {{ form.uni_degrees }}
+                            </div>
+
+
+                            <div class="col-sm-4 invoice-col">
+                                 <div style="margin-bottom: 16px;"><strong>Schulabschlüsse: </strong></div>
+                                {{ form.school_degrees }}
+                            </div>
+
+
+                            <div class="col-sm-4 invoice-col">
+                                 <div style="margin-bottom: 16px;"><strong>Praxiserfahrung: </strong></div>
+                                {{ form.work_experiences }}
+                            </div>
+
+
+                            <!-- /.col -->
                         </div>
+                        <!-- /.row -->
+
+
+                        <button type="button"
+
+                                onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                                class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+
+                        <button type="submit"
+
+                                onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                                class="btn btn-sm btn-primary custom-btn-primary float-right"
+                                style="margin-right: 5px; "
+                        >
+                            <i class="fas fa-check"></i>
+                        </button>
+
+
+
+
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary">OK</button>
-                </form>
+                </div>
 
-
-            </div>
-
-
+            </form>
         </div>
-        <!-- /.card -->
     </div>
+
+
+
 
 
 
