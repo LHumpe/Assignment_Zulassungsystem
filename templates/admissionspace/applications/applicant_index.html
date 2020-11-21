@@ -6,7 +6,7 @@
 
 
 
-<div class="row">
+    <div class="row">
 
         <div class="col-6">
 
@@ -28,9 +28,11 @@
                     <div class="col-12">
                         <h4 class="ilias-header">
                             Accountinformationen
-                            <button onclick="javascript:location.href='{% url 'bewerber_update' user.id %}'" type="button"
-                        class="btn btn-sm btn-primary  custom-btn-primary float-right  " ><i class="fas fa-pen"></i>
-                </button>
+                            <button onclick="javascript:location.href='{% url 'bewerber_update' user.id %}'"
+                                    type="button"
+                                    class="btn btn-sm btn-primary  custom-btn-primary float-right  "><i
+                                    class="fas fa-pen"></i>
+                            </button>
 
                         </h4>
 
@@ -90,177 +92,164 @@
                         p-3 mb-3">
 
 
+                {% for b in bewerbung %}
 
-                    {% for b in bewerbung %}
-
-                <!-- title row -->
-                <div class="row">
-
-
-                    <div class="col-12">
-
-                        <h4 class="ilias-header">
-                            Bewerbung
-
-                            {% if b.status == "P" %}
-
-                             <button onclick="javascript:location.href='{% url 'update_bewerbung' b.id %}'"
-                            type="button"
-                            class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i
+                    <!-- title row -->
+                    <div class="row">
 
 
+                        <div class="col-12">
 
-                            class="fas fa-pen"></i></button>
+                            <h4 class="ilias-header">
+                                Bewerbung
+
+                                {% if b.status == "P" %}
+
+                                    <button onclick="javascript:location.href='{% url 'update_bewerbung' b.id %}'"
+                                            type="button"
+                                            class="btn btn-sm btn-primary custom-btn-primary float-right  "><i
 
 
-                            <button onclick="javascript:location.href='{% url 'delete_bewerbung' b.id %}'"
-                            type="button" style="margin-right: 5px"
+                                            class="fas fa-pen"></i></button>
 
-                            class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i
 
-                            class="fas fa-trash-alt"></i></button>
+                                    <button onclick="javascript:location.href='{% url 'delete_bewerbung' b.id %}'"
+                                            type="button" style="margin-right: 5px"
+
+                                            class="btn btn-sm btn-primary custom-btn-primary float-right  "><i
+
+                                            class="fas fa-trash-alt"></i></button>
+
+                                {% endif %}
+
+                                <button onclick="javascript:location.href='{% url 'detail_bewerbung' b.id %}'"
+                                        type="button"
+                                        {% if b.status == "P" %}
+                                        style="margin-right: 5px"
+                                        {% endif %}
+                                        class="btn btn-sm btn-primary custom-btn-primary float-right  "><i
+
+
+                                        class="fas fa-eye"></i>
+                                </button>
+
+                            </h4>
+
+
+                        </div>
+
+                        <!-- /.col -->
+                    </div>
+
+                    <!-- info row -->
+                    <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-sm-6 invoice-col">
+
+                            <address>
+
+                                <strong>Bewerbungsnummer:<br></strong>
+                                Bewerber: <br>
+                                Studiengang:<br>
+                                Eingangsdatum: <br>
+                                Status:
+
+                            </address>
+                        </div>
+
+                        <!-- /.col -->
+                        <div class="col-sm-6 invoice-col">
+                            <strong>{{ b.id }}</strong><br>
+                            {{ user.bewerber.last_name }}, {{ user.bewerber.first_name }}<br>
+                            Informatik<br>
+                            {{ b.date_of_entry }}<br>
+                            {% if b.status == 'A' %}
+                                Angenommen &nbsp;<i class="fas fa-check-circle" style="color: #28a745; "></i>
+
+
+                            {% elif b.status == 'D' %}
+                                Angenommen &nbsp;<i class="fas fa-times-circle" style="color: #dc3545;"></i>
+
+
+                            {% elif b.status == 'P' %}
+                                Ausstehend &nbsp;<i class="fas fa-exclamation-circle"
+                                                    style="color: #ffc107;"></i>
+
+                            {% else %}
 
                             {% endif %}
 
-                                    <button onclick="javascript:location.href='{% url 'detail_bewerbung' b.id %}'"
-                            type="button"
-                                            {% if b.status == "P" %}
-                                            style="margin-right: 5px"
-                                             {% endif %}
-                            class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i
 
-
-
-                            class="fas fa-eye"></i>
-                    </button>
-
-                        </h4>
-
-
-
+                        </div>
+                        <!-- /.col -->
                     </div>
 
-                    <!-- /.col -->
-                </div>
+                {% empty %}
 
-                <!-- info row -->
-                <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
-                    <div class="col-sm-6 invoice-col">
+                    <!-- title row -->
+                    <div class="row">
 
-                        <address>
 
-                            <strong>Bewerbungsnummer:<br></strong>
-                            Bewerber: <br>
-                            Studiengang:<br>
-                            Eingangsdatum: <br>
-                            Status:
+                        <div class="col-12">
 
-                        </address>
+                            <h4 class="ilias-header">
+                                Bewerbung
+
+                                <button onclick="javascript:location.href='{% url 'create_bewerbung' %}'" type="button"
+                                        class="btn btn-sm btn-primary  custom-btn-primary float-right  "><i
+                                        class="fas fa-plus"></i>
+                                </button>
+
+                            </h4>
+
+
+                        </div>
+
+                        <!-- /.col -->
                     </div>
 
-                    <!-- /.col -->
-                    <div class="col-sm-6 invoice-col">
-                        <strong>{{ b.id }}</strong><br>
-                        {{ user.bewerber.last_name }}, {{ user.bewerber.first_name }}<br>
-                        Informatik<br>
-                        {{ b.date_of_entry }}<br>
-                        {% if b.status == 'A' %}
-                            Angenommen &nbsp;<i class="fas fa-check-circle" style="color: #28a745; "></i>
+                    <!-- info row -->
+                    <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-sm-1 invoice-col">
+
+                            <address>
+
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                            </address>
 
 
-                        {% elif b.status == 'D' %}
-                            Angenommen &nbsp;<i class="fas fa-times-circle" style="color: #dc3545;"></i>
+                        </div>
 
-
-                        {% elif b.status == 'P' %}
-                            Ausstehend &nbsp;<i class="fas fa-exclamation-circle"
-                                   style="color: #ffc107;"></i>
-
-                        {% else %}
-
-                        {% endif %}
-
-
-
-
-
-                    </div>
-                    <!-- /.col -->
-                </div>
-
-                        {% empty %}
-
-                        <!-- title row -->
-                <div class="row">
-
-
-                    <div class="col-12">
-
-                        <h4 class="ilias-header">
-                            Bewerbung
-
-                            <button onclick="javascript:location.href='{% url 'create_bewerbung' %}'" type="button"
-                        class="btn btn-sm btn-primary  custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
-                </button>
-
-                        </h4>
-
-
-
-                    </div>
-
-                    <!-- /.col -->
-                </div>
-
-                <!-- info row -->
-                <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
-                    <div class="col-sm-1 invoice-col">
-
-                        <address>
-
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-
-                        </address>
-
-
-                    </div>
-
-                <div class="col-sm-10 invoice-col" style="display: flex;
+                        <div class="col-sm-10 invoice-col" style="display: flex;
   justify-content: center;
   align-items: center;">
 
 
-<address>
-<br>
-                            <br>
-    <p style="font-style: italic; ">keine Bewerbung vorhanden</p>
-                            <br>
+                            <address>
+                                <br>
+                                <br>
+                                <p style="font-style: italic; ">keine Bewerbung vorhanden</p>
+                                <br>
 
 
-
-                        </address>
-
+                            </address>
 
 
+                        </div>
 
-                    </div>
-
-                <div class="col-sm-1 invoice-col">
-
-
-                    </div>
+                        <div class="col-sm-1 invoice-col">
 
 
-
+                        </div>
 
 
                     </div>
                     <!-- /.col -->
-                </div>
+                    </div>
 
 
 
@@ -274,13 +263,13 @@
 
 
 
-    {% endfor %}
+                {% endfor %}
 
 
             <!-- /.invoice -->
         </div>
-        </div>
-        </div>
+    </div>
+    </div>
 
 
 
@@ -295,16 +284,17 @@
         <div class="col-12">
             <div class="card custom-card">
                 <div class="col-12">
-                        <h4 class="ilias-header">
-                            Schulabschlüsse
-                            <button onclick="javascript:location.href='{% url 'create_school_degree' %}'" type="button"
-                        class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
-                </button>
+                    <h4 class="ilias-header">
+                        Schulabschlüsse
+                        <button onclick="javascript:location.href='{% url 'create_school_degree' %}'" type="button"
+                                class="btn btn-sm btn-primary custom-btn-primary float-right  "><i
+                                class="fas fa-plus"></i>
+                        </button>
 
-                        </h4>
+                    </h4>
 
 
-                    </div>
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body custom-body-padding p-0">
                     <table class="table">
@@ -330,7 +320,8 @@
                                 <td>{{ school_degree.type_of_degree }}</td>
 
 
-                                <td>{{ school_degree.starting_date|date:"M Y" }} - {{ school_degree.graduation_date|date:"M Y" }}</td>
+                                <td>{{ school_degree.starting_date|date:"M Y" }}
+                                    - {{ school_degree.graduation_date|date:"M Y" }}</td>
 
 
                                 <td>{{ school_degree.avg_score }}</td>
@@ -339,12 +330,14 @@
                                 <td>
 
                                     <button onclick="javascript:location.href='{% url 'update_school_degree' school_degree.id %}'"
-                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right"><i class="fas fa-pen"></i>
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right">
+                                        <i class="fas fa-pen"></i>
                                     </button>
 
 
                                     <button onclick="javascript:location.href='{% url 'delete_school_degree' school_degree.id %}'"
-                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right" style="margin-right: 5px;">
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right"
+                                            style="margin-right: 5px;">
                                         <i class="fas fa-trash-alt"></i></button>
                                 </td>
 
@@ -366,25 +359,24 @@
         <div class="col-12">
             <div class="card custom-card">
                 <div class="col-12">
-                        <h4 class="ilias-header">
-                            Hochschulabschlüsse
+                    <h4 class="ilias-header">
+                        Hochschulabschlüsse
 
 
+                        <button onclick="javascript:location.href='{% url 'create_uni_degree' %}'" type="button"
+                                class="btn btn-sm btn-primary custom-btn-primary float-right  "><i
+                                class="fas fa-plus"></i>
+                        </button>
+                        </button>
+
+                    </h4>
 
 
-                                <button onclick="javascript:location.href='{% url 'create_uni_degree' %}'" type="button"
-                        class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
-                </button>
-                </button>
-
-                        </h4>
-
-
-                    </div>
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0 custom-body-padding">
                     <table class="table">
-                        <thead >
+                        <thead>
                         <tr>
                             <th style="border-bottom: 0">Universität</th>
                             <th style="border-bottom: 0">Studiengang</th>
@@ -409,20 +401,20 @@
                                 <td>
 
 
-                                    {%if uni_degree.type_of_degree == 'msc' %}M.Sc.
+                                    {% if uni_degree.type_of_degree == 'msc' %}M.Sc.
                                     {% elif uni_degree.type_of_degree == 'ba' %}B.A.
                                     {% elif uni_degree.type_of_degree == 'ma' %}M.A.
                                     {% else %}
 
-                                    B.Sc.
+                                        B.Sc.
 
                                     {% endif %}
                                 </td>
 
 
-
                                 <td>{{ uni_degree.specialisation }}</td>
-                            <td>{{ uni_degree.starting_date|date:"M Y" }} - {{ uni_degree.graduation_date|date:"M Y" }}</td>
+                                <td>{{ uni_degree.starting_date|date:"M Y" }}
+                                    - {{ uni_degree.graduation_date|date:"M Y" }}</td>
 
                                 <td>{{ uni_degree.no_of_semesters }}</td>
                                 <td>{{ uni_degree.avg_score }}</td>
@@ -431,12 +423,14 @@
                                 <td>
 
                                     <button onclick="javascript:location.href='{% url 'update_uni_degree' uni_degree.id %}'"
-                                            type="button" class="btn btn-sm btn-primary custom-btn-primary float-right"><i class="fas fa-pen"></i>
+                                            type="button" class="btn btn-sm btn-primary custom-btn-primary float-right">
+                                        <i class="fas fa-pen"></i>
                                     </button>
 
 
                                     <button onclick="javascript:location.href='{% url 'delete_uni_degree' uni_degree.id %}'"
-                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right" style="margin-right: 5px;">
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right"
+                                            style="margin-right: 5px;">
                                         <i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
@@ -457,16 +451,17 @@
         <div class="col-12">
             <div class="card custom-card">
                 <div class="col-12">
-                        <h4 class="ilias-header">
-                            Praxiserfahrung
-                            <button onclick="javascript:location.href='{% url 'create_work_exp' %}'" type="button"
-                        class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
-                </button>
+                    <h4 class="ilias-header">
+                        Praxiserfahrung
+                        <button onclick="javascript:location.href='{% url 'create_work_exp' %}'" type="button"
+                                class="btn btn-sm btn-primary custom-btn-primary float-right  "><i
+                                class="fas fa-plus"></i>
+                        </button>
 
-                        </h4>
+                    </h4>
 
 
-                    </div>
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body custom-body-padding p-0">
                     <table class="table">
@@ -490,7 +485,8 @@
                         {% for work_experience in workexperience %}
                             <tr>
                                 <td>{{ work_experience.company_name }}</td>
-                                <td>{{ work_experience.starting_date|date:"M Y" }} - {{ work_experience.end_date|date:"M Y" }}</td>
+                                <td>{{ work_experience.starting_date|date:"M Y" }}
+                                    - {{ work_experience.end_date|date:"M Y" }}</td>
 
                                 <td>{{ work_experience.employment_relationship }}</td>
                                 <td>{{ work_experience.industry }}</td>
@@ -503,12 +499,14 @@
                                 <td>
 
                                     <button onclick="javascript:location.href='{% url 'update_work_exp' work_experience.id %}'"
-                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right"><i class="fas fa-pen"></i>
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right">
+                                        <i class="fas fa-pen"></i>
                                     </button>
 
 
                                     <button onclick="javascript:location.href='{% url 'delete_work_exp' work_experience.id %}'"
-                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right" style="margin-right: 5px;">
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right"
+                                            style="margin-right: 5px;">
                                         <i class="fas fa-trash-alt"></i></button>
                                 </td>
 
@@ -528,12 +526,12 @@
         <div class="col-12">
             <div class="card custom-card">
                 <div class="col-12">
-                        <h4 class="ilias-header">
-                            Empfehlungsschreiben
-                        </h4>
+                    <h4 class="ilias-header">
+                        Empfehlungsschreiben
+                    </h4>
 
 
-                    </div>
+                </div>
                 <div class="card-body custom-body-padding p-0">
                     <table class="table">
                         <thead>
@@ -565,7 +563,8 @@
                                 <td>
                                     <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
                                             type="button"
-                                            class="btn btn-sm btn-primary custom-btn-primary float-right" style="margin-right: 4px;"><i
+                                            class="btn btn-sm btn-primary custom-btn-primary float-right"
+                                            style="margin-right: 4px;"><i
                                             class="fas fa-eye"></i>
                                     </button>
 
@@ -583,7 +582,10 @@
 
 
                     {% with request.build_absolute_uri|add:recommendation_link as recommendation_url %}
-                        <p class="ilias-header-style"><br>Geben Sie folgenden Link an Personen weiter, welche ein Empfehlungsschreiben für Sie erstellen sollen: <a href={{ recommendation_url }}>{{ recommendation_url }} </a><br> Das Empfehlungsschreiben wird Ihrer Bewerbung automatisch angehangen.</p>
+                        <p class="ilias-header-style"><br>Geben Sie folgenden Link an Personen weiter, welche ein
+                            Empfehlungsschreiben für Sie erstellen sollen: <a
+                                    href={{ recommendation_url }}>{{ recommendation_url }} </a><br> Das
+                            Empfehlungsschreiben wird Ihrer Bewerbung automatisch angehangen.</p>
 
 
                     {% endwith %}
