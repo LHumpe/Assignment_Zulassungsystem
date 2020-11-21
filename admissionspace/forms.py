@@ -258,8 +258,8 @@ class RecommendationCreateForm(forms.ModelForm):
             'class': 'form-control custom-form-control',
             'placeholder': 'Firma'
         })
-        self.fields['company_address'].widget = forms.TextInput(attrs={
-            'type': 'text',
+        self.fields['company_address'].widget = forms.TextArea(attrs={
+            'type': 'multi',
             'class': 'form-control custom-form-control',
             'placeholder': 'Firmenadresse'
         })
