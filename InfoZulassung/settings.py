@@ -146,6 +146,8 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Custom User Model
 AUTH_USER_MODEL = "accountspace.User"
-django_heroku.settings(locals())
+
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'login'
+
+django_heroku.settings(locals())
