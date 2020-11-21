@@ -74,6 +74,9 @@ class Bewerbung(models.Model):
 
     date_of_entry = models.DateTimeField(auto_created=True)
 
+    def __str__(self):
+        return 'User:{}'.format(self.bewerber)
+
 
 class Recommendation(models.Model):
     bewerber = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -90,3 +93,6 @@ class Recommendation(models.Model):
     available_until = models.TimeField()
 
     recommendation_letter = models.TextField()
+
+    def __str__(self):
+        return 'User:{} NR:{}'.format(self.bewerber, self.id)
