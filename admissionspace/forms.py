@@ -133,6 +133,7 @@ class WorkExperienceForm(forms.ModelForm):
         self.fields['specialisation'].label = "Spezialisierung"
         self.fields['task_description'].label = "Beschreibung"
         self.fields['avg_weekly_working_time'].label = "Arbeitszeit in Std./Woche"
+        self.fields['company_address'].label = "Anschrift der Firma"
 
 
 
