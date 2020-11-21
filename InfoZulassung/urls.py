@@ -54,6 +54,8 @@ urlpatterns = [
 
     path('createapplication', bewerber_views.BewerbungCreateView.as_view(),
          name='create_bewerbung'),
+    path('viewapplication/<slug:pk>/', bewerber_views.BewerbungDetailView.as_view(),
+         name='detail_bewerbung'),
     path('updateapplication/<slug:pk>/', bewerber_views.BewerbungUpdateView.as_view(),
          name='update_bewerbung'),
     path('deleteapplication/<slug:pk>/', bewerber_views.BewerbungDeleteView.as_view(),

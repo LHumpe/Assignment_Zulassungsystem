@@ -7,7 +7,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, TemplateVie
 from accountspace.models import Bewerber, User
 from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung, Recommendation
 from ..decorators import bewerber_required
-from ..forms import UniversityDegreeForm, SchoolDegreeForm, WorkExperienceForm, BewerbungForm
+from ..forms import UniversityDegreeForm, SchoolDegreeForm, WorkExperienceForm, BewerbungForm, RecommendationCreateForm
 import datetime
 
 
@@ -154,6 +154,17 @@ class BewerbungUpdateView(UpdateView):
 
 
 @method_decorator([login_required, bewerber_required], name='dispatch')
+class BewerbungDetailView(DetailView):
+    model = Bewerbung
+    template_name = 'admissionspace/applications/bewerbung_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['recommendations'] = Recommendation.objects.filter(bewerber=self.request.user)
+        return context
+
+
+@method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerbungDeleteView(DeleteView):
     model = Bewerbung
     template_name = 'admissionspace/applications/bewerbung.html'
@@ -163,9 +174,8 @@ class BewerbungDeleteView(DeleteView):
 class RecommendationCreateView(CreateView):
     model = Recommendation
     template_name = 'admissionspace/applications/recommendation_create.html'
+    form_class = RecommendationCreateForm
     success_url = reverse_lazy('applicant_index')
-    fields = ['first_name', 'last_name', 'job_position', 'company_name', 'company_address', 'email', 'phone',
-              'available_from', 'available_until', 'recommendation_letter']
 
     def form_valid(self, form):
         object = form.save(commit=False)
@@ -177,7 +187,6 @@ class RecommendationCreateView(CreateView):
 class RecommendationDetailView(DetailView):
     model = Recommendation
     template_name = 'admissionspace/applications/recommendation_detail.html'
-
 
 
 
