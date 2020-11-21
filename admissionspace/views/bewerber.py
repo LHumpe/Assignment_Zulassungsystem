@@ -6,7 +6,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, TemplateVie
 
 from accountspace.models import Bewerber, User
 from ..models import UniversityDegree, SchoolDegree, WorkExperience, Bewerbung, Recommendation
-from ..decorators import bewerber_required
+from ..decorators import bewerber_required, user_required
 from ..forms import UniversityDegreeForm, SchoolDegreeForm, WorkExperienceForm, BewerbungForm, RecommendationCreateForm
 import datetime
 
@@ -183,7 +183,7 @@ class RecommendationCreateView(CreateView):
         object.save()
         return redirect('applicant_index')
 
-@method_decorator([login_required, bewerber_required], name='dispatch')
+@method_decorator([login_required, user_required], name='dispatch')
 class RecommendationDetailView(DetailView):
     model = Recommendation
     template_name = 'admissionspace/applications/recommendation_detail.html'
