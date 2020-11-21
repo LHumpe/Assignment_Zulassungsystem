@@ -21,7 +21,6 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
-
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/static/dist/fav/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/static/dist/fav/favicon-32x32.png">
@@ -31,70 +30,56 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 </head>
-<body class="hold-transition register-page">
-<div class="register-box">
-    <div class="register-logo">
-        <a href="../../index.html">Universität zu Köln<b> Zulassung</b></a>
-    </div>
 
-    <div class="card">
-        <div class="card-body register-card-body">
-            <p class="login-box-msg">Registrierung</p>
 
-            <form method="post" novalidate>
+
+
+
+
+
+
+<body class="hold-transition login-page" style="background-image: url('/static/dist/svg/logo-uni-köln.svg'); background-size:auto 100%;    background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center right;
+  background-color: #f0f0f0;
+  width:100% ;">
+
+
+<div class="login-box">
+
+
+</div>
+
+<div class="row" style="width:100% !important;">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="card custom-card">
+            <div class="col-12">
+                <h4 class="ilias-header" style="margin-bottom: 32px;">
+                    Registrierung
+                </h4>
+                <form method="post" novalidate>
                 {% csrf_token %}
+<div class="row">
 
-                <h5 class="mt-4 mb-2">Personal Information</h5>
-                <div class="input-group mb-3">
+
+
+                    <div class="col-6">
+
+
+                        <div class="input-group mb-3">
                     {{ form.first_name }}
                     {{ form.last_name }}
                     <div class="input-group-append">
-                        <div class="input-group-text">
+                        <div class="input-group-text custom-form-control">
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
                 </div>
-
-                <div class="input-group mb-3">
-                    {{ form.street }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-street-view"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="input-group mb-3">
-                    {{ form.city }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-city"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="input-group mb-3">
-                    {{ form.post_code }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-map-marked"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="input-group mb-3">
-                    {{ form.phone }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-phone"></span>
-                        </div>
-                    </div>
-                </div>
-                <h5 class="mt-4 mb-2">Account Information</h5>
                 <div class="input-group mb-3">
                     {{ form.username }}
                     <div class="input-group-append">
-                        <div class="input-group-text">
+                        <div class="input-group-text custom-form-control">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
@@ -103,33 +88,91 @@
                 <div class="input-group mb-3">
                     {{ form.password1 }}
                     <div class="input-group-append">
-                        <div class="input-group-text">
+                        <div class="input-group-text custom-form-control">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    {{ form.password1.help_text }}
+
                 </div>
 
                 <div class="input-group mb-3">
                     {{ form.password2 }}
                     <div class="input-group-append">
-                        <div class="input-group-text">
+                        <div class="input-group-text custom-form-control">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    {{ form.password2.help_text }}
+
+                </div></div>
+
+     <div class="col-6">
+
+
+                <div class="input-group mb-3">
+                    {{ form.street }}
+                    <div class="input-group-append">
+                        <div class="input-group-text custom-form-control">
+                            <span class="fas fa-street-view"></span>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="input-group mb-3">
+                    {{ form.city }}
+                    <div class="input-group-append">
+                        <div class="input-group-text custom-form-control">
+                            <span class="fas fa-city"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    {{ form.post_code }}
+                    <div class="input-group-append">
+                        <div class="input-group-text custom-form-control">
+                            <span class="fas fa-map-marked"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    {{ form.phone }}
+                    <div class="input-group-append">
+                        <div class="input-group-text custom-form-control">
+                            <span class="fas fa-phone"></span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+
+
+
+    </div>
+
+                    <div class="col-12" style="margin-bottom: 16px; margin-top: 8px;">{{ form.password2.help_text }}</div>
+
+                    <div class="col-12" style="margin-bottom: 16px; ">
+
+                        {{ form.password1.help_text }}
+
+
+                    </div>
+
+
 
                 <input type="hidden" name="next" value="{{ next }}">
                 <!-- /.col -->
-                    <button type="submit" class="btn btn-primary btn-block">Registrieren</button>
+                    <button type="submit" class="btn btn-primary btn-block custom-btn-primary">Registrieren</button>
 
             </form>
+            </div>
         </div>
-        <!-- /.form-box -->
-    </div><!-- /.card -->
+        <!-- /.card-body -->
+    </div>
+    <div class="col-3"></div>
+    <!-- /.card -->
 </div>
-<!-- /.register-box -->
+
 
 <!-- jQuery -->
 <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
@@ -138,4 +181,8 @@
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 </body>
+
+
+
+
 </html>

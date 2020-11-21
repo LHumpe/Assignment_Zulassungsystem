@@ -11,49 +11,49 @@ class BewerberSignUpForm(UserCreationForm):
         super(UserCreationForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget = forms.EmailInput(attrs={
             'type': 'email',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Email'
         })
         self.fields['password1'].widget = forms.PasswordInput(attrs={
             'type': 'password',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Passwort'
         })
         self.fields['password2'].widget = forms.PasswordInput(attrs={
             'type': 'password',
-            'class': 'form-control',
-            'placeholder': 'Passwort Bestätigung'
+            'class': 'form-control custom-form-control',
+            'placeholder': 'Passwort bestätigen'
         })
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Vorname'
     }))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Nachname'
     }))
     street = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Straße'
     }))
     city = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Stadt'
     }))
     post_code = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'PLZ'
     }))
 
     phone = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Telefon'
     }))
 
@@ -129,14 +129,14 @@ class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.EmailInput(attrs={
 
         'type': 'email',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Email'
 
     }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={
 
         'type': 'password',
-        'class': 'form-control',
+        'class': 'form-control form-control custom-form-control',
         'placeholder': 'Passwort'
 
     }))
