@@ -1,10 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect,reverse
-from django.views.generic import CreateView, TemplateView
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, TemplateView, UpdateView
 from django.contrib.auth.views import LoginView
 
 from django.contrib.auth import login
+
+from admissionspace.decorators import bewerber_required
 from .models import User, Bewerber
-from .forms import BewerberSignUpForm, CustomLoginForm
+from .forms import BewerberSignUpForm, CustomLoginForm, BewerberUpdateForm
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -18,8 +24,17 @@ class BewerberSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        # login(self.request, user)
-        return redirect('bewerber_signup')
+        login(self.request, user)
+
+        send_mail(
+              'Hey ' + form.cleaned_data['first_name'] + 'Willkommen auf der Bewerbungsplattform!',
+              'Schreibe deine erste Bewerbung.',
+              'swt.das.team@gmail.com',
+              [form.cleaned_data['username']],
+              fail_silently=False,
+          )
+
+        return redirect('applicant_index')
 
 
 class CustomLoginView(LoginView):
@@ -30,5 +45,17 @@ class CustomLoginView(LoginView):
         if self.request.user.is_bewerber:
             success_url = 'applicant_index'
         elif self.request.user.is_ausschuss:
-            success_url = 'Hier_DIE_URL_Fuer_den_AUSSCHUSS_EINTRAGEN'
+            success_url = 'application_list'
         return reverse(success_url)
+
+@method_decorator([login_required, bewerber_required], name='dispatch')
+class BewerberUpdateView(UpdateView):
+    model = Bewerber
+    form_class = BewerberUpdateForm
+    template_name = 'accountspace/changeuserdata.html'
+    success_url = reverse_lazy('applicant_index')
+
+    def get_form(self, *args, **kwargs):
+        form = super(BewerberUpdateView, self).get_form(*args, **kwargs)
+        form.queryset = Bewerber.objects.filter(user_id=self.request.user.id)
+        return form

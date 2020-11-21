@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card custom-card">
+                <div class="col-12">
+                    <h4 class="ilias-header">
+                        Empfehlungsschreiben
+                    </h4>
+                </div>
+                <!-- /.card-header -->
+
+
+                <div class="card-body p-0 custom-body-padding">
+
+                    <!-- info row -->
+            <div class="row invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                <div class="col-sm-3 invoice-col">
+
+                    <address>
+                        <strong>Unternehmen:</strong> <br>
+                        Adresse:<br>
+                        Name des Empfehlungsschreiber:<br>
+                        Position:<br>
+                        E-Mail:<br>
+                        Telefonnummer:<br>
+                        Erreichbarkeit:<br>
+
+
+                    </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 invoice-col">
+
+                    <address>
+                        <strong>{{ object.company_name }}</strong><br>
+                        {{ object.company_address }}<br>
+                        {{ object.last_name }}, {{ object.first_name }}<br>
+                        {{ object.job_position }}<br>
+                        {{ object.email }}<br>
+                        {{ object.phone }}<br>
+                        {{ object.available_from }} - {{ object.available_until }} Uhr<br>
+                    </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6 invoice-col">
+                    <strong>Empfehlungsschreiben:</strong>
+                    <p style="font-style: italic">{{ object.recommendation_letter }}
+                    </p>
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+                    <button type="button"
+
+                            onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                            class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+                    >
+                        Zurück
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

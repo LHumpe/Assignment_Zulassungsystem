@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content_header %} Portal des Zulassungsausschuss {% endblock content_header %}
 {% block main_content %}
-
-    <h1> You can still enroll {{ enrolment_capacity }}</h1>
-
 
     <div class="col-12">
 
@@ -136,8 +132,8 @@ p-3 mb-3">
                             <thead>
                             <tr>
                                 <th style="border-bottom: 0px;">Abschluss</th>
-                                <th style="border-bottom: 0px;">Hochschule</th>
-                                <th style="border-bottom: 0px;">Datum der Graduierung</th>
+                                <th style="border-bottom: 0px;" >Hochschule</th>
+                                <th style="border-bottom: 0px;" >Datum der Graduierung</th>
                                 <th style="border-bottom: 0px;">Benötigte Semester</th>
                                 <th style="border-bottom: 0px;">Spezialisierung</th>
                                 <th style="border-bottom: 0px;">Notenschnitt</th>
@@ -184,7 +180,7 @@ p-3 mb-3">
 
             <div class="row">
                 <div class="col-3">
-                    <p class="lead" style="margin-bottom: 16px;">Praxiserfahrung :</p>
+                    <p class="lead" style="margin-bottom: 16px;">Praxiserfahrung/-erfahrungen :</p>
                 </div>
             </div>
 
@@ -249,7 +245,7 @@ p-3 mb-3">
                     <!-- /.col -->
 
 
-                    <!-- accepted payments column -->
+
                     <div class="col-6">
                         <strong>Beschreibung:</strong><br>
                         <p class="text-muted well well-sm shadow-none" style="width: 100%;">
@@ -261,6 +257,7 @@ p-3 mb-3">
 
                 </div>
             {% endfor %}
+
 
 
 
@@ -286,7 +283,7 @@ p-3 mb-3">
                             </thead>
                             <tbody>
 
-                            {% for recommendation in bewerbung.bewerber.bewerber.recommendations  %}
+                            {% for recommendation in recommendations %}
                                 <tr>
                                     <td>{{ recommendation.company_name }}</td>
                                     <td>{{ recommendation.first_name }}</td>
@@ -318,80 +315,32 @@ p-3 mb-3">
             </div>
             <!-- /.row -->
 
+        <div class="row" >
+
+            <div style="margin-top: 32px" class="col-12" >
+
+        <button type="button"
+
+                            onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                            class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+                    >
+                         Zurück
+                    </button>
 
 
-
-{% if bewerbung.status == 'P' %}
-
-            <!-- /.row -->
-
-
-            <div class="row no-print" style="margin-top: 32px;">
-                <div class="col-12">
-
-                    <p class="float-left " style="position: absolute;
-	                bottom: 0; margin-bottom:0; color: red ">
-
-                        Achtung: Die Beantwortung einer Bewerbung kann ausschließlich durch Systemadministratoren rückgängig gemacht werden!
-                    </p>
-
-
-                    <form method="post">
-                        {% csrf_token %}
-                        <div style="display: none;">
-                            {{ form.status }}
-
-
-                        </div>
-
-
-                         <button type="submit" onclick="javascript:location.href='{% url 'application_list' %}'"
+        </div></div>
 
 
 
 
-                      class="btn btn-sm btn-primary custom-btn-primary float-right"
-
-                     >
-                           <i class="fas fa-arrow-right"></i>&nbsp; Zurück
-                        </button>
 
 
-
-                        <button type="submit" onclick="javascript: document.getElementById('id_status').value='D'"
-                                style="margin-right: 5px;"
-
-
-                      class="btn btn-sm btn-primary custom-btn-primary float-right"
-
-                     >
-                            <i class="fas fa-times"></i>&nbsp; Bewerber ablehnen
-                        </button>
-
-
-                        <button
-                                type="submit" onclick="javascript: document.getElementById('id_status').value='A'; "
-
-                                 style="margin-right: 5px;"
-
-                        class="btn btn-sm btn-primary custom-btn-primary float-right"
-
-
-                        ><i class="fas fa-check"></i>&nbsp;
-                            Bewerber annehmen
-                        </button>
-
-
-                    </form>
-
-
-                </div>
-            </div>
-         {% else %}
-                                    {% endif %}
         </div>
         <!-- /.invoice -->
     </div>
+
 
 
 {% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from accountspace.views import BewerberSignUpView, CustomLoginView
+from accountspace.views import BewerberSignUpView, CustomLoginView, BewerberUpdateView
 from django.contrib.auth import views as auth_views
 import admissionspace.views.bewerber as bewerber_views
 import admissionspace.views.ausschuss as ausschuss_views
@@ -27,6 +27,7 @@ urlpatterns = [
     path('signout/', auth_views.LogoutView.as_view(next_page='login'), name='signout'),
 
     # Application Views - Bewerbersicht
+    path('changeuserdata/<slug:pk>/', BewerberUpdateView.as_view(), name='bewerber_update'),
     path('myapplications', bewerber_views.ApplicantIndexView.as_view(),
          name='applicant_index'),
 
@@ -53,14 +54,33 @@ urlpatterns = [
 
     path('createapplication', bewerber_views.BewerbungCreateView.as_view(),
          name='create_bewerbung'),
+    path('viewapplication/<slug:pk>/', bewerber_views.BewerbungDetailView.as_view(),
+         name='detail_bewerbung'),
     path('updateapplication/<slug:pk>/', bewerber_views.BewerbungUpdateView.as_view(),
          name='update_bewerbung'),
     path('deleteapplication/<slug:pk>/', bewerber_views.BewerbungDeleteView.as_view(),
          name='delete_bewerbung'),
+
+    path('myapplications/recommend/<slug:pk>/', bewerber_views.RecommendationCreateView.as_view(), name='recommend'),
+    path('myapplications/view_recommend/<slug:pk>/', bewerber_views.RecommendationDetailView.as_view(),
+         name='detail_recommendation'),
 
     # Admission views
     path('viewapplications', ausschuss_views.ApplicationListView.as_view(),
          name='application_list'),
     path('approveapplication/<slug:pk>/', ausschuss_views.AdmissionApplicationUpdateView.as_view(),
          name='approve_application'),
+
+    # password-reset routes
+    path('password-reset/',
+         auth_views.PasswordResetView.as_view(template_name='accountspace/password_reset.html'), name='password_reset'),
+    path('password-reset/done/',
+         auth_views.PasswordResetDoneView.as_view(template_name='accountspace/password_reset_done.html'),
+         name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(template_name='accountspace/password_reset_confirm.html'),
+         name='password_reset_confirm'),
+    path('password-reset-complete/',
+         auth_views.PasswordResetCompleteView.as_view(template_name='accountspace/password_reset_complete.html'),
+         name='password_reset_complete'),
 ]

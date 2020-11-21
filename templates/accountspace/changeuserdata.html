@@ -1,21 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content_header %} Arbeitserfahrung {{object.id}} {% endblock content_header %}
+{% block content_header %} Persönliche Daten {% endblock content_header %}
 {% block main_content %}
-
-
-     <form method="post">
-
-
-
-
 
     <div class="row">
         <div class="col-12">
             <div class="card custom-card">
                 <div class="col-12">
                         <h4 class="ilias-header">
-                            Praxiserfahrung
+                            Accountinformationen
                         </h4>
                     </div>
                 <!-- /.card-header -->
@@ -24,9 +17,25 @@
                    <form method="post">
         {% csrf_token %}
 
+                       <label >Vorname: </label>
+                       {{ form.first_name }}
+                       <br>
 
-        {{ form.as_p }}
-
+                       <label>Nachname: </label>
+                       {{ form.last_name }}
+                       <br>
+                       <label>Straße & Hausnummer: </label>
+                       {{ form.street }}
+                       <br>
+                       <label>Stadt: </label>
+                       {{ form.city }}
+                       <br>
+                         <label>PLZ: </label>
+                       {{ form.post_code }}
+                       <br>
+                         <label>Telefonnummer: </label>
+                       {{ form.phone }}
+                       <br>
 
         <button type="button"
 
@@ -60,5 +69,10 @@
             </div>
         </div>
     </div>
-     </form>
+
+
+
+
+
+
 {% endblock %}
