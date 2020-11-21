@@ -83,6 +83,48 @@ class BewerberSignUpForm(UserCreationForm):
         return user
 
 
+class BewerberUpdateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(BewerberUpdateForm, self).__init__(*args, **kwargs)
+
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'type': 'text',
+        'class': 'form-control',
+        'placeholder': 'Vorname'
+    }))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'type': 'text',
+        'class': 'form-control',
+        'placeholder': 'Nachname'
+    }))
+    street = forms.CharField(widget=forms.TextInput(attrs={
+        'type': 'text',
+        'class': 'form-control',
+        'placeholder': 'Straße'
+    }))
+    city = forms.CharField(widget=forms.TextInput(attrs={
+        'type': 'text',
+        'class': 'form-control',
+        'placeholder': 'Stadt'
+    }))
+    post_code = forms.CharField(widget=forms.TextInput(attrs={
+        'type': 'text',
+        'class': 'form-control',
+        'placeholder': 'PLZ'
+    }))
+
+    phone = forms.CharField(widget=forms.TextInput(attrs={
+        'type': 'text',
+        'class': 'form-control',
+        'placeholder': 'Telefon'
+    }))
+
+    class Meta(UserCreationForm.Meta):
+        model = Bewerber
+        fields = ['first_name', 'last_name', 'street', 'city', 'post_code', 'phone']
+
+
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.EmailInput(attrs={
 

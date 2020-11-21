@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView
 
+from admissionspace.decorators import ausschuss_required
 from admissionspace.models import Bewerbung
 
-
+@method_decorator([login_required, ausschuss_required], name='dispatch')
 class ApplicationListView(ListView):
     model = Bewerbung
     template_name = 'admissionspace/admission/application_list.html'
@@ -16,7 +18,7 @@ class ApplicationListView(ListView):
         context['declined_admissions'] = len(Bewerbung.objects.filter(status='D'))
         return context
 
-
+@method_decorator([login_required, ausschuss_required], name='dispatch')
 class AdmissionApplicationUpdateView(UpdateView):
     model = Bewerbung
     template_name = 'admissionspace/admission/application_admission.html'
