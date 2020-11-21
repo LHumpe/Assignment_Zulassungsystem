@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>UzK - Informatik Bewerbungsportal</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -13,55 +13,90 @@
     <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+
+    <!-- Custom style -->
+    <link rel="stylesheet" href="{% static 'dist/css/custom.css' %}">
+
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/dist/fav/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/dist/fav/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/dist/fav/favicon-16x16.png">
+<link rel="manifest" href="/static/dist/fav/site.webmanifest">
+<link rel="mask-icon" href="/static/dist/fav/safari-pinned-tab.svg?v=1.0" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
 </head>
-<body class="hold-transition login-page" >
+
+
+<body class="hold-transition login-page" style="background-image: url('/static/dist/svg/logo-uni-köln.svg'); background-size:auto 100%;    background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center right;
+  background-color: #f0f0f0;
+  width:100% ;">
+
+
 <div class="login-box">
-    <div class="login-logo" style="margin-bottom: 48px;">
-         <img src="/static/dist/svg/logo-zulassungsausschuss-informatik-blue.svg" alt="Universität zu Köln - Zulassungsausschuss Informatik" width="360px" height="auto" >
-    </div>
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            {% if form.errors %}
-                <p>Deine Email Adresse und Passwort stimmen nicht überein. Bitte versuche es noch einmal.</p>
-            {% else %}
 
-            {% endif %}
-            <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                <div class="input-group mb-3" >
-                    {{ form.username }}
-                    <div class="input-group-append" >
-                        <div class="input-group-text" >
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    {{ form.password }}
-                    <div class="input-group-append">
-                        <div class="input-group-text" >
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <small class="text-muted ml-2">
-                        <a href="{% url 'password_reset' %}">Passwort vergessen?</a>
-                    </small>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
-                <div class="social-auth-links text-center mb-3">
-                    <a href="{% url 'bewerber_signup' %}" class="btn btn-block btn-primary" role="button">Als
-                        Bewerber registrieren</a>
-                </div>
 
-            </form>
-        </div>
-    </div>
 </div>
+
+<div class="row" style="width:100% !important;">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="card custom-card">
+            <div class="col-12">
+                <h4 class="ilias-header" style="margin-bottom: 32px;">
+                    Login
+                </h4>
+                {% if form.errors %}
+                    <p>Deine Email Adresse und Passwort stimmen nicht überein. Bitte versuche es noch einmal.</p>
+                {% else %}
+
+                {% endif %}
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="input-group mb-3 custom-form-control">
+                        {{ form.username }}
+                        <div class="input-group-append custom-form-control">
+                            <div class="input-group-text custom-form-control">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        {{ form.password }}
+                        <div class="input-group-append custom-form-control">
+                            <div class="input-group-text custom-form-control">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <small class="text-muted ml-2">
+                            <a style="color: #3E566C !important;" href="{% url 'password_reset' %}">Passwort
+                                vergessen?</a>
+                        </small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block custom-btn-primary">Anmelden</button>
+                    <div class="social-auth-links text-center mb-3">
+                        <a href="{% url 'bewerber_signup' %}" class="btn btn-block btn-primary custom-btn-primary"
+                           role="button">Als
+                            Bewerber registrieren</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <div class="col-4"></div>
+    <!-- /.card -->
+</div>
+
 
 <!-- jQuery -->
 <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
