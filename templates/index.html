@@ -65,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="col-sm-6" style="margin-top: 32px !important;">
                         <h1 class="m-0 ilias-header-light">Universität zu Köln </h1>
                         <h1 class="m-0 ilias-header-light" style="font-weight:300 !important; ">
-                            {% block content_header %} {% endblock content_header %}</h1>
+                            Startseite</h1>
 
                     </div><!-- /.col -->
 
@@ -75,106 +75,124 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <div class="content custom-content-center">
+        <div class="content custom-content">
             <div class="container-fluid-center">
 
-                <div class="card">
-                    <div class="card-header ui-sortable-handle" style="cursor: move;">
-                        <h3 class="card-title">
-                            Informatik Zulassungsportal Prototyp
-                        </h3>
-                        <div class="card-tools">
 
-                        </div>
-                    </div><!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="tab-content p-0">
-                            Diese Website dient als Abgabe für die Hausaufgabe 1 des Modules <b>Softwaretechnik</b>.
-                            <p class="float-left " style="position: absolute;
-	                bottom: 0; margin-bottom:0; color: red ">
-
-                                Diese Website ist keine offizielle Website der Universität zu Köln!
-                            </p>
-                        </div>
-                    </div><!-- /.card-body -->
-                </div>
                 <div class="row">
 
+                    <div class="col-6">
+                        <!-- Main content -->
+                        <div class="callout custom-card p-3 mb-3">
+                            <!-- title row -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="ilias-header">
+                                        Bewerberportal
+                                        <button onclick="javascript:location.href='{% url 'bewerber_signup' %}'"
+                                                type="button"
+                                                class="btn btn-m  btn-primary  custom-btn-primary float-right  "
+                                                style="margin-left: 5px !important;"
+                                        >
 
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-header ui-sortable-handle" style="cursor: move;">
-                                <h3 class="card-title">
-                                    Bewerberportal
-                                </h3>
-                                <div class="card-tools">
-                                    <ul class="nav nav-pills ml-auto">
-                                        <li class="nav-item">
-                                            <button onclick="javascript:location.href='{% url 'bewerber_signup' %}'"
-                                                    type="button"
-                                                    class="btn btn-m  btn-primary  custom-btn-primary float-right  ">
-                                                Als
-                                                Bewerber registrieren
-                                            </button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button onclick="javascript:location.href='{% url 'login' %}'" type="button"
-                                                    class="btn btn-m btn-primary  custom-btn-primary float-right  "><i
-                                                    class="fas sign-up-alt"></i>
-                                                Anmeldung
-                                            </button>
-                                        </li>
-                                    </ul>
+                                            Registrieren
+                                        </button>
+
+                                        <button onclick="javascript:location.href='{% url 'login' %}'" type="button"
+                                                class="btn btn-m btn-primary  custom-btn-primary float-right  "><i
+                                                class="fas sign-up-alt"></i>
+                                            Anmelden
+                                        </button>
+
+
+                                    </h4>
                                 </div>
-                            </div><!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="tab-content p-0">
+                                <!-- /.col -->
+                            </div>
+                            <!-- info row -->
+                            <div class="row invoice-info custom-invoice-info"
+                                 style="margin-top: 10px; margin-bottom: 10px; ">
+                                <!-- /.col -->
+                                <p>
                                     Registrieren Sie sich als Bewerber und erstellen Sie Ihre Bewerbung für das Fach
                                     Informatik.
-                                    <br> Sie können Ihre bisherigen Universitätsabschlüsse, Schulabschlüsse und
+                                    Sie können Ihre bisherigen Universitätsabschlüsse, Schulabschlüsse und
                                     Arbeitserfahrungen in Ihrem Profil erstellen und dann Ihrer Bewerbung hinzufügen.
-                                    <br> Ebenfalls können Sie einen Link an Dritte versenden, damit diese Ihrem
+                                    Ebenfalls können Sie einen Link an Dritte versenden, damit diese Ihrem
                                     Bewerberaccount Empfehlungen hinzufügen können.
-
-                                </div>
-
-                            </div><!-- /.card-body -->
+                                </p>
+                            </div>
+                            <!-- /.row -->
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-header ui-sortable-handle" style="cursor: move;">
-                                <h3 class="card-title">
-                                    Zulassungsauschussportal
-                                </h3>
-                                <div class="card-tools">
-                                    <ul class="nav nav-pills ml-auto">
-                                        <li class="nav-item">
-                                        <li class="nav-item">
-                                            <button onclick="javascript:location.href='{% url 'login' %}'" type="button"
-                                                    class="btn btn-m btn-primary  custom-btn-primary float-right  "><i
-                                                    class="fas sign-up-alt"></i>
-                                                Anmeldung
-                                            </button>
-                                        </li>
-                                        </li>
 
-                                    </ul>
+                    <div class="col-6">
+                        <!-- Main content -->
+                        <div class="callout custom-card p-3 mb-3">
+                            <!-- title row -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="ilias-header">
+                                        Zulassungsauschussportal
+                                        <button onclick="javascript:location.href='{% url 'login' %}'" type="button"
+                                                class="btn btn-m btn-primary  custom-btn-primary float-right  "><i
+                                                class="fas sign-up-alt"></i>
+                                            Anmeldung
+                                        </button>
+                                    </h4>
                                 </div>
-                            </div><!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="tab-content p-0">
+                                <!-- /.col -->
+                            </div>
+                            <!-- info row -->
+                            <div class="row invoice-info custom-invoice-info"
+                                 style="margin-top: 10px; margin-bottom: 10px; ">
+                                <!-- /.col -->
+                                <p>
                                     Als Zulassungsauschussmitglied können Sie sich anmelden und alle Bewerbungen
-                                    einsehen.
-                                    <br> Sie können Universitätsabschlüsse, Schulabschlüsse, Arbeitserfahrungen sowie
-                                    Empfehlungsschreiben von Dritten für jede Bewerbung im Detail einsehen.
-                                    <br>Über das Zulassungsauschussportal können Bewerbungen akzeptiert und abgelehnt werden.
-                                    <br>
-                                </div>
-                            </div><!-- /.card-body -->
+                                    einsehen und annehmen oder ablehnen.
+                                    Sie können Universitätsabschlüsse, Schulabschlüsse, Arbeitserfahrungen sowie
+                                    Empfehlungsschreiben von Dritten für jede Bewerbung im Detail einsehen. Das anlegen
+                                    von Zulassungsausschussaccounts erfolgt in Absprache mit den
+                                    Systemadministratoren.
+
+
+                                </p>
+                            </div>
+                            <!-- /.row -->
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+
+                    <div class="col-12">
+                        <!-- Main content -->
+                        <div class="callout custom-card p-3 mb-3">
+                            <!-- title row -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="ilias-header">
+                                        Hinweis
+                                    </h4>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- info row -->
+                            <div class="row invoice-info custom-invoice-info"
+                                 style="margin-top: 10px; margin-bottom: 10px; color:red; ">
+                                <!-- /.col -->
+                                <p>
+                                    Diese Website stellt einen Prototypen für das Informatik-Zulassungsportaldar dar und
+                                    dient primär als Abgabe für die "Hausaufgabe 1" des Moduls Softwaretechnik.<br>
+                                    Diese Website ist <b>keine offizielle Website der Universität zu Köln!</b>
+                                </p>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <!-- /.content -->
@@ -204,3 +222,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 </body>
 </html>
+

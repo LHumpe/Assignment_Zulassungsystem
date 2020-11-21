@@ -3,7 +3,6 @@
 {% block content_header %} Portal des Zulassungsausschuss {% endblock content_header %}
 {% block main_content %}
 
-    <h1> You can still enroll {{ enrolment_capacity }}</h1>
 
 
     <div class="col-12">
@@ -320,8 +319,24 @@ p-3 mb-3">
 
 
 
+{% if enrolment_capacity <= 0 %}
 
-{% if bewerbung.status == 'P' %}
+
+    <div class="row no-print" style="margin-top: 48px;">
+                <div class="col-12">
+
+                    <p class="float-left " style="position: absolute;
+	                bottom: 0; margin-bottom:0; color: red ">
+
+                        Achtung: Die maximale Anzahl an Zulassungen (200) wurde bereits erreicht. Sie können keine weiteren Bewerber zulassen !
+                    </p>
+
+
+                </div>
+            </div>
+
+
+{% elif bewerbung.status == 'P' %}
 
             <!-- /.row -->
 
@@ -387,6 +402,7 @@ p-3 mb-3">
 
                 </div>
             </div>
+
          {% else %}
                                     {% endif %}
         </div>
