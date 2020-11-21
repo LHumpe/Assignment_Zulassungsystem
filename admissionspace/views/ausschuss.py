@@ -4,7 +4,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView
 
 from admissionspace.decorators import ausschuss_required
-from admissionspace.models import Bewerbung
+from admissionspace.models import Bewerbung, Recommendation
+
 
 @method_decorator([login_required, ausschuss_required], name='dispatch')
 class ApplicationListView(ListView):
@@ -27,6 +28,8 @@ class AdmissionApplicationUpdateView(UpdateView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['enrolment_capacity'] = 200 - len(Bewerbung.objects.filter(status='A'))
+        user_id = Bewerbung.objects.filter(id=self.kwargs['pk']).values('bewerber_id')
+        context['recommendations'] = Recommendation.objects.filter(bewerber=user_id[0]['bewerber_id'])
         return context
 
     def form_valid(self, form):

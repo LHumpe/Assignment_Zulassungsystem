@@ -22,3 +22,14 @@ def ausschuss_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, l
     if function:
         return actual_decorator(function)
     return actual_decorator
+
+
+def user_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
+    actual_decorator = user_passes_test(
+        lambda u: lambda u: (u.is_active and u.is_ausschuss) or (u.is_active and u.is_bewerber),
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
