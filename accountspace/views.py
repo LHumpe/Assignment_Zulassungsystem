@@ -10,6 +10,7 @@ from django.contrib.auth import login
 from admissionspace.decorators import bewerber_required
 from .models import User, Bewerber
 from .forms import BewerberSignUpForm, CustomLoginForm, BewerberUpdateForm
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -24,6 +25,15 @@ class BewerberSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
+
+        send_mail(
+              'Hey ' + form.cleaned_data['first_name'] + 'Willkommen auf der Bewerbungsplattform!',
+              'Schreibe deine erste Bewerbung.',
+              'swt.das.team@gmail.com',
+              [form.cleaned_data['username']],
+              fail_silently=False,
+          )
+
         return redirect('applicant_index')
 
 
