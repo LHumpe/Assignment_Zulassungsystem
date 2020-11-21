@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+
+local = False
+try:
+    import django_heroku
+except ModuleNotFoundError:
+    local = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +38,7 @@ if os.environ.get('DEBUG_VALUE') is None:
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['swt-das-team.herokuapp.com']
+ALLOWED_HOSTS = ['swt-das-team.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -122,7 +127,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -146,6 +150,11 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Custom User Model
 AUTH_USER_MODEL = "accountspace.User"
-django_heroku.settings(locals())
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'login'
+
+# Django Heroku
+if local:
+    pass
+else:
+    django_heroku.settings(locals())
