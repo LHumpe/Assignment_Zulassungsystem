@@ -61,9 +61,9 @@ class SchoolDegree(models.Model):
 
 class Bewerbung(models.Model):
     bewerber = models.ForeignKey(User, on_delete=models.CASCADE)
-    uni_degrees = models.ManyToManyField(UniversityDegree)
+    uni_degrees = models.ManyToManyField(UniversityDegree, blank=True)
     school_degrees = models.ManyToManyField(SchoolDegree)
-    work_experiences = models.ManyToManyField(WorkExperience)
+    work_experiences = models.ManyToManyField(WorkExperience, blank=True)
 
     STATUS_CHOICES = (
         ('P', 'Pending'),
@@ -73,6 +73,9 @@ class Bewerbung(models.Model):
     status = models.CharField(max_length=1, default='P', choices=STATUS_CHOICES)
 
     date_of_entry = models.DateTimeField(auto_created=True)
+
+    def __str__(self):
+        return 'User:{}'.format(self.bewerber)
 
 
 class Recommendation(models.Model):
@@ -90,3 +93,6 @@ class Recommendation(models.Model):
     available_until = models.TimeField()
 
     recommendation_letter = models.TextField()
+
+    def __str__(self):
+        return 'User:{} NR:{}'.format(self.bewerber, self.id)

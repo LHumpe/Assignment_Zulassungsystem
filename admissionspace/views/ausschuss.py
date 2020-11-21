@@ -19,6 +19,7 @@ class ApplicationListView(ListView):
         context['declined_admissions'] = len(Bewerbung.objects.filter(status='D'))
         return context
 
+
 @method_decorator([login_required, ausschuss_required], name='dispatch')
 class AdmissionApplicationUpdateView(UpdateView):
     model = Bewerbung
