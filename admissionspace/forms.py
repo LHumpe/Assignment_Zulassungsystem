@@ -239,53 +239,53 @@ class RecommendationCreateForm(forms.ModelForm):
 
         self.fields['first_name'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Vorname'
         })
         self.fields['last_name'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Nachname'
         })
         self.fields['job_position'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Rolle'
         })
         self.fields['company_name'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Firma'
         })
         self.fields['company_address'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Firmenadresse'
         })
         self.fields['email'].widget = forms.EmailInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'E-Mail'
         })
         self.fields['phone'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Telefonnummer'
         })
         self.fields['available_from'].widget = forms.TextInput(attrs={
             'type': 'time',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Geben Sie hier bitte eine Uhrzeit an ab der Sie erreichbar sind'
         })
         self.fields['available_until'].widget = forms.TextInput(attrs={
             'type': 'time',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Geben Sie hier bitte eine Uhrzeit an bis zu der Sie erreichbar sind'
         })
 
         self.fields['recommendation_letter'].widget = forms.Textarea(attrs={
             'type': 'multi',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Bitte schreiben Sie in dieses Feld ihr Empfehlungsschreiben für den Bewerber'
         })
 

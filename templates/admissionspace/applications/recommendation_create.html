@@ -2,9 +2,47 @@
 {% load static %}
 {% block content_header %} Empfehlungsschreiben erstellen {% endblock content_header %}
 {% block main_content %}
-    <form method="post">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card custom-card">
+                <div class="col-12">
+                        <h4 class="ilias-header">
+                            Empfehlungsschreiben
+                        </h4>
+                    </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0 custom-body-padding">
+
+
+
+                   <form method="post">
         {% csrf_token %}
+
+
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">OK</button>
-    </form>
+
+
+                        <button
+                                type="submit"
+
+
+                        class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+
+                        >Senden
+
+                        </button>
+                       </form>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
