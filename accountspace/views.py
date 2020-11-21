@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect,reverse
+from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, TemplateView, UpdateView
@@ -13,7 +13,10 @@ from .forms import BewerberSignUpForm, CustomLoginForm, BewerberUpdateForm
 from django.core.mail import send_mail
 
 
-# Create your views here.
+class LandingView(TemplateView):
+    template_name = 'index.html'
+
+
 class BewerberSignUpView(CreateView):
     model = User
     form_class = BewerberSignUpForm
@@ -27,12 +30,12 @@ class BewerberSignUpView(CreateView):
         login(self.request, user)
 
         send_mail(
-              'Hey ' + form.cleaned_data['first_name'] + 'Willkommen auf der Bewerbungsplattform!',
-              'Schreibe deine erste Bewerbung.',
-              'swt.das.team@gmail.com',
-              [form.cleaned_data['username']],
-              fail_silently=False,
-          )
+            'Hey ' + form.cleaned_data['first_name'] + 'Willkommen auf der Bewerbungsplattform!',
+            'Schreibe deine erste Bewerbung.',
+            'swt.das.team@gmail.com',
+            [form.cleaned_data['username']],
+            fail_silently=False,
+        )
 
         return redirect('applicant_index')
 
@@ -47,6 +50,7 @@ class CustomLoginView(LoginView):
         elif self.request.user.is_ausschuss:
             success_url = 'application_list'
         return reverse(success_url)
+
 
 @method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerberUpdateView(UpdateView):
