@@ -130,6 +130,7 @@ class BewerbungCreateView(CreateView):
         object.bewerber = self.request.user
         object.date_of_entry = datetime.datetime.now()
         object.save()
+        form.save_m2m()
         return redirect('applicant_index')
 
     def get_context_data(self, **kwargs):
