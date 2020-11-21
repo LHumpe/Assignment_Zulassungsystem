@@ -18,49 +18,49 @@ class UniversityDegreeForm(forms.ModelForm):
         self.fields['specialisation'].label = "Spezialisierung"
         self.fields['graduation_date'].label = "Abschlussdatum"
         self.fields['starting_date'].label = "Startdatum"
-        self.fields['no_of_semesters'].label = "Anzahl Semester"
+        self.fields['no_of_semesters'].label = "Anzahl der benötigten Semester"
         self.fields['avg_score'].label = "Notenschnitt"
 
 
         self.fields['university_name'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Universität'
         })
         self.fields['name_of_degree'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Studiengang'
         })
         self.fields['type_of_degree'].widget = forms.Select(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Abschluss'
         }, choices=UniversityDegree.DEGREE_CHOICES)
         self.fields['specialisation'].widget = forms.TextInput(attrs={
             'type': 'select',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Spezialisierung'
         })
         self.fields['graduation_date'].widget = forms.TextInput(attrs={
             'type': 'date',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Datum des Abschlusses'
         })
         self.fields['starting_date'].widget = forms.TextInput(attrs={
             'type': 'date',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Startdatum'
         })
         self.fields['no_of_semesters'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Anzahl Semester'
         })
         self.fields['avg_score'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
-            'placeholder': 'Numerus clausus'
+            'class': 'form-control custom-form-control',
+            'placeholder': 'Notenschnitt'
         })
 
     class Meta:
@@ -77,40 +77,40 @@ class SchoolDegreeForm(forms.ModelForm):
         self.fields['school_name'].label = "Schule"
         self.fields['city'].label = "Stadt"
         self.fields['type_of_degree'].label = "Abschlussbezeichnung"
-        self.fields['graduation_date'].label = "Abschlussdatum"
-        self.fields['starting_date'].label = "Startdatum"
+        self.fields['graduation_date'].label = "Datum des Abschlusses"
+        self.fields['starting_date'].label = "Einschulungsdatum"
         self.fields['avg_score'].label = "Notenschnitt"
 
 
         self.fields['school_name'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Schule'
         })
         self.fields['city'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Stadt'
         })
         self.fields['type_of_degree'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Abschluss'
         })
         self.fields['graduation_date'].widget = forms.TextInput(attrs={
             'type': 'date',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Datum des Abschlusses'
         })
         self.fields['starting_date'].widget = forms.TextInput(attrs={
             'type': 'date',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Startdatum'
         })
         self.fields['avg_score'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
-            'placeholder': 'Numerus clausus'
+            'class': 'form-control custom-form-control',
+            'placeholder': 'Notenschnitt'
         })
 
     class Meta:
@@ -124,7 +124,7 @@ class WorkExperienceForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(WorkExperienceForm, self).__init__(*args, **kwargs)
 
-        self.fields['company_name'].label = "Firmenname"
+        self.fields['company_name'].label = "Unternehmen"
         self.fields['end_date'].label = "Enddatum"
         self.fields['starting_date'].label = "Startdatum"
         self.fields['employment_relationship'].label = "Jobbezeichnung"
@@ -132,58 +132,58 @@ class WorkExperienceForm(forms.ModelForm):
         self.fields['supervisor'].label = "Ansprechpartner"
         self.fields['specialisation'].label = "Spezialisierung"
         self.fields['task_description'].label = "Beschreibung"
-        self.fields['avg_weekly_working_time'].label = "Arbeitszeit"
+        self.fields['avg_weekly_working_time'].label = "Arbeitszeit in Std./Woche"
 
 
 
         self.fields['company_name'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Firma'
         })
         self.fields['end_date'].widget = forms.TextInput(attrs={
             'type': 'date',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Enddatum'
         })
         self.fields['starting_date'].widget = forms.TextInput(attrs={
             'type': 'date',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Startdatum'
         })
         self.fields['employment_relationship'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Beschäftigung'
         })
         self.fields['industry'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Branche'
         })
         self.fields['supervisor'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Ansprechpartner'
         })
         self.fields['specialisation'].widget = forms.TextInput(attrs={
             'type': 'text',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Spezialisierung'
         })
         self.fields['task_description'].widget = forms.Textarea(attrs={
             'type': 'multi',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Beschreibung der Tätigkeit'
         })
         self.fields['company_address'].widget = forms.Textarea(attrs={
             'type': 'multi',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Anschrift der Firma'
         })
         self.fields['avg_weekly_working_time'].widget = forms.TextInput(attrs={
             'type': 'integer',
-            'class': 'form-control',
+            'class': 'form-control custom-form-control',
             'placeholder': 'Durchschnittliche wöchentliche Arbeitszeit'
         })
 
@@ -203,15 +203,16 @@ class BewerbungForm(forms.ModelForm):
 
         self.fields['uni_degrees'].widget = forms.CheckboxSelectMultiple(attrs={
             'type': 'checkbox',
-            'class': 'form-group',
+            'class': 'form-group custom-no-dots',
+
         })
         self.fields['school_degrees'].widget = forms.CheckboxSelectMultiple(attrs={
             'type': 'checkbox',
-            'class': 'form-group',
+            'class': 'form-group custom-no-dots',
         })
         self.fields['work_experiences'].widget = forms.CheckboxSelectMultiple(attrs={
             'type': 'checkbox',
-            'class': 'form-group',
+            'class': 'form-group custom-no-dots',
         })
 
     class Meta:

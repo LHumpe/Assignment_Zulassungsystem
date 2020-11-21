@@ -16,10 +16,10 @@
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" >
 <div class="login-box">
-    <div class="login-logo">
-        <a>Universität zu Köln<b> Zulassung</b></a>
+    <div class="login-logo" style="margin-bottom: 48px;">
+         <img src="/static/dist/svg/logo-zulassungsausschuss-informatik-blue.svg" alt="Universität zu Köln - Zulassungsausschuss Informatik" width="360px" height="auto" >
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -27,14 +27,14 @@
             {% if form.errors %}
                 <p>Deine Email Adresse und Passwort stimmen nicht überein. Bitte versuche es noch einmal.</p>
             {% else %}
-                <p class="login-box-msg">Login</p>
+
             {% endif %}
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" >
                     {{ form.username }}
-                    <div class="input-group-append">
-                        <div class="input-group-text">
+                    <div class="input-group-append" >
+                        <div class="input-group-text" >
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                 <div class="input-group mb-3">
                     {{ form.password }}
                     <div class="input-group-append">
-                        <div class="input-group-text">
+                        <div class="input-group-text" >
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>

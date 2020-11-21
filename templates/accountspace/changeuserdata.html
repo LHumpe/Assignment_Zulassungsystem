@@ -2,9 +2,77 @@
 {% load static %}
 {% block content_header %} Persönliche Daten {% endblock content_header %}
 {% block main_content %}
-    <form method="post">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card custom-card">
+                <div class="col-12">
+                        <h4 class="ilias-header">
+                            Accountinformationen
+                        </h4>
+                    </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0 custom-body-padding">
+
+                   <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="OK">
-    </form>
+
+                       <label >Vorname: </label>
+                       {{ form.first_name }}
+                       <br>
+
+                       <label>Nachname: </label>
+                       {{ form.last_name }}
+                       <br>
+                       <label>Straße & Hausnummer: </label>
+                       {{ form.street }}
+                       <br>
+                       <label>Stadt: </label>
+                       {{ form.city }}
+                       <br>
+                         <label>PLZ: </label>
+                       {{ form.post_code }}
+                       <br>
+                         <label>Telefonnummer: </label>
+                       {{ form.phone }}
+                       <br>
+
+        <button type="button"
+
+                onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                      class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+                     >
+                            <i class="fas fa-times"></i>
+                        </button>
+
+
+                        <button
+                                type="submit"
+
+                                 style="margin-right: 5px;"
+
+                        class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+
+                        ><i class="fas fa-check"></i>
+
+                        </button>
+                       </form>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 {% endblock %}

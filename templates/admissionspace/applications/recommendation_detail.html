@@ -2,43 +2,40 @@
 {% load static %}
 {% block main_content %}
 
-    <div class="col-12">
-
-
-        <!-- Main content -->
-        <div class="callout callout-success p-3 mb-3">
-            <!-- title row -->
-            <div class="row">
+    <div class="row">
+        <div class="col-12">
+            <div class="card custom-card">
                 <div class="col-12">
-                    <h4>
-                        <i class="fas fa-envelope-open-text"></i> &nbsp; Empfehlungsschreiben #{{ object.id }}
-                        <small class="float-right">{{ bewerbung.date_of_entry }}<br></small>
+                    <h4 class="ilias-header">
+                        Empfehlungsschreiben
                     </h4>
                 </div>
-                <!-- /.col -->
-            </div>
+                <!-- /.card-header -->
 
-            <!-- info row -->
+
+                <div class="card-body p-0 custom-body-padding">
+
+                    <!-- info row -->
             <div class="row invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
-                <div class="col-sm-4 invoice-col">
+                <div class="col-sm-3 invoice-col">
 
                     <address>
-                        Firma <br>
-                        Firmenadresse<br>
-                        Name des Empfehlungsschreiber <br>
-                        Job Position <br>
-                        E-Mail<br>
-                        Telefonnummer <br>
-                        Erreichbarkeit <br>
+                        <strong>Unternehmen:</strong> <br>
+                        Adresse:<br>
+                        Name des Empfehlungsschreiber:<br>
+                        Position:<br>
+                        E-Mail:<br>
+                        Telefonnummer:<br>
+                        Erreichbarkeit:<br>
 
 
                     </address>
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
+                <div class="col-sm-3 invoice-col">
 
                     <address>
-                        {{ object.company_name }}<br>
+                        <strong>{{ object.company_name }}</strong><br>
                         {{ object.company_address }}<br>
                         {{ object.last_name }}, {{ object.first_name }}<br>
                         {{ object.job_position }}<br>
@@ -48,10 +45,10 @@
                     </address>
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                        <h5>Text:</h5>
-                        <p>{{ object.recommendation_letter }}
-                        </p>
+                <div class="col-sm-6 invoice-col">
+                    <strong>Empfehlungsschreiben:</strong>
+                    <p style="font-style: italic">{{ object.recommendation_letter }}
+                    </p>
 
                 </div>
                 <!-- /.col -->
@@ -59,13 +56,23 @@
             <!-- /.row -->
 
 
+                    <button type="button"
 
+                            onclick="javascript:location.href='{% url 'applicant_index' %}'"
 
+                            class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+                    >
+                        Zurück
+                    </button>
                 </div>
             </div>
         </div>
-        <!-- /.invoice -->
     </div>
+
+
+
+
 
 
 {% endblock %}

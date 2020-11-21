@@ -3,173 +3,320 @@
 {% block content_header %} Bewerberportal {% endblock content_header %}
 
 {% block main_content %}
-    {% for b in bewerbung %}
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title"><b>Bewerbung Status</b></h3>
-                <div class="card-tools">
-                    <button onclick="javascript:location.href='{% url 'detail_bewerbung' b.id %}'"
-                                            type="button"
-                                            class="btn btn-primary float-right" style="margin-right: 4px;"><i
-                                            class="fas fa-eye"></i>
-                                    </button>
+
+
+
+<div class="row">
+
+        <div class="col-6">
+
+
+            <!-- Main content -->
+            <div class="callout custom-card
+                        {% if b.status == 'A' %}
+                                callout-success
+                            {% elif b.status == 'D' %}
+                                callout-danger
+
+                            {% else %}
+                                callout-warning
+                            {% endif %}
+
+                        p-3 mb-3">
+                <!-- title row -->
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="ilias-header">
+                            Accountinformationen
+                            <button onclick="javascript:location.href='{% url 'bewerber_update' user.id %}'" type="button"
+                        class="btn btn-sm btn-primary  custom-btn-primary float-right  " ><i class="fas fa-pen"></i>
+                </button>
+
+                        </h4>
+
+
+                    </div>
+
+                    <!-- /.col -->
                 </div>
-                <!-- /.card-tools -->
+
+                <!-- info row -->
+                <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                    <div class="col-sm-6 invoice-col">
+
+                        <address>
+                            <strong>Name: <br></strong>
+                            Straße & Hausnummer: <br>
+                            PLZ & Ort:<br>
+                            Telefonnummer: <br>
+                            Email-Adresse:
+                        </address>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6 invoice-col">
+
+                        <address>
+                            <strong>{{ user.bewerber.last_name }}, {{ user.bewerber.first_name }}</strong><br>
+                            {{ user.bewerber.street }}<br>
+                            {{ user.bewerber.post_code }}, {{ user.bewerber.city }}<br>
+                            {{ user.bewerber.phone }}<br>
+                            {{ user.bewerber.email }}
+                        </address>
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
             </div>
-            <!-- /.card-header -->
 
-            {% if b.status == "P" %}
-                <div class="card-body" style="background-color:#ffc107!important">
-                    <b>In Bearbeitung</b>
-                </div>
-            {% endif %}
-            {% if b.status == "A" %}
-                <div class="card-body" style="background-color:#28a745!important;">
-                    <b>Akzeptiert</b>
-                </div>
-            {% endif %}
-            {% if b.status == "D" %}
-                <div class="card-body" style="background-color:#dc3545!important;;">
-                    <b>Abgelehnt</b>
-                </div>
-            {% endif %}
-
-            <div class="card-footer">
-                <b>Eingangsdatum:</b> {{ b.date_of_entry }}
-
-            </div>
-            <!-- /.card-footer -->
+            <!-- /.invoice -->
         </div>
-        <!-- /.card -->
-    {% empty %}
+        <div class="col-6">
+
+
+            <!-- Main content -->
+            <div class="callout custom-card
+                        {% if b.status == 'A' %}
+                                callout-success
+                            {% elif b.status == 'D' %}
+                                callout-danger
+
+                            {% else %}
+                                callout-warning
+                            {% endif %}
+
+                        p-3 mb-3">
+
+
+
+                    {% for b in bewerbung %}
+
+                <!-- title row -->
+                <div class="row">
+
+
+                    <div class="col-12">
+
+                        <h4 class="ilias-header">
+                            Bewerbung
+
+                            {% if b.status == "P" %}
+
+                             <button onclick="javascript:location.href='{% url 'update_bewerbung' b.id %}'"
+                            type="button"
+                            class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i
+
+
+
+                            class="fas fa-pen"></i></button>
+
+
+                            <button onclick="javascript:location.href='{% url 'delete_bewerbung' b.id %}'"
+                            type="button" style="margin-right: 5px"
+
+                            class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i
+
+                            class="fas fa-trash-alt"></i></button>
+
+                            {% endif %}
+
+                                    <button onclick="javascript:location.href='{% url 'detail_bewerbung' b.id %}'"
+                            type="button"
+                                            {% if b.status == "P" %}
+                                            style="margin-right: 5px"
+                                             {% endif %}
+                            class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i
+
+
+
+                            class="fas fa-eye"></i>
+                    </button>
+
+                        </h4>
+
+
+
+                    </div>
+
+                    <!-- /.col -->
+                </div>
+
+                <!-- info row -->
+                <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                    <div class="col-sm-6 invoice-col">
+
+                        <address>
+
+                            <strong>Bewerbungsnummer:<br></strong>
+                            Bewerber: <br>
+                            Studiengang:<br>
+                            Eingangsdatum: <br>
+                            Status:
+
+                        </address>
+                    </div>
+
+                    <!-- /.col -->
+                    <div class="col-sm-6 invoice-col">
+                        <strong>{{ b.id }}</strong><br>
+                        {{ user.bewerber.last_name }}, {{ user.bewerber.first_name }}<br>
+                        Informatik<br>
+                        {{ b.date_of_entry }}<br>
+                        {% if b.status == 'A' %}
+                            Angenommen &nbsp;<i class="fas fa-check-circle" style="color: #28a745; "></i>
+
+
+                        {% elif b.status == 'D' %}
+                            Angenommen &nbsp;<i class="fas fa-times-circle" style="color: #dc3545;"></i>
+
+
+                        {% elif b.status == 'P' %}
+                            Ausstehend &nbsp;<i class="fas fa-exclamation-circle"
+                                   style="color: #ffc107;"></i>
+
+                        {% else %}
+
+                        {% endif %}
+
+
+
+
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+                        {% empty %}
+
+                        <!-- title row -->
+                <div class="row">
+
+
+                    <div class="col-12">
+
+                        <h4 class="ilias-header">
+                            Bewerbung
+
+                            <button onclick="javascript:location.href='{% url 'create_bewerbung' %}'" type="button"
+                        class="btn btn-sm btn-primary  custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
+                </button>
+
+                        </h4>
+
+
+
+                    </div>
+
+                    <!-- /.col -->
+                </div>
+
+                <!-- info row -->
+                <div class="row invoice-info custom-invoice-info" style="margin-top: 10px; margin-bottom: 10px;">
+                    <div class="col-sm-1 invoice-col">
+
+                        <address>
+
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                        </address>
+
+
+                    </div>
+
+                <div class="col-sm-10 invoice-col" style="display: flex;
+  justify-content: center;
+  align-items: center;">
+
+
+<address>
+<br>
+                            <br>
+    <p style="font-style: italic; ">keine Bewerbung vorhanden</p>
+                            <br>
+
+
+
+                        </address>
+
+
+
+
+                    </div>
+
+                <div class="col-sm-1 invoice-col">
+
+
+                    </div>
+
+
+
+
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     {% endfor %}
 
 
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title"><b>Account Informationen</b></h3>
+            <!-- /.invoice -->
+        </div>
+        </div>
+        </div>
 
-            <div class="card-tools">
-                <button onclick="javascript:location.href='{% url 'bewerber_update' user.id %}'" type="button"
-                        class="btn btn-primary float-right" style="margin-right: 4px;"><i class="fas fa-pen"></i>
+
+
+
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card custom-card">
+                <div class="col-12">
+                        <h4 class="ilias-header">
+                            Schulabschlüsse
+                            <button onclick="javascript:location.href='{% url 'create_school_degree' %}'" type="button"
+                        class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
                 </button>
-                <!-- Buttons, labels, and many other things can be placed here! -->
-                <!-- Here is a label for example -->
-            </div>
-            <!-- /.card-tools -->
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
 
-            {% for info in account_information %}
-
-                <p><b>Vorname:</b> {{ info.first_name }}</p>
-                <p><b>Nachname:</b> {{ info.last_name }}</p>
-                <p><b>Straße:</b> {{ info.street }}</p>
-                <p><b>PLZ:</b> {{ info.post_code }}</p>
-                <p><b>Stadt:</b> {{ info.city }}</p>
-                <p><b>E-Mail:</b> {{ info.email }}</p>
-                <p><b>Telefon:</b> {{ info.phone }}</p>
-            {% endfor %}
-        </div>
-        <!-- /.card-body -->
-        <!-- /.card-footer -->
-        <div class="card-footer">
+                        </h4>
 
 
-        </div>
-    </div>
-    <!-- /.card -->
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><b>Universitätsabschlüsse</b></h3>
-
-                </div>
+                    </div>
                 <!-- /.card-header -->
-                <div class="card-body p-0">
+                <div class="card-body custom-body-padding p-0">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th style="width: 10px">Universität</th>
-                            <th>Studiengang</th>
-                            <th>Abschluss</th>
-                            <th>Spezialisierung</th>
-                            <th>Datum des Abschlusses</th>
-                            <th>Startdatum</th>
-                            <th>Anzahl Semester</th>
-                            <th>NC</th>
-                            <th></th>
+                            <th style="border-bottom: 0">Schule</th>
+                            <th style="border-bottom: 0">Stadt</th>
+                            <th style="border-bottom: 0">Abschluss</th>
+                            <th style="border-bottom: 0">Zeitraum</th>
 
-
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        {% for uni_degree in universitydegrees %}
-                            <tr>
-                                <td>{{ uni_degree.university_name }}</td>
-                                <td>{{ uni_degree.name_of_degree }}</td>
-                                <td>{{ uni_degree.type_of_degree }}</td>
-                                <td>{{ uni_degree.specialisation }}</td>
-                                <td>{{ uni_degree.graduation_date }}</td>
-                                <td>{{ uni_degree.starting_date }}</td>
-                                <td>{{ uni_degree.no_of_semesters }}</td>
-                                <td>{{ uni_degree.avg_score }}</td>
-
-
-                                <td>
-
-                                    <button onclick="javascript:location.href='{% url 'update_uni_degree' uni_degree.id %}'"
-                                            type="button" class="btn btn-primary float-right"><i class="fas fa-pen"></i>
-                                    </button>
-
-
-                                    <button onclick="javascript:location.href='{% url 'delete_uni_degree' uni_degree.id %}'"
-                                            type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
-
-
-                    <button onclick="javascript:location.href='{% url 'create_uni_degree' %}'" type="button"
-                            class="btn btn-success float-right" style="margin-right: 4px;"><i class="fas fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- /.card -->
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><b>Schulabschlüsse</b></h3>
-
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body p-0">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th style="width: 10px">Schule</th>
-                            <th>Stadt</th>
-                            <th>Abschluss</th>
-                            <th>Datum des Abschlusses</th>
-                            <th>Startdatum</th>
-                            <th>NC</th>
-                            <th></th>
+                            <th style="border-bottom: 0">NC</th>
+                            <th style="border-bottom: 0"></th>
 
 
                         </tr>
@@ -181,20 +328,23 @@
                                 <td>{{ school_degree.school_name }}</td>
                                 <td>{{ school_degree.city }}</td>
                                 <td>{{ school_degree.type_of_degree }}</td>
-                                <td>{{ school_degree.graduation_date }}</td>
-                                <td>{{ school_degree.starting_date }}</td>
+
+
+                                <td>{{ school_degree.starting_date|date:"M Y" }} - {{ school_degree.graduation_date|date:"M Y" }}</td>
+
+
                                 <td>{{ school_degree.avg_score }}</td>
 
 
                                 <td>
 
                                     <button onclick="javascript:location.href='{% url 'update_school_degree' school_degree.id %}'"
-                                            type="button" class="btn btn-primary float-right"><i class="fas fa-pen"></i>
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right"><i class="fas fa-pen"></i>
                                     </button>
 
 
                                     <button onclick="javascript:location.href='{% url 'delete_school_degree' school_degree.id %}'"
-                                            type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right" style="margin-right: 5px;">
                                         <i class="fas fa-trash-alt"></i></button>
                                 </td>
 
@@ -204,13 +354,7 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                </div>
 
-
-                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
-                    <button onclick="javascript:location.href='{% url 'create_school_degree' %}'" type="button"
-                            class="btn btn-success float-right" style="margin-right: 4px;"><i class="fas fa-plus"></i>
-                    </button>
                 </div>
 
 
@@ -220,26 +364,123 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><b>Arbeitserfahrungen</b></h3>
+            <div class="card custom-card">
+                <div class="col-12">
+                        <h4 class="ilias-header">
+                            Hochschulabschlüsse
 
-                </div>
+
+
+
+                                <button onclick="javascript:location.href='{% url 'create_uni_degree' %}'" type="button"
+                        class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
+                </button>
+                </button>
+
+                        </h4>
+
+
+                    </div>
                 <!-- /.card-header -->
-                <div class="card-body p-0">
+                <div class="card-body p-0 custom-body-padding">
+                    <table class="table">
+                        <thead >
+                        <tr>
+                            <th style="border-bottom: 0">Universität</th>
+                            <th style="border-bottom: 0">Studiengang</th>
+                            <th style="border-bottom: 0">Abschluss</th>
+                            <th style="border-bottom: 0">Spezialisierung</th>
+                            <th style="border-bottom: 0">Zeitraum</th>
+
+                            <th style="border-bottom: 0">Anzahl Semester</th>
+                            <th style="border-bottom: 0">NC</th>
+                            <th style="border-bottom: 0"></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for uni_degree in universitydegrees %}
+                            <tr>
+                                <td>{{ uni_degree.university_name }}</td>
+                                <td>{{ uni_degree.name_of_degree }}</td>
+
+                                <td>
+
+
+                                    {%if uni_degree.type_of_degree == 'msc' %}M.Sc.
+                                    {% elif uni_degree.type_of_degree == 'ba' %}B.A.
+                                    {% elif uni_degree.type_of_degree == 'ma' %}M.A.
+                                    {% else %}
+
+                                    B.Sc.
+
+                                    {% endif %}
+                                </td>
+
+
+
+                                <td>{{ uni_degree.specialisation }}</td>
+                            <td>{{ uni_degree.starting_date|date:"M Y" }} - {{ uni_degree.graduation_date|date:"M Y" }}</td>
+
+                                <td>{{ uni_degree.no_of_semesters }}</td>
+                                <td>{{ uni_degree.avg_score }}</td>
+
+
+                                <td>
+
+                                    <button onclick="javascript:location.href='{% url 'update_uni_degree' uni_degree.id %}'"
+                                            type="button" class="btn btn-sm btn-primary custom-btn-primary float-right"><i class="fas fa-pen"></i>
+                                    </button>
+
+
+                                    <button onclick="javascript:location.href='{% url 'delete_uni_degree' uni_degree.id %}'"
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- /.card -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card custom-card">
+                <div class="col-12">
+                        <h4 class="ilias-header">
+                            Praxiserfahrung
+                            <button onclick="javascript:location.href='{% url 'create_work_exp' %}'" type="button"
+                        class="btn btn-sm btn-primary custom-btn-primary float-right  " ><i class="fas fa-plus"></i>
+                </button>
+
+                        </h4>
+
+
+                    </div>
+                <!-- /.card-header -->
+                <div class="card-body custom-body-padding p-0">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th style="width: 10px">Firma</th>
-                            <th>Startdatum</th>
-                            <th>Enddatum</th>
-                            <th>Art der Beschäftigung</th>
-                            <th>Branche</th>
-                            <th>Ansprechpartner</th>
-                            <th>Spezialisierung</th>
-                            <th>Köln</th>
-                            <th>Workload</th>
-                            <th></th>
+                            <th style="border-bottom: 0">Unternehmen</th>
+                            <th style="border-bottom: 0">Zeitraum</th>
+                            <th style="border-bottom: 0">Art der Beschäftigung</th>
+                            <th style="border-bottom: 0">Branche</th>
+                            <th style="border-bottom: 0">Ansprechpartner</th>
+                            <th style="border-bottom: 0">Bereich</th>
+                            <th style="border-bottom: 0">Adresse</th>
+                            <th style="border-bottom: 0">Std./Woche</th>
+                            <th style="border-bottom: 0"></th>
 
 
                         </tr>
@@ -249,8 +490,8 @@
                         {% for work_experience in workexperience %}
                             <tr>
                                 <td>{{ work_experience.company_name }}</td>
-                                <td>{{ work_experience.starting_date }}</td>
-                                <td>{{ work_experience.end_date }}</td>
+                                <td>{{ work_experience.starting_date|date:"M Y" }} - {{ work_experience.end_date|date:"M Y" }}</td>
+
                                 <td>{{ work_experience.employment_relationship }}</td>
                                 <td>{{ work_experience.industry }}</td>
                                 <td>{{ work_experience.supervisor }}</td>
@@ -262,12 +503,12 @@
                                 <td>
 
                                     <button onclick="javascript:location.href='{% url 'update_work_exp' work_experience.id %}'"
-                                            type="button" class="btn btn-primary float-right"><i class="fas fa-pen"></i>
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right"><i class="fas fa-pen"></i>
                                     </button>
 
 
                                     <button onclick="javascript:location.href='{% url 'delete_work_exp' work_experience.id %}'"
-                                            type="button" class="btn btn-danger float-right" style="margin-right: 5px;">
+                                            type="button" class="btn btn-sm btn-danger custom-btn-primary float-right" style="margin-right: 5px;">
                                         <i class="fas fa-trash-alt"></i></button>
                                 </td>
 
@@ -280,36 +521,31 @@
                 </div>
 
 
-                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
-
-
-                    <button onclick="javascript:location.href='{% url 'create_work_exp' %}'" type="button"
-                            class="btn btn-success float-right" style="margin-right: 4px;"><i class="fas fa-plus"></i>
-                    </button>
-                </div>
-
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><b>Empfehlungsschreiben</b></h3>
+            <div class="card custom-card">
+                <div class="col-12">
+                        <h4 class="ilias-header">
+                            Empfehlungsschreiben
+                        </h4>
 
-                </div>
-                <div class="card-body p-0">
+
+                    </div>
+                <div class="card-body custom-body-padding p-0">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th style="width: 10px">Firma</th>
-                            <th>Vorname</th>
-                            <th>Nachname</th>
-                            <th>Rolle</th>
-                            <th>E-Mail</th>
-                            <th>Telefon</th>
-                            <th>Erreichbarkeit</th>
-                            <th></th>
+                            <th style="border-bottom: 0">Firma</th>
+                            <th style="border-bottom: 0">Vorname</th>
+                            <th style="border-bottom: 0">Nachname</th>
+                            <th style="border-bottom: 0">Rolle</th>
+                            <th style="border-bottom: 0">E-Mail</th>
+                            <th style="border-bottom: 0">Telefon</th>
+                            <th style="border-bottom: 0">Erreichbarkeit</th>
+                            <th style="border-bottom: 0"></th>
 
 
                         </tr>
@@ -329,7 +565,7 @@
                                 <td>
                                     <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
                                             type="button"
-                                            class="btn btn-primary float-right" style="margin-right: 4px;"><i
+                                            class="btn btn-sm btn-primary custom-btn-primary float-right" style="margin-right: 4px;"><i
                                             class="fas fa-eye"></i>
                                     </button>
 
@@ -343,13 +579,13 @@
                     </table>
                 </div>
 
-                <div class="card-footer" style="border-top: 1px solid #dee2e6;">
+                <div class="card-footer" style="background-color: white; ">
 
 
                     {% with request.build_absolute_uri|add:recommendation_link as recommendation_url %}
-                        <p><b>Sende den folgenden Link an Personen,welche ein Empfehlungsschreiben für dich erstellen
-                            sollen. Das Empfehlungsschreiben wird deiner Bewerbung automatisch angehangen.</b></p>
-                        <a><b>Link: </b></a> <a href={{ recommendation_url }}>{{ recommendation_url }} </a>
+                        <p class="ilias-header-style"><br>Geben Sie folgenden Link an Personen weiter, welche ein Empfehlungsschreiben für Sie erstellen sollen: <a href={{ recommendation_url }}>{{ recommendation_url }} </a><br> Das Empfehlungsschreiben wird Ihrer Bewerbung automatisch angehangen.</p>
+
+
                     {% endwith %}
                     </button>
                 </div>
@@ -359,27 +595,6 @@
     </div>
 
 
-    {% for b in bewerbung %}
 
-        {% if b.status == "P" %}
-        <button onclick="javascript:location.href='{% url 'delete_bewerbung' b.id %}'" type="button"
-                class="btn btn-danger float-none" style="margin-right: 4px;"><i class="fas fa-trash-alt"></i> Bewerbung
-            löschen
-        </button>
-
-        <button onclick="javascript:location.href='{% url 'update_bewerbung' b.id %}'" type="button"
-                class="btn btn-primary float-none" style="margin-right: 4px;"><i class="fas fa-pen"></i> Bewerbung
-            bearbeiten
-        </button>
-
-        {% else %}
-        {% endif %}
-
-    {% empty %}
-        <button onclick="javascript:location.href='{% url 'create_bewerbung' %}'" type="button"
-                class="btn btn-success float-none" style="margin-right: 4px;"><i class="fas fa-plus"></i> Bewerbung
-            erstellen
-        </button>
-    {% endfor %}
 
 {% endblock %}

@@ -90,33 +90,33 @@ class BewerberUpdateForm(forms.ModelForm):
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Vorname'
     }))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Nachname'
     }))
     street = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Straße'
     }))
     city = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Stadt'
     }))
     post_code = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'PLZ'
     }))
 
     phone = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
-        'class': 'form-control',
+        'class': 'form-control custom-form-control',
         'placeholder': 'Telefon'
     }))
 
