@@ -54,9 +54,22 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+                    {% if user.is_ausschuss %}
 
-#TODO: Different Routing for Zulassungsauschuss und Bewerber
-                    <button type="button"
+                         <button type="button"
+
+                            onclick="javascript:location.href='{% url 'application_list' %}'"
+
+                            class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+                    >
+                        Zurück
+                    </button>
+
+
+                    {% else %}
+
+                          <button type="button"
 
                             onclick="javascript:location.href='{% url 'applicant_index' %}'"
 
@@ -65,6 +78,10 @@
                     >
                         Zurück
                     </button>
+
+
+                    {% endif %}
+
                 </div>
             </div>
         </div>
