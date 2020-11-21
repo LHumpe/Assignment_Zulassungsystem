@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from accountspace.views import BewerberSignUpView, CustomLoginView, BewerberUpdateView
+from accountspace.views import BewerberSignUpView, CustomLoginView, BewerberUpdateView, LandingView
 from django.contrib.auth import views as auth_views
 import admissionspace.views.bewerber as bewerber_views
 import admissionspace.views.ausschuss as ausschuss_views
 
+
 urlpatterns = [
-    path('', CustomLoginView.as_view(), name='login'),
+    path('', LandingView.as_view(), name='index'),
+    path('login/', CustomLoginView.as_view(), name='login'),
     path('admin/', admin.site.urls),
     path('signup/', BewerberSignUpView.as_view(), name='bewerber_signup'),
     path('signout/', auth_views.LogoutView.as_view(next_page='login'), name='signout'),
