@@ -101,7 +101,7 @@ class BewerberUpdateForm(forms.ModelForm):
     street = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',
         'class': 'form-control custom-form-control',
-        'placeholder': 'Straße'
+        'placeholder': 'Straße & Hausnummer'
     }))
     city = forms.CharField(widget=forms.TextInput(attrs={
         'type': 'text',

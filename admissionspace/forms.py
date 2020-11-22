@@ -127,20 +127,20 @@ class WorkExperienceForm(forms.ModelForm):
         self.fields['company_name'].label = "Unternehmen"
         self.fields['end_date'].label = "Enddatum"
         self.fields['starting_date'].label = "Startdatum"
-        self.fields['employment_relationship'].label = "Jobbezeichnung"
+        self.fields['employment_relationship'].label = "Position"
         self.fields['industry'].label = "Branche"
         self.fields['supervisor'].label = "Ansprechpartner"
         self.fields['specialisation'].label = "Spezialisierung"
         self.fields['task_description'].label = "Beschreibung"
         self.fields['avg_weekly_working_time'].label = "Arbeitszeit in Std./Woche"
-        self.fields['company_address'].label = "Anschrift der Firma"
+        self.fields['company_address'].label = "Anschrift des Unternehmens"
 
 
 
         self.fields['company_name'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control custom-form-control',
-            'placeholder': 'Firma'
+            'placeholder': 'Unternehmen'
         })
         self.fields['end_date'].widget = forms.TextInput(attrs={
             'type': 'date',
@@ -155,7 +155,7 @@ class WorkExperienceForm(forms.ModelForm):
         self.fields['employment_relationship'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control custom-form-control',
-            'placeholder': 'Beschäftigung'
+            'placeholder': 'Position im Unternehmen'
         })
         self.fields['industry'].widget = forms.TextInput(attrs={
             'type': 'text',
@@ -180,7 +180,7 @@ class WorkExperienceForm(forms.ModelForm):
         self.fields['company_address'].widget = forms.Textarea(attrs={
             'type': 'multi',
             'class': 'form-control custom-form-control',
-            'placeholder': 'Anschrift der Firma'
+            'placeholder': 'Anschrift des Unternehmens'
         })
         self.fields['avg_weekly_working_time'].widget = forms.TextInput(attrs={
             'type': 'integer',
@@ -229,11 +229,11 @@ class RecommendationCreateForm(forms.ModelForm):
 
         self.fields['first_name'].label = "Vorname"
         self.fields['last_name'].label = "Nachname"
-        self.fields['job_position'].label = "Job Rolle"
-        self.fields['company_name'].label = "Firmenname"
-        self.fields['company_address'].label = "Adresse der Firma"
+        self.fields['job_position'].label = "Position"
+        self.fields['company_name'].label = "Name des Unternehmens"
+        self.fields['company_address'].label = "Anschrift des Unternehmens"
         self.fields['email'].label = "E-Mail"
-        self.fields['phone'].label = "Telefon"
+        self.fields['phone'].label = "Telefonnummer"
         self.fields['available_from'].label = "Erreichbar ab"
         self.fields['available_until'].label = "Erreichbar bis"
         self.fields['recommendation_letter'].label = "Empfehlungsschreiben"
@@ -251,17 +251,17 @@ class RecommendationCreateForm(forms.ModelForm):
         self.fields['job_position'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control custom-form-control',
-            'placeholder': 'Rolle'
+            'placeholder': 'Position'
         })
         self.fields['company_name'].widget = forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control custom-form-control',
-            'placeholder': 'Firma'
+            'placeholder': 'Name des Unternehmens'
         })
         self.fields['company_address'].widget = forms.TextArea(attrs={
             'type': 'multi',
             'class': 'form-control custom-form-control',
-            'placeholder': 'Firmenadresse'
+            'placeholder': 'Anschrift des Unternehmens'
         })
         self.fields['email'].widget = forms.EmailInput(attrs={
             'type': 'text',
