@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content_header %} Bewerberportal {% endblock content_header %}
+{% block main_content %}
+
+
+    <div class="row">
+        <div class="col-12">
+
+            <form method="post">
+                {% csrf_token %}
+
+
+                <div class="card custom-card">
+                    <div class="col-12">
+                        <h4 class="ilias-header">
+                            Bewerbung löschen
+                        </h4>
+                    </div>
+                    <!-- /.card-header -->
+
+
+                    <div class="card-body p-0 custom-body-padding">
+
+                        <p>Sie sind dabei ihre Bewerbung zu löschen. Sind Sie sich sicher, dass sie ihre Bewerbung unwiederruflich löschen wollen ? Diese Aktion kann nicht rüchgängig gemacht werden. </p>
+
+
+                        <button type="button"
+
+                                onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                                class="btn btn-sm btn-primary custom-btn-primary float-right"
+
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+
+                        <button type="submit"
+
+                                onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                                class="btn btn-sm btn-primary custom-btn-primary float-right"
+                                style="margin-right: 5px; "
+                        >
+                            <i class="fas fa-check"></i>
+                        </button>
+
+
+
+
+                    </div>
+
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

@@ -168,7 +168,7 @@ class BewerbungDetailView(DetailView):
 @method_decorator([login_required, bewerber_required], name='dispatch')
 class BewerbungDeleteView(DeleteView):
     model = Bewerbung
-    template_name = 'admissionspace/applications/bewerbung.html'
+    template_name = 'admissionspace/applications/bewerbung_delete.html'
     success_url = reverse_lazy('applicant_index')
 
 
