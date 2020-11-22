@@ -101,5 +101,8 @@ background-color: #1e8536 !important;
 }
 
 
+input[type='checkbox'], input[type='radio'] { filter: grayscale(1) }
+
+
 
 
