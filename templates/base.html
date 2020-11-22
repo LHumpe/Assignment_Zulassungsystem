@@ -42,7 +42,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Left navbar links -->
         <ul class="navbar-nav">
 <li class="nav-item">
-        <img src="/static/dist/svg/logo-zulassungsausschuss-informatik.svg" alt="Universität zu Köln - Zulassungsausschuss Informatik" width="auto" height="40px" stroke="#3E566C" >
+        <img
+                src="/static/dist/svg/logo-zulassungsausschuss-informatik.svg"
+                alt="Universität zu Köln - Zulassungsausschuss Informatik"
+                width="auto"
+                height="40px"
+                stroke="#3E566C"
+                style="cursor: pointer;"
+
+
+
+                {% if user.is_bewerber %}
+
+                    onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                {% elif user.is_ausschuss %}
+
+                    onclick="javascript:location.href='{% url 'application_list' %}'"
+
+                {% else %}
+
+                    onclick="javascript:location.href='{% url 'index' %}'"
+
+                {% endif %}
+
+        >
       </li>
         </ul>
         <ul class="navbar-nav ml-auto">
