@@ -258,7 +258,7 @@ class RecommendationCreateForm(forms.ModelForm):
             'class': 'form-control custom-form-control',
             'placeholder': 'Name des Unternehmens'
         })
-        self.fields['company_address'].widget = forms.TextArea(attrs={
+        self.fields['company_address'].widget = forms.Textarea(attrs={
             'type': 'multi',
             'class': 'form-control custom-form-control',
             'placeholder': 'Anschrift des Unternehmens'
