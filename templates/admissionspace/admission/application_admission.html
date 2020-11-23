@@ -24,16 +24,15 @@ p-3 mb-3">
             <div class="row">
                 <div class="col-6">
                     <h4 class="ilias-header">
-                         Bewerbung Nr. {{ bewerbung.id }}
+                        Bewerbung Nr. {{ bewerbung.id }}
                     </h4>
 
 
-
-
                 </div>
-                 <div class="col-6">
-                <h5 class="float-right" style="margin-bottom: 48px !important; color: #58595B; font-style:italic">{{ bewerbung.date_of_entry }}</h5>
- </div>
+                <div class="col-6">
+                    <h5 class="float-right"
+                        style="margin-bottom: 48px !important; color: #58595B; font-style:italic">{{ bewerbung.date_of_entry }}</h5>
+                </div>
                 <!-- /.col -->
             </div>
 
@@ -67,7 +66,7 @@ p-3 mb-3">
 
 
                     {% if bewerbung.status == 'A' %}
-                        <h5><i class="fas fa-check-circle" style="color: #28a745; " ></i>&nbsp;&nbsp;Bewerber angenommen
+                        <h5><i class="fas fa-check-circle" style="color: #28a745; "></i>&nbsp;&nbsp;Bewerber angenommen
                         </h5>
                     {% elif bewerbung.status == 'D' %}
                         <h5><i class="fas fa-times-circle" style="color: #dc3545;"></i>&nbsp;&nbsp;Bewerber abgelehnt
@@ -263,7 +262,7 @@ p-3 mb-3">
 
 
 
-        <!-- Table row -->
+            <!-- Table row -->
             <div class="row" style="margin-bottom: 0px; margin-top: 32px">
                 <div class="col-12 ">
                     <p class="lead">Empfehlungsschreiben</p>
@@ -285,7 +284,7 @@ p-3 mb-3">
                             </thead>
                             <tbody>
 
-                            {% for recommendation in recommendations  %}
+                            {% for recommendation in recommendations %}
                                 <tr>
                                     <td>{{ recommendation.company_name }}</td>
                                     <td>{{ recommendation.first_name }}</td>
@@ -299,7 +298,8 @@ p-3 mb-3">
                                     <td>
                                         <button onclick="javascript:location.href='{% url 'detail_recommendation' recommendation.id %}'"
                                                 type="button"
-                                                class="btn btn-sm btn-primary custom-btn-primary float-right" style="margin-right: 4px;"><i
+                                                class="btn btn-sm btn-primary custom-btn-primary float-right"
+                                                style="margin-right: 4px;"><i
                                                 class="fas fa-eye"></i>
                                         </button>
 
@@ -319,92 +319,91 @@ p-3 mb-3">
 
 
 
-{% if enrolment_capacity <= 0 %}
+            {% if enrolment_capacity <= 0 %}
 
 
-    <div class="row no-print" style="margin-top: 48px;">
-                <div class="col-12">
+                <div class="row no-print" style="margin-top: 48px;">
+                    <div class="col-12">
 
-                    <p class="float-left " style="position: absolute;
-	                bottom: 0; margin-bottom:0; color: red ">
+                        <p class="float-left " style="position: absolute;
+	                bottom: 0; margin-bottom:0; color: red ; max-width: 450px; ">
 
-                        Achtung: Die maximale Anzahl an Zulassungen (200) wurde bereits erreicht. Sie können keine weiteren Bewerber zulassen !
-                    </p>
+                            Achtung: Die maximale Anzahl an Zulassungen (200) wurde bereits erreicht. Sie können keine
+                            weiteren Bewerber zulassen !
+                        </p>
 
 
+                    </div>
                 </div>
-            </div>
 
 
-{% elif bewerbung.status == 'P' %}
+            {% elif bewerbung.status == 'P' %}
 
-            <!-- /.row -->
-
-
-            <div class="row no-print" style="margin-top: 32px;">
-                <div class="col-12">
-
-                    <p class="float-left " style="position: absolute;
-	                bottom: 0; margin-bottom:0; color: red ">
-
-                        Achtung: Die Beantwortung einer Bewerbung kann ausschließlich durch Systemadministratoren rückgängig gemacht werden!
-                    </p>
+                <!-- /.row -->
 
 
-                    <form method="post">
-                        {% csrf_token %}
-                        <div style="display: none;">
-                            {{ form.status }}
+                <div class="row no-print" style="margin-top: 32px;">
+                    <div class="col-12">
+
+                        <p class="float-left " style="position: absolute;
+	                bottom: 0; margin-bottom:0; color: red ; max-width: 450px; ">
+
+                            Achtung: Die Beantwortung einer Bewerbung kann ausschließlich durch Systemadministratoren
+                            rückgängig gemacht werden!
+                        </p>
 
 
-                        </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div style="display: none;">
+                                {{ form.status }}
 
 
-                         <button type="submit" onclick="javascript:location.href='{% url 'application_list' %}'"
+                            </div>
 
 
+                            <button type="submit" onclick="javascript:location.href='{% url 'application_list' %}'"
 
 
-                      class="btn btn-sm btn-primary custom-btn-primary float-right"
+                                    class="btn btn-sm btn-primary custom-btn-primary float-right"
 
-                     >
-                           <i class="fas fa-arrow-right"></i>&nbsp; Zurück
-                        </button>
-
-
-
-                        <button type="submit" onclick="javascript: document.getElementById('id_status').value='D'"
-                                style="margin-right: 5px;"
+                            >
+                                <i class="fas fa-arrow-right"></i>&nbsp; Zurück
+                            </button>
 
 
-                      class="btn btn-sm btn-primary custom-btn-primary float-right"
-
-                     >
-                            <i class="fas fa-times"></i>&nbsp; Bewerber ablehnen
-                        </button>
+                            <button type="submit" onclick="javascript: document.getElementById('id_status').value='D'"
+                                    style="margin-right: 5px;"
 
 
-                        <button
-                                type="submit" onclick="javascript: document.getElementById('id_status').value='A'; "
+                                    class="btn btn-sm btn-primary custom-btn-primary float-right"
 
-                                 style="margin-right: 5px;"
-
-                        class="btn btn-sm btn-primary custom-btn-primary float-right"
-
-
-                        ><i class="fas fa-check"></i>&nbsp;
-                            Bewerber annehmen
-                        </button>
+                            >
+                                <i class="fas fa-times"></i>&nbsp; Bewerber ablehnen
+                            </button>
 
 
-                    </form>
+                            <button
+                                    type="submit" onclick="javascript: document.getElementById('id_status').value='A'; "
+
+                                    style="margin-right: 5px;"
+
+                                    class="btn btn-sm btn-primary custom-btn-primary float-right"
 
 
+                            ><i class="fas fa-check"></i>&nbsp;
+                                Bewerber annehmen
+                            </button>
+
+
+                        </form>
+
+
+                    </div>
                 </div>
-            </div>
 
-         {% else %}
-                                    {% endif %}
+            {% else %}
+            {% endif %}
         </div>
         <!-- /.invoice -->
     </div>

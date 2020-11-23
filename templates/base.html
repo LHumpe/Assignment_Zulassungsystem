@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UzK - Informatik Bewerbungsportal</title>
+    <title>UzK - Zulassungsausschuss Informatik</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -42,7 +42,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Left navbar links -->
         <ul class="navbar-nav">
 <li class="nav-item">
-        <img src="/static/dist/svg/logo-zulassungsausschuss-informatik.svg" alt="Universität zu Köln - Zulassungsausschuss Informatik" width="auto" height="40px" stroke="#3E566C" >
+        <img
+                src="/static/dist/svg/logo-zulassungsausschuss-informatik.svg"
+                alt="Universität zu Köln - Zulassungsausschuss Informatik"
+                width="auto"
+                height="40px"
+                stroke="#3E566C"
+                style="cursor: pointer;"
+
+
+
+                {% if user.is_bewerber %}
+
+                    onclick="javascript:location.href='{% url 'applicant_index' %}'"
+
+                {% elif user.is_ausschuss %}
+
+                    onclick="javascript:location.href='{% url 'application_list' %}'"
+
+                {% else %}
+
+                    onclick="javascript:location.href='{% url 'index' %}'"
+
+                {% endif %}
+
+        >
       </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -110,13 +134,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     <!-- Main Footer -->
-    <footer class="main-footer custom-footer">
+    <footer class="main-footer custom-footer" style="background-color: #3E566C;
+    border-color: #3E566C !important; color: white; display: flex;
+
+  justify-content: center;
+  align-items: center;
+    margin-left: 0 !important;
+" >
         <!-- To the right -->
-        <div class="float-right d-none d-sm-inline" style="font-style: italic ">
-             das-team 2020
+        <div class=" d-none d-sm-inline" style="font-size: 14px !important;">
+             2020 &nbsp;|&nbsp; das-team &nbsp;-&nbsp; W.Peng &nbsp; E.Piscopello &nbsp; M.Ahaduch &nbsp; L.Humpe &nbsp; M.Hammer &nbsp; A.Spindeler &nbsp;|&nbsp; Modul: Softwaretechnik
         </div>
-        <!-- Default to the left -->
-        Prototyp: Informatik Zulassungsportal
+
     </footer>
 </div>
 <!-- ./wrapper -->
@@ -129,5 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+
+<script type="text/javascript"  src="{% static 'dist/js/copytoclipboard.js' %}"></script>
 </body>
 </html>
