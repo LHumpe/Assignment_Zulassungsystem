@@ -5,6 +5,8 @@ Eine Demo mit vorgefüllter Datenbank kann unter folgender Adresse aufgerufen we
 
 Link: https://www.swt-das.team/
 
+Der User Guide kann unter [hier](/doc/User%20_Guide_Semantic_Mango.pdf) aufgerufen werden.
+
 - Beipiel Account Zulassungsausschuss Admin:<br>
 Kann Zulassungsausschuss-Mitglied Accounts erstellen und löschen (Hat als einziges Mitglied des Zulassungsausschusses Zugriff auf Django-Admin) und Annahmen und Ablehnungen rückgängig machen<br>
 Benutzername: zulassung@admin-user.de<br>
