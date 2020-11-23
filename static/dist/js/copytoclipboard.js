@@ -6,10 +6,16 @@ function Clipboard_CopyTo(value) {
   document.execCommand("copy");
   document.body.removeChild(tempInput);
 }
+if (document.querySelector('#Copy') !== null){
 
-document.querySelector('#Copy').onclick = function() {
+  document.querySelector('#Copy').onclick = function() {
   Clipboard_CopyTo(document.getElementById("rec-link").getAttribute("href"));
 
   alert("Folgender Link wurde ihrem Clipboard angehangen: \n\n" + document.getElementById("rec-link").getAttribute("href") + "\n\nBitte geben sie ihn an eine Person weiter, die für Sie ein Empfehlungsschreiben einreichen wird." );
 
 }
+
+}
+
+
+
