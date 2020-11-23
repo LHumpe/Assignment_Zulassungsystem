@@ -28,19 +28,32 @@
 
                             <div class="col-sm-4 invoice-col">
                                 <div style="margin-bottom: 16px;"><strong>Hochschulabschlüsse: </strong></div>
-                                {{ form.uni_degrees }}
+
+                                {% for checkbox in form.uni_degrees %}
+    <label style="font-weight: 300 !important; ">
+    {{ checkbox.tag }} &nbsp; {{ checkbox.choice_label }}
+    </label>
+{% endfor %}
                             </div>
 
 
                             <div class="col-sm-4 invoice-col">
                                  <div style="margin-bottom: 16px;"><strong>Schulabschlüsse: </strong></div>
-                                {{ form.school_degrees }}
+                                {% for checkbox in form.school_degrees %}
+    <label style="font-weight: 300 !important; ">
+    {{ checkbox.tag }} &nbsp; {{ checkbox.choice_label }}
+    </label>
+{% endfor %}
                             </div>
 
 
                             <div class="col-sm-4 invoice-col">
                                  <div style="margin-bottom: 16px;"><strong>Praxiserfahrung: </strong></div>
-                                {{ form.work_experiences }}
+                              {% for checkbox in form.work_experiences %}
+    <label style="font-weight: 300 !important; ">
+    {{ checkbox.tag }} &nbsp; {{ checkbox.choice_label }}
+    </label>
+{% endfor %}
                             </div>
 
 

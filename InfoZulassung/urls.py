@@ -26,7 +26,7 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('admin/', admin.site.urls),
     path('signup/', BewerberSignUpView.as_view(), name='bewerber_signup'),
-    path('signout/', auth_views.LogoutView.as_view(next_page='login'), name='signout'),
+    path('signout/', auth_views.LogoutView.as_view(next_page='index'), name='signout'),
 
     # Application Views - Bewerbersicht
     path('changeuserdata/<slug:pk>/', BewerberUpdateView.as_view(), name='bewerber_update'),

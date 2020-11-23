@@ -167,7 +167,7 @@
 
 
                             {% elif b.status == 'D' %}
-                                Angenommen &nbsp;<i class="fas fa-times-circle" style="color: #dc3545;"></i>
+                                Abgelehnt &nbsp;<i class="fas fa-times-circle" style="color: #dc3545;"></i>
 
 
                             {% elif b.status == 'P' %}
@@ -327,7 +327,7 @@
                                 <td>{{ school_degree.avg_score }}</td>
 
 
-                                <td>
+                                <td style="min-width:100px">
 
                                     <button onclick="javascript:location.href='{% url 'update_school_degree' school_degree.id %}'"
                                             type="button" class="btn btn-sm btn-danger custom-btn-primary float-right">
@@ -420,7 +420,7 @@
                                 <td>{{ uni_degree.avg_score }}</td>
 
 
-                                <td>
+                                <td style="min-width:100px">
 
                                     <button onclick="javascript:location.href='{% url 'update_uni_degree' uni_degree.id %}'"
                                             type="button" class="btn btn-sm btn-primary custom-btn-primary float-right">
@@ -496,7 +496,7 @@
                                 <td>{{ work_experience.avg_weekly_working_time }}</td>
 
 
-                                <td>
+                                <td style="min-width:100px">
 
                                     <button onclick="javascript:location.href='{% url 'update_work_exp' work_experience.id %}'"
                                             type="button" class="btn btn-sm btn-danger custom-btn-primary float-right">
@@ -578,18 +578,31 @@
                     </table>
                 </div>
 
-                <div class="card-footer" style="background-color: white; ">
+                <div class="card-footer"
+                     style="background-color: white;
+                     border: 1px solid #dee2e6;
+                    padding: 16px !important;
+                     margin-top: 32px !important; "
+
+                >
 
 
                     {% with request.build_absolute_uri|add:recommendation_link as recommendation_url %}
-                        <p class="ilias-header-style"><br>Geben Sie folgenden Link an Personen weiter, welche ein
-                            Empfehlungsschreiben für Sie erstellen sollen: <a
-                                    href={{ recommendation_url }}>{{ recommendation_url }} </a><br> Das
-                            Empfehlungsschreiben wird Ihrer Bewerbung automatisch angehangen.</p>
+                        <div style="margin-bottom: 0px !important;">
+
+                            Geben Sie <a id="rec-link" style="color: #3E566C; font-weight: 600;" href={{ recommendation_url }}> &nbsp;diesen Link&nbsp;</a> an Personen weiter, die ein Empfehlungsschreiben für sie einreichen werden. <button
+                                id="Copy"
+
+
+
+                                class="btn btn-sm float-right btn-primary custom-btn-primary"><i
+                                    class="fas fa-copy"></i> &nbsp; Link kopieren </button>
+                        </div>
+
 
 
                     {% endwith %}
-                    </button>
+
                 </div>
 
             </div>

@@ -47,11 +47,6 @@
     border-color: #32475b;
 }
 
-.custom-footer{
-    background-color: #ffffff;
-    border-color: #ffffff;
-}
-
 
 .custom-content{
     padding-left: 48px !important;
@@ -104,6 +99,9 @@ background-color: #1e8536 !important;
 .custom-form-control{
     border-radius: 0px !important;
 }
+
+
+input[type='checkbox'], input[type='radio'] { filter: grayscale(1) }
 
 
 
