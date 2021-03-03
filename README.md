@@ -1,10 +1,10 @@
-# Zulassungssystem Informatik Studiengangs
+# Admission System
 This is a admissionsystem for the course of Software Engineering. The goal was to develop a system which allows students to apply for their bachelor's in computer science. This project is based on Django and some modification of the AdminLTE3 templates.
 
 The User Guide can be found [HERE](/doc/User%20_Guide_Semantic_Mango.pdf).
 
 
-## Wie kann man das Zulassungssystem installieren?
+## Quick Start
 - Install Python (>= 3.9)
 - Clone this repo and cd into the resulting folder
 ```sh
